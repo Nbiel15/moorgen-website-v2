@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Snowflake, Leaf, Droplets, Power } from "lucide-react";
+import { ArrowLeft, Snowflake, Leaf, Droplets, Power, ChevronUp, ChevronDown } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 
 const rooms = [
@@ -135,14 +135,28 @@ const AdvancedDeviceControl = () => {
                 <div className="absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
               </div>
 
-              {/* Center Content */}
+              {/* Center Content with Up/Down Buttons */}
               <div className="absolute inset-8 rounded-full bg-card flex flex-col items-center justify-center shadow-inner">
+                <button
+                  onClick={() => setTemperature(prev => Math.min(maxTemp, prev + 1))}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all mb-1"
+                  disabled={temperature >= maxTemp}
+                >
+                  <ChevronUp className="w-6 h-6" strokeWidth={1.5} />
+                </button>
                 <span className="font-heading text-5xl md:text-6xl text-foreground">
                   {temperature}°C
                 </span>
-                <span className="text-[10px] text-accent font-body tracking-[0.2em] uppercase mt-2">
+                <span className="text-[10px] text-accent font-body tracking-[0.2em] uppercase mt-1">
                   {temperature < 22 ? "Cooler" : temperature > 26 ? "Warmer" : "Comfort"}
                 </span>
+                <button
+                  onClick={() => setTemperature(prev => Math.max(minTemp, prev - 1))}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all mt-1"
+                  disabled={temperature <= minTemp}
+                >
+                  <ChevronDown className="w-6 h-6" strokeWidth={1.5} />
+                </button>
               </div>
 
               {/* Temperature Labels - positioned at arc endpoints (-135° and +135°) */}
