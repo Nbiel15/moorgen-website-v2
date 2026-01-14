@@ -18,21 +18,27 @@ const LoginForm = () => {
     setIsLoading(true);
 
     // Simulate API delay for premium feel
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Mock credentials for demo
+    const MOCK_CREDENTIALS = {
+      owner: { email: "owner@moorgen.bali", password: "password123" },
+      partner: { email: "partner@moorgen.bali", password: "password123" },
+    };
 
     // Check credentials and redirect accordingly
-    if (email === "owner@moorgen.com") {
+    if (email === MOCK_CREDENTIALS.owner.email && password === MOCK_CREDENTIALS.owner.password) {
       setIsFadingOut(true);
       setTimeout(() => {
         navigate("/lifestyle-dashboard");
       }, 500);
-    } else if (email === "engineer@moorgen.com") {
+    } else if (email === MOCK_CREDENTIALS.partner.email && password === MOCK_CREDENTIALS.partner.password) {
       setIsFadingOut(true);
       setTimeout(() => {
         navigate("/technical-workspace");
       }, 500);
     } else {
-      setError("Invalid credentials. This is an invitation-only space.");
+      setError("Access denied. Please use your exclusive invitation credentials.");
       setIsLoading(false);
     }
   };
