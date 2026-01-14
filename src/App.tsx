@@ -6,7 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import LifestyleDashboard from "./pages/LifestyleDashboard";
 import TechnicalWorkspace from "./pages/TechnicalWorkspace";
-import AtmosphereControl from "./pages/AtmosphereControl";
+import Controls from "./pages/Controls";
+import AdvancedDeviceControl from "./pages/AdvancedDeviceControl";
 import ProjectJourney from "./pages/ProjectJourney";
 import Documents from "./pages/Documents";
 import Support from "./pages/Support";
@@ -24,7 +25,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/lifestyle-dashboard" element={<LifestyleDashboard />} />
           <Route path="/technical-workspace" element={<TechnicalWorkspace />} />
-          <Route path="/controls" element={<AtmosphereControl />} />
+          <Route path="/controls" element={<Controls />} />
+          <Route path="/advanced-control" element={<AdvancedDeviceControl />} />
           <Route path="/progress" element={<ProjectJourney />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/support" element={<Support />} />
