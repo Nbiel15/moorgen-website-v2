@@ -20,7 +20,7 @@ const DashboardSidebar = () => {
       {/* Fixed Sidebar */}
       <aside className="hidden lg:flex flex-col w-20 fixed left-0 top-0 h-screen bg-[#FAFAFA]/80 backdrop-blur-sm border-r border-[#E5E5E5]/50 items-center justify-center z-50">
         {/* Logo - Positioned at top */}
-        <div className="absolute top-30">
+        <div className="absolute top-25">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-champagne-gold to-champagne-gold/70 flex items-center justify-center shadow-sm">
             <span className="text-white font-serif font-bold text-lg">M</span>
           </div>
