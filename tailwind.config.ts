@@ -56,6 +56,8 @@ export default {
           light: "hsl(var(--champagne-gold-light))",
           dark: "hsl(var(--champagne-gold-dark))",
         },
+        "champagne-gold": "#D4AF37",
+        charcoal: "#1A1A1A",
         moorgen: {
           white: "hsl(var(--moorgen-white))",
           border: "hsl(var(--moorgen-border))",
