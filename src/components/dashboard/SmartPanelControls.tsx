@@ -46,10 +46,10 @@ const SmartPanelControls = () => {
   const [activeMode, setActiveMode] = useState<ModeType>("dining");
 
   return (
-    <div className="bg-white rounded-3xl p-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-      <h3 className="font-serif text-xl text-charcoal mb-6">Smart Panel Controls</h3>
+    <div className="bg-white rounded-3xl p-8 pt-10 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+      <h3 className="font-serif text-xl text-charcoal mb-8">Smart Panel Controls</h3>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row gap-8 lg:items-center">
         {/* Preview Image - Portrait/Square */}
         <div className="flex-1 max-w-sm">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-charcoal/5 to-charcoal/10">
@@ -72,10 +72,10 @@ const SmartPanelControls = () => {
           </div>
         </div>
 
-        {/* Right Side: Button Grid + Description */}
-        <div className="flex-1 flex flex-col justify-between">
+        {/* Right Side: Button Grid + Description - Centered vertically */}
+        <div className="flex-1 flex flex-col items-center justify-center">
           {/* 2x2 Button Grid */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
             {(Object.keys(modes) as ModeType[]).map((mode) => {
               const { icon: Icon, label } = modes[mode];
               const isActive = activeMode === mode;
@@ -91,9 +91,10 @@ const SmartPanelControls = () => {
                   }`}
                 >
                   <Icon
-                    className={`w-6 h-6 transition-colors duration-300 ${
+                    className={`w-5 h-5 transition-colors duration-300 ${
                       isActive ? "text-champagne-gold" : "text-charcoal/40 group-hover:text-charcoal/60"
                     }`}
+                    strokeWidth={1.5}
                   />
                   <span
                     className={`text-sm font-medium transition-colors duration-300 ${
@@ -110,8 +111,8 @@ const SmartPanelControls = () => {
             })}
           </div>
 
-          {/* Dynamic Description */}
-          <div className="mt-6 pt-5 border-t border-[#E5E5E5]">
+          {/* Dynamic Description - Centered */}
+          <div className="mt-6 pt-5 border-t border-[#E5E5E5] w-full max-w-xs text-center">
             <p 
               className="text-sm text-charcoal/70 leading-relaxed tracking-wide transition-opacity duration-500"
               style={{ fontFamily: "Inter, sans-serif" }}
