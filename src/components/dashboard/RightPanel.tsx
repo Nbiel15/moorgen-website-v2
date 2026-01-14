@@ -1,8 +1,6 @@
 import { Sun, Cloud, Wifi, MessageCircle, FileText, Droplets, Wind } from "lucide-react";
-
 const RightPanel = () => {
-  return (
-    <aside className="hidden xl:flex flex-col w-72 bg-white border-l border-[#E5E5E5] p-6 gap-5 overflow-y-auto">
+  return <aside className="hidden xl:flex flex-col w-72 bg-white border-l border-[#E5E5E5] p-6 gap-5 overflow-y-auto">
       {/* System Health Widget */}
       <div className="bg-white rounded-3xl p-5 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <h3 className="font-serif text-lg text-charcoal mb-4">System Health</h3>
@@ -63,7 +61,7 @@ const RightPanel = () => {
           </div>
           <div className="text-center">
             <Wind className="w-4 h-4 text-sky-400 mx-auto mb-1" />
-            <p className="text-sm font-medium text-charcoal">12 km/h</p>
+            <p className="text-sm font-medium text-charcoal">12 mp/h</p>
             <p className="text-[10px] text-charcoal/40">Wind</p>
           </div>
         </div>
@@ -107,15 +105,13 @@ const RightPanel = () => {
       <div className="text-center mt-auto pt-4">
         <p className="text-xs text-charcoal/40">
           {new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        })}
         </p>
       </div>
-    </aside>
-  );
+    </aside>;
 };
-
 export default RightPanel;
