@@ -88,7 +88,7 @@ const AdvancedDeviceControl = () => {
             </button>
 
             {/* Temperature Dial */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
+            <div className={`relative w-64 h-64 md:w-80 md:h-80 transition-opacity duration-300 ${!isPowered ? 'opacity-50' : ''}`}>
               {/* Background Track - 270 degree arc */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                 <circle
@@ -104,14 +104,14 @@ const AdvancedDeviceControl = () => {
                 />
               </svg>
               
-              {/* Active Arc - Champagne Gold */}
+              {/* Active Arc - Champagne Gold or Grey when off */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
                   cy="50"
                   r="44"
                   fill="none"
-                  stroke="url(#champagneGoldGradient)"
+                  stroke={isPowered ? "url(#champagneGoldGradient)" : "hsl(0, 0%, 70%)"}
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeDasharray={`${(tempPercentage / 100) * 207.35} 276.46`}
@@ -132,28 +132,47 @@ const AdvancedDeviceControl = () => {
                 className="absolute inset-4 rounded-full bg-card border border-border flex items-center justify-center transition-transform duration-300"
                 style={{ transform: `rotate(${dialRotation}deg)` }}
               >
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+                <div className={`absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full transition-all duration-300 ${
+                  isPowered 
+                    ? "bg-accent shadow-[0_0_10px_rgba(212,175,55,0.5)]" 
+                    : "bg-muted-foreground/50"
+                }`} />
               </div>
 
               {/* Center Content with Up/Down Buttons */}
               <div className="absolute inset-8 rounded-full bg-card flex flex-col items-center justify-center shadow-inner">
                 <button
                   onClick={() => setTemperature(prev => Math.min(maxTemp, prev + 1))}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all mb-1"
-                  disabled={temperature >= maxTemp}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all mb-1 ${
+                    isPowered 
+                      ? "text-muted-foreground hover:text-accent hover:bg-accent/10 cursor-pointer" 
+                      : "text-muted-foreground/30 cursor-not-allowed"
+                  }`}
+                  disabled={!isPowered || temperature >= maxTemp}
                 >
                   <ChevronUp className="w-6 h-6" strokeWidth={1.5} />
                 </button>
-                <span className="font-heading text-5xl md:text-6xl text-foreground">
+                <span className={`font-heading text-5xl md:text-6xl transition-colors duration-300 ${
+                  isPowered ? "text-foreground" : "text-muted-foreground"
+                }`}>
                   {temperature}°C
                 </span>
-                <span className="text-[10px] text-accent font-body tracking-[0.2em] uppercase mt-1">
-                  {temperature < 22 ? "Cooler" : temperature > 26 ? "Warmer" : "Comfort"}
+                <span className={`text-[10px] font-body tracking-[0.2em] uppercase mt-1 transition-colors duration-300 ${
+                  isPowered ? "text-accent" : "text-muted-foreground/50"
+                }`}>
+                  {isPowered 
+                    ? (temperature < 22 ? "Cooler" : temperature > 26 ? "Warmer" : "Comfort")
+                    : "Off"
+                  }
                 </span>
                 <button
                   onClick={() => setTemperature(prev => Math.max(minTemp, prev - 1))}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-accent hover:bg-accent/10 transition-all mt-1"
-                  disabled={temperature <= minTemp}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center transition-all mt-1 ${
+                    isPowered 
+                      ? "text-muted-foreground hover:text-accent hover:bg-accent/10 cursor-pointer" 
+                      : "text-muted-foreground/30 cursor-not-allowed"
+                  }`}
+                  disabled={!isPowered || temperature <= minTemp}
                 >
                   <ChevronDown className="w-6 h-6" strokeWidth={1.5} />
                 </button>
@@ -169,23 +188,25 @@ const AdvancedDeviceControl = () => {
             </div>
 
             {/* Temperature Slider with Gold thumb */}
-            <div className="w-64 md:w-80 mt-10">
+            <div className={`w-64 md:w-80 mt-10 transition-opacity duration-300 ${!isPowered ? 'opacity-50' : ''}`}>
               <input
                 type="range"
                 min={minTemp}
                 max={maxTemp}
                 value={temperature}
                 onChange={(e) => setTemperature(Number(e.target.value))}
-                className="w-full h-1 bg-border rounded-full appearance-none cursor-pointer
+                disabled={!isPowered}
+                className={`w-full h-1 bg-border rounded-full appearance-none
                   [&::-webkit-slider-thumb]:appearance-none
                   [&::-webkit-slider-thumb]:w-5
                   [&::-webkit-slider-thumb]:h-5
                   [&::-webkit-slider-thumb]:rounded-full
-                  [&::-webkit-slider-thumb]:bg-accent
-                  [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(212,175,55,0.5)]
-                  [&::-webkit-slider-thumb]:cursor-pointer
                   [&::-webkit-slider-thumb]:transition-transform
-                  [&::-webkit-slider-thumb]:hover:scale-110"
+                  [&::-webkit-slider-thumb]:hover:scale-110
+                  ${isPowered 
+                    ? "[&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(212,175,55,0.5)] [&::-webkit-slider-thumb]:cursor-pointer cursor-pointer" 
+                    : "[&::-webkit-slider-thumb]:bg-muted-foreground/50 cursor-not-allowed"
+                  }`}
               />
             </div>
 
