@@ -90,7 +90,7 @@ const AdvancedDeviceControl = () => {
             {/* Temperature Dial */}
             <div className="relative w-64 h-64 md:w-80 md:h-80">
               {/* Background Track - 270 degree arc */}
-              <svg className="absolute inset-0 w-full h-full -rotate-[135deg]" viewBox="0 0 100 100">
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
                   cy="50"
@@ -100,11 +100,12 @@ const AdvancedDeviceControl = () => {
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeDasharray="207.35 276.46"
+                  transform="rotate(-225, 50, 50)"
                 />
               </svg>
               
               {/* Active Arc - Champagne Gold */}
-              <svg className="absolute inset-0 w-full h-full -rotate-[135deg]" viewBox="0 0 100 100">
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
                   cy="50"
@@ -114,6 +115,7 @@ const AdvancedDeviceControl = () => {
                   strokeWidth="6"
                   strokeLinecap="round"
                   strokeDasharray={`${(tempPercentage / 100) * 207.35} 276.46`}
+                  transform="rotate(-225, 50, 50)"
                   className="transition-all duration-300"
                 />
                 <defs>
@@ -143,11 +145,11 @@ const AdvancedDeviceControl = () => {
                 </span>
               </div>
 
-              {/* Temperature Labels */}
-              <span className="absolute -left-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-body">
+              {/* Temperature Labels - positioned at arc endpoints (-135° and +135°) */}
+              <span className="absolute bottom-2 left-2 text-xs text-muted-foreground font-body">
                 {minTemp}°
               </span>
-              <span className="absolute -right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-body">
+              <span className="absolute bottom-2 right-2 text-xs text-muted-foreground font-body">
                 {maxTemp}°
               </span>
             </div>
