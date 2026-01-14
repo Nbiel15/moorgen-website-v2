@@ -163,8 +163,8 @@ const Controls = () => {
           </span>
         </div>
 
-        {/* Device Grid - Dark Gallery Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Device Grid - 2x2 Layout */}
+        <div className="grid grid-cols-2 gap-4">
           {devices.map((device) => (
             <div
               key={device.id}
