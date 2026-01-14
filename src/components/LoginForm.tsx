@@ -97,7 +97,7 @@ const LoginForm = () => {
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full h-14 bg-gradient-to-r from-champagne/90 to-champagne hover:from-champagne hover:to-champagne-dark text-charcoal font-body text-sm tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-xl hover:shadow-champagne/20 disabled:opacity-50 border border-champagne/20"
+        className="w-full h-14 bg-transparent hover:bg-white/5 text-champagne font-body text-sm tracking-[0.25em] uppercase transition-all duration-500 hover:tracking-[0.3em] disabled:opacity-50 border border-champagne/50 hover:border-champagne"
       >
         {isLoading ? (
           <span className="flex items-center gap-3">
