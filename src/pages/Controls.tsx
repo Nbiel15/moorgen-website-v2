@@ -100,32 +100,32 @@ const Controls = () => {
 
       <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
         {/* Quick Status Bar */}
-        <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
-          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
-              <Activity className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+        <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8">
+          <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+              <Activity className="w-4 h-4 md:w-5 md:h-5 text-foreground" strokeWidth={1.5} />
             </div>
-            <div>
-              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Motion</p>
-              <p className="font-heading text-lg text-foreground">Active</p>
-            </div>
-          </div>
-          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
-              <Zap className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-            </div>
-            <div>
-              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Energy</p>
-              <p className="font-heading text-lg text-foreground">42kWh</p>
+            <div className="text-center sm:text-left min-w-0">
+              <p className="text-[8px] md:text-[10px] text-muted-foreground tracking-[0.1em] md:tracking-[0.15em] uppercase font-body truncate">Motion</p>
+              <p className="font-heading text-sm md:text-lg text-foreground truncate">Active</p>
             </div>
           </div>
-          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
-              <Thermometer className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+          <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+              <Zap className="w-4 h-4 md:w-5 md:h-5 text-foreground" strokeWidth={1.5} />
             </div>
-            <div>
-              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Temp</p>
-              <p className="font-heading text-lg text-foreground">24°C</p>
+            <div className="text-center sm:text-left min-w-0">
+              <p className="text-[8px] md:text-[10px] text-muted-foreground tracking-[0.1em] md:tracking-[0.15em] uppercase font-body truncate">Energy</p>
+              <p className="font-heading text-sm md:text-lg text-foreground truncate">42kWh</p>
+            </div>
+          </div>
+          <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+              <Thermometer className="w-4 h-4 md:w-5 md:h-5 text-foreground" strokeWidth={1.5} />
+            </div>
+            <div className="text-center sm:text-left min-w-0">
+              <p className="text-[8px] md:text-[10px] text-muted-foreground tracking-[0.1em] md:tracking-[0.15em] uppercase font-body truncate">Temp</p>
+              <p className="font-heading text-sm md:text-lg text-foreground truncate">24°C</p>
             </div>
           </div>
         </div>
