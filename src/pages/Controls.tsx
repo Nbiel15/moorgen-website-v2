@@ -169,7 +169,7 @@ const Controls = () => {
             >
               {/* Connection Status */}
               <div className="absolute top-5 right-5 flex items-center gap-2">
-                <Wifi className={`w-4 h-4 ${device.isOn ? "text-primary-foreground/60" : "text-muted-foreground/50"}`} strokeWidth={1.5} />
+                <Wifi className={`w-4 h-4 ${device.isOn ? "text-green-500" : "text-muted-foreground/50"}`} strokeWidth={1.5} />
                 {device.hasNavigation && (
                   <ChevronRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
                     device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"
