@@ -51,10 +51,10 @@ const LoginForm = () => {
       }`}
     >
       <div className="space-y-6">
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label
             htmlFor="email"
-            className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-body font-medium"
+            className="text-xs tracking-[0.2em] uppercase text-white/50 font-body font-medium"
           >
             Email Address
           </Label>
@@ -64,15 +64,15 @@ const LoginForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="h-12 border-moorgen-border bg-transparent focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300 placeholder:text-muted-foreground/40 font-body tracking-wide"
+            className="h-14 border-white/20 bg-white/5 text-white focus:border-champagne/50 focus:ring-1 focus:ring-champagne/20 focus:bg-white/10 transition-all duration-500 placeholder:text-white/30 font-body tracking-wide backdrop-blur-sm"
             required
           />
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-3">
           <Label
             htmlFor="password"
-            className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-body font-medium"
+            className="text-xs tracking-[0.2em] uppercase text-white/50 font-body font-medium"
           >
             Password
           </Label>
@@ -82,14 +82,14 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
-            className="h-12 border-moorgen-border bg-transparent focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all duration-300 placeholder:text-muted-foreground/40 font-body tracking-wide"
+            className="h-14 border-white/20 bg-white/5 text-white focus:border-champagne/50 focus:ring-1 focus:ring-champagne/20 focus:bg-white/10 transition-all duration-500 placeholder:text-white/30 font-body tracking-wide backdrop-blur-sm"
             required
           />
         </div>
       </div>
 
       {error && (
-        <p className="text-sm text-destructive text-center font-body animate-fade-in">
+        <p className="text-sm text-red-400 text-center font-body animate-fade-in">
           {error}
         </p>
       )}
@@ -97,11 +97,11 @@ const LoginForm = () => {
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full h-12 bg-primary hover:bg-champagne-dark text-primary-foreground font-body text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:shadow-lg disabled:opacity-50"
+        className="w-full h-14 bg-gradient-to-r from-champagne/90 to-champagne hover:from-champagne hover:to-champagne-dark text-charcoal font-body text-sm tracking-[0.2em] uppercase transition-all duration-500 hover:shadow-xl hover:shadow-champagne/20 disabled:opacity-50 border border-champagne/20"
       >
         {isLoading ? (
-          <span className="flex items-center gap-2">
-            <span className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+          <span className="flex items-center gap-3">
+            <span className="w-4 h-4 border-2 border-charcoal/30 border-t-charcoal rounded-full animate-spin" />
             Authenticating
           </span>
         ) : (
@@ -109,7 +109,7 @@ const LoginForm = () => {
         )}
       </Button>
 
-      <p className="text-center text-xs text-muted-foreground font-body tracking-wide">
+      <p className="text-center text-xs text-white/40 font-body tracking-widest">
         Exclusive access for invited members only
       </p>
     </form>
