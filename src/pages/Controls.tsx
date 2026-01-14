@@ -138,8 +138,8 @@ const Controls = () => {
           </span>
         </div>
 
-        {/* Device Grid - Dark Gallery Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Device Grid - 2x2 Layout */}
+        <div className="grid grid-cols-2 gap-4">
           {devices.map(device => <div key={device.id} className={`relative rounded-3xl p-6 transition-all duration-500 cursor-pointer group border ${device.isOn ? "bg-primary text-primary-foreground border-primary shadow-lg" : "bg-card border-border text-foreground hover:border-foreground/20"}`} onClick={() => handleDeviceClick(device)}>
               {/* Connection Status */}
               <div className="absolute top-5 right-5 flex items-center gap-2">
