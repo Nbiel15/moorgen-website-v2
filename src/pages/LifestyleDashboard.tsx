@@ -1,8 +1,7 @@
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
-import QuickScenes from "@/components/dashboard/QuickScenes";
-import ProgressCircle from "@/components/dashboard/ProgressCircle";
-import FieldUpdates from "@/components/dashboard/FieldUpdates";
+import SmartPanelControls from "@/components/dashboard/SmartPanelControls";
+import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
 import MobileNav from "@/components/dashboard/MobileNav";
 
@@ -12,23 +11,17 @@ const LifestyleDashboard = () => {
       {/* Sidebar - Desktop */}
       <DashboardSidebar />
 
-      {/* Main Content */}
+      {/* Main Content - 3 Vertical Bars */}
       <main className="flex-1 p-4 md:p-6 lg:p-8 pb-24 lg:pb-8 overflow-y-auto">
         <div className="max-w-4xl mx-auto space-y-6">
-          {/* Welcome Banner */}
+          {/* BAR 1: Welcome Area */}
           <WelcomeBanner />
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Quick Scenes */}
-            <QuickScenes />
+          {/* BAR 2: Smart Panel Controls */}
+          <SmartPanelControls />
 
-            {/* Progress Circle */}
-            <ProgressCircle />
-          </div>
-
-          {/* Field Updates - Full Width */}
-          <FieldUpdates />
+          {/* BAR 3: Project Milestone Tracker */}
+          <MilestoneTracker />
 
           {/* Mobile Profile Card */}
           <div className="xl:hidden bg-gradient-to-br from-charcoal to-charcoal/90 rounded-3xl p-6">
