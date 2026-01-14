@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Utensils, Heart, MessageSquare, Focus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type ModeType = "dining" | "romantic" | "chatting" | "focus";
 
@@ -47,7 +48,9 @@ const SmartPanelControls = () => {
 
   return (
     <div className="bg-white rounded-3xl p-8 pt-10 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-      <h3 className="font-serif text-xl text-charcoal mb-8">Smart Panel Controls</h3>
+      <div className="flex items-center justify-between mb-8">
+        <h3 className="font-serif text-xl text-charcoal">Smart Panel Controls</h3>
+      </div>
 
       <div className="flex flex-col lg:flex-row gap-8 lg:items-center">
         {/* Preview Image - Portrait/Square */}
@@ -122,6 +125,17 @@ const SmartPanelControls = () => {
             <p className="text-xs text-charcoal/40 mt-3 tracking-wider uppercase">
               {modes[activeMode].label} Mode Active
             </p>
+          </div>
+
+          {/* View More Link */}
+          <div className="w-full max-w-xs mt-6 text-right">
+            <Link
+              to="/controls"
+              className="inline-block text-xs uppercase tracking-[0.15em] text-champagne-gold hover:text-charcoal transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-px after:bg-current after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              View More
+            </Link>
           </div>
         </div>
       </div>

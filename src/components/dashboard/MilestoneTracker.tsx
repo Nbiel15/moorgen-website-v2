@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Check, ChevronDown, ChevronUp, Camera } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type MilestoneStatus = "completed" | "in-progress" | "upcoming";
 
@@ -101,7 +102,9 @@ const MilestoneTracker = () => {
 
   return (
     <div className="bg-white rounded-3xl p-6 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-      <h3 className="font-serif text-xl text-charcoal mb-6">Project Milestone Tracker</h3>
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="font-serif text-xl text-charcoal">Project Milestone Tracker</h3>
+      </div>
 
       <div
         ref={containerRef}
@@ -189,6 +192,17 @@ const MilestoneTracker = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* View More Link */}
+      <div className="mt-5 pt-4 border-t border-[#E5E5E5] text-right">
+        <Link
+          to="/progress"
+          className="inline-block text-xs uppercase tracking-[0.15em] text-champagne-gold hover:text-charcoal transition-colors duration-300 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-px after:bg-current after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          View More
+        </Link>
       </div>
 
       {/* Timeline connector */}
