@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Utensils, Heart, MessageSquare, Focus } from "lucide-react";
 import { Link } from "react-router-dom";
-import luxuryLivingRoom from "@/assets/luxury-living-room.jpg";
+import smartPanelRoom from "@/assets/smart-panel-room.jpg";
 
 type ModeType = "dining" | "romantic" | "chatting" | "focus";
 
@@ -58,8 +58,8 @@ const SmartPanelControls = () => {
         <div className="flex-1 max-w-sm">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-charcoal/5 to-charcoal/10">
             <img
-              src={luxuryLivingRoom}
-              alt="Luxury Living Room"
+              src={smartPanelRoom}
+              alt="Smart Panel Living Room"
               className="w-full h-full object-cover transition-all duration-[800ms] ease-in-out"
               style={{ filter: modes[activeMode].filter }}
             />
