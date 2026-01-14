@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowLeft, Utensils, Heart, MessageSquare, Focus, Sun, Moon, Volume2, Pause, Play, SkipBack, SkipForward, Droplets, Thermometer, Wind, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Slider } from "@/components/ui/slider";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 
 // Room types for floor plan
 type RoomType = "living" | "dining" | "bedroom" | "kitchen" | "bathroom";
@@ -91,7 +92,7 @@ const AtmosphereControl = () => {
   const selectedRoomData = rooms.find(r => r.id === selectedRoom)!;
 
   return (
-    <div className="min-h-screen bg-background">
+    <DashboardLayout>
       {/* Header */}
       <header className="bg-card border-b border-border px-4 md:px-8 py-6">
         <div className="max-w-7xl mx-auto">
@@ -513,7 +514,7 @@ const AtmosphereControl = () => {
           </div>
         </div>
       </main>
-    </div>
+    </DashboardLayout>
   );
 };
 

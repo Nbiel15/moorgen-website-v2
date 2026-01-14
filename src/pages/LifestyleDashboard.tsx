@@ -1,18 +1,13 @@
-import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import DashboardLayout from "@/components/layout/DashboardLayout";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 import SmartPanelControls from "@/components/dashboard/SmartPanelControls";
 import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
-import MobileNav from "@/components/dashboard/MobileNav";
 
 const LifestyleDashboard = () => {
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex">
-      {/* Sidebar - Desktop */}
-      <DashboardSidebar />
-
-      {/* Main Content - 3 Vertical Bars */}
-      <main className="flex-1 p-4 md:p-6 lg:p-8 pb-24 lg:pb-8 overflow-y-auto">
+    <DashboardLayout showRightPanel rightPanel={<RightPanel />}>
+      <div className="p-4 md:p-6 lg:p-8">
         <div className="max-w-4xl mx-auto space-y-6">
           {/* BAR 1: Welcome Area */}
           <WelcomeBanner />
@@ -38,14 +33,8 @@ const LifestyleDashboard = () => {
             </div>
           </div>
         </div>
-      </main>
-
-      {/* Right Panel - Desktop */}
-      <RightPanel />
-
-      {/* Mobile Navigation */}
-      <MobileNav />
-    </div>
+      </div>
+    </DashboardLayout>
   );
 };
 
