@@ -1,6 +1,8 @@
 import { Sun, Cloud, Wifi, MessageCircle, FileText, Droplets, Wind } from "lucide-react";
+
 const RightPanel = () => {
-  return <aside className="hidden xl:flex flex-col w-72 bg-white border-l border-[#E5E5E5] p-6 gap-5 overflow-y-auto">
+  return (
+    <aside className="hidden xl:flex flex-col w-72 bg-white border-l border-[#E5E5E5] p-6 gap-5 overflow-y-auto">
       {/* System Health Widget */}
       <div className="bg-white rounded-3xl p-5 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <h3 className="font-serif text-lg text-charcoal mb-4">System Health</h3>
@@ -14,7 +16,7 @@ const RightPanel = () => {
             <span className="text-sm text-charcoal/70">All Systems Online</span>
           </div>
         </div>
-        
+
         {/* Connection Stats */}
         <div className="grid grid-cols-2 gap-3 mb-4 pt-3 border-t border-[#E5E5E5]">
           <div className="text-center p-3 bg-charcoal/5 rounded-xl">
@@ -29,7 +31,7 @@ const RightPanel = () => {
 
         <button className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-full border border-champagne-gold/30 text-champagne-gold text-sm font-medium hover:bg-champagne-gold/5 transition-colors">
           <MessageCircle className="w-4 h-4" />
-          Contact Concierge
+          Contact Support
         </button>
       </div>
 
@@ -47,7 +49,7 @@ const RightPanel = () => {
             <Cloud className="w-7 h-7 text-sky-300 absolute -bottom-1 -right-1" />
           </div>
         </div>
-        
+
         <div className="grid grid-cols-3 gap-2 pt-4 border-t border-sky-200/50">
           <div className="text-center">
             <Droplets className="w-4 h-4 text-sky-400 mx-auto mb-1" />
@@ -61,7 +63,7 @@ const RightPanel = () => {
           </div>
           <div className="text-center">
             <Wind className="w-4 h-4 text-sky-400 mx-auto mb-1" />
-            <p className="text-sm font-medium text-charcoal">12 mp/h</p>
+            <p className="text-sm font-medium text-charcoal">12 km/h</p>
             <p className="text-[10px] text-charcoal/40">Wind</p>
           </div>
         </div>
@@ -105,13 +107,15 @@ const RightPanel = () => {
       <div className="text-center mt-auto pt-4">
         <p className="text-xs text-charcoal/40">
           {new Date().toLocaleDateString("en-US", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        })}
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         </p>
       </div>
-    </aside>;
+    </aside>
+  );
 };
+
 export default RightPanel;
