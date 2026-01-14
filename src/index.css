@@ -33,25 +33,30 @@
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 43 76% 52%;
+    --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+    --ring: 43 76% 52%;
 
     --radius: 1.5rem;
 
-    /* Custom Moorgen Monochrome tokens */
+    /* Custom Moorgen tokens */
     --moorgen-black: 0 0% 10%;
     --moorgen-charcoal: 0 0% 20%;
     --moorgen-white: 0 0% 98%;
     --moorgen-border: 0 0% 90%;
     --moorgen-text: 0 0% 10%;
     --moorgen-text-muted: 0 0% 55%;
+    
+    /* Champagne Gold Accent */
+    --champagne-gold: 43 76% 52%;
+    --champagne-gold-light: 43 76% 62%;
+    --champagne-gold-dark: 43 76% 42%;
 
     /* Typography */
     --font-heading: 'Cormorant Garamond', serif;
@@ -61,10 +66,10 @@
     --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 0 0% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent: 43 76% 52%;
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 0% 10%;
+    --sidebar-ring: 43 76% 52%;
   }
 
   .dark {
