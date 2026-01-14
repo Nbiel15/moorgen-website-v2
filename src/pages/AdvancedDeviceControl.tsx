@@ -89,8 +89,19 @@ const AdvancedDeviceControl = () => {
 
             {/* Temperature Dial */}
             <div className="relative w-64 h-64 md:w-80 md:h-80">
-              {/* Outer Ring - Obsidian Black */}
-              <div className="absolute inset-0 rounded-full border-[12px] border-primary/20" />
+              {/* Background Track - 270 degree arc */}
+              <svg className="absolute inset-0 w-full h-full -rotate-[135deg]" viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="44"
+                  fill="none"
+                  stroke="hsl(0, 0%, 90%)"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  strokeDasharray="207.35 276.46"
+                />
+              </svg>
               
               {/* Active Arc - Champagne Gold */}
               <svg className="absolute inset-0 w-full h-full -rotate-[135deg]" viewBox="0 0 100 100">
@@ -102,7 +113,7 @@ const AdvancedDeviceControl = () => {
                   stroke="url(#champagneGoldGradient)"
                   strokeWidth="6"
                   strokeLinecap="round"
-                  strokeDasharray={`${(tempPercentage / 100) * 207} 276`}
+                  strokeDasharray={`${(tempPercentage / 100) * 207.35} 276.46`}
                   className="transition-all duration-300"
                 />
                 <defs>
