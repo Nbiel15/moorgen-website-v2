@@ -41,7 +41,7 @@ const Controls = () => {
     location: "Living Room"
   }, {
     id: "lock",
-    name: "T9 Series Smart Lock",
+    name: "Smart Lock",
     series: "Security",
     type: "Security",
     icon: Lock,
