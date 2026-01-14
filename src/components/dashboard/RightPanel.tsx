@@ -2,7 +2,12 @@ import { Sun, Cloud, Wifi, MessageCircle, FileText, Droplets, Wind } from "lucid
 
 const RightPanel = () => {
   return (
-    <aside className="hidden xl:flex flex-col w-72 bg-white border-l border-[#E5E5E5] p-6 gap-5 overflow-y-auto">
+    <>
+      {/* Spacer to maintain layout flow */}
+      <div className="hidden xl:block w-72 flex-shrink-0" />
+      
+      {/* Fixed Right Sidebar */}
+      <aside className="hidden xl:flex flex-col w-72 fixed right-0 top-0 h-screen bg-[#FAFAFA]/80 backdrop-blur-sm border-l border-[#E5E5E5]/50 p-6 gap-5 overflow-y-auto z-50">
       {/* System Health Widget */}
       <div className="bg-white rounded-3xl p-5 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <h3 className="font-serif text-lg text-charcoal mb-4">System Health</h3>
@@ -114,7 +119,8 @@ const RightPanel = () => {
           })}
         </p>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 };
 
