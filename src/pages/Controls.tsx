@@ -32,7 +32,7 @@ const Controls = () => {
   const [activeRoom, setActiveRoom] = useState("living");
   const [devices, setDevices] = useState<Device[]>([{
     id: "dimmer",
-    name: "Milan Series Dimming Knob",
+    name: "Smart Light",
     series: "Light Control",
     type: "Lighting",
     icon: SunDim,
