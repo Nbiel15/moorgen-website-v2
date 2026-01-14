@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
-  Lightbulb, 
-  Speaker, 
-  Tv, 
-  AirVent, 
+  SunDim, 
+  Lock, 
+  Thermometer, 
+  Blinds,
   Zap, 
   Activity, 
-  Thermometer,
   Wifi,
-  Bluetooth,
   ChevronRight
 } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
@@ -18,19 +16,19 @@ import { Switch } from "@/components/ui/switch";
 interface Device {
   id: string;
   name: string;
+  series: string;
   type: string;
   icon: React.ElementType;
   isOn: boolean;
-  subDevices?: string[];
   deviceCount?: number;
   hasNavigation?: boolean;
 }
 
 const roomTabs = [
-  { id: "living", label: "Living Room", icon: "🛋️" },
-  { id: "kitchen", label: "Kitchen", icon: "🍳" },
-  { id: "bedroom", label: "Bedroom", icon: "🛏️" },
-  { id: "office", label: "Office", icon: "💼" },
+  { id: "living", label: "Living Room" },
+  { id: "bedroom", label: "Bedroom" },
+  { id: "kitchen", label: "Kitchen" },
+  { id: "office", label: "Office" },
 ];
 
 const Controls = () => {
@@ -38,38 +36,41 @@ const Controls = () => {
   const [activeRoom, setActiveRoom] = useState("living");
   const [devices, setDevices] = useState<Device[]>([
     { 
-      id: "lamp", 
-      name: "Smart Lamp", 
+      id: "dimmer", 
+      name: "Milan Series Dimming Knob", 
+      series: "Light Control",
       type: "Lighting",
-      icon: Lightbulb, 
-      isOn: false, 
-      subDevices: ["Bardi smart lamp", "Smart lamp"],
-      deviceCount: 2
+      icon: SunDim, 
+      isOn: true, 
+      deviceCount: 3
     },
     { 
-      id: "speaker", 
-      name: "Speaker", 
-      type: "Audio",
-      icon: Speaker, 
-      isOn: true,
-      deviceCount: 2
-    },
-    { 
-      id: "ac", 
-      name: "Air Conditioner", 
-      type: "Climate",
-      icon: AirVent, 
+      id: "lock", 
+      name: "T9 Series Smart Lock", 
+      series: "Security",
+      type: "Security",
+      icon: Lock, 
       isOn: false,
+      deviceCount: 2
+    },
+    { 
+      id: "hvac", 
+      name: "Intelligent HVAC System", 
+      series: "Climate",
+      type: "Climate",
+      icon: Thermometer, 
+      isOn: true,
       deviceCount: 1,
       hasNavigation: true
     },
     { 
-      id: "tv", 
-      name: "Smart TV", 
-      type: "Entertainment",
-      icon: Tv, 
+      id: "shading", 
+      name: "Motorized Shading System", 
+      series: "Curtains",
+      type: "Shading",
+      icon: Blinds, 
       isOn: false,
-      deviceCount: 2
+      deviceCount: 4
     },
   ]);
 
@@ -88,69 +89,68 @@ const Controls = () => {
   return (
     <DashboardLayout>
       {/* Header */}
-      <header className="border-b border-border/30 bg-card/50 backdrop-blur-sm">
+      <header className="border-b border-border bg-background">
         <div className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8">
-          <p className="text-sm text-muted-foreground tracking-widest uppercase font-body">Manage Home</p>
+          <p className="text-xs text-muted-foreground tracking-[0.2em] uppercase font-body">Manage Home</p>
           <h1 className="font-heading text-2xl md:text-3xl text-foreground mt-1">
-            Hey, Welcome 👋
+            Welcome Home
           </h1>
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8">
+      <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
         {/* Quick Status Bar */}
-        <div className="grid grid-cols-3 gap-3 md:gap-4 mb-6">
-          <div className="bg-card rounded-2xl p-4 border border-border/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center">
-              <Activity className="w-5 h-5 text-champagne-gold" strokeWidth={1.5} />
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mb-8">
+          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+              <Activity className="w-5 h-5 text-foreground" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground tracking-wide uppercase font-body">Motion</p>
-              <p className="font-heading text-lg text-foreground">80%</p>
+              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Motion</p>
+              <p className="font-heading text-lg text-foreground">Active</p>
             </div>
           </div>
-          <div className="bg-card rounded-2xl p-4 border border-border/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center">
-              <Zap className="w-5 h-5 text-champagne-gold" strokeWidth={1.5} />
+          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+              <Zap className="w-5 h-5 text-foreground" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground tracking-wide uppercase font-body">Energy</p>
-              <p className="font-heading text-lg text-foreground">60kWh</p>
+              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Energy</p>
+              <p className="font-heading text-lg text-foreground">42kWh</p>
             </div>
           </div>
-          <div className="bg-card rounded-2xl p-4 border border-border/30 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center">
-              <Thermometer className="w-5 h-5 text-champagne-gold" strokeWidth={1.5} />
+          <div className="bg-card rounded-3xl p-4 border border-border flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center">
+              <Thermometer className="w-5 h-5 text-foreground" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground tracking-wide uppercase font-body">Temp</p>
+              <p className="text-[10px] text-muted-foreground tracking-[0.15em] uppercase font-body">Temp</p>
               <p className="font-heading text-lg text-foreground">24°C</p>
             </div>
           </div>
         </div>
 
         {/* Room Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
+        <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide">
           {roomTabs.map((room) => (
             <button
               key={room.id}
               onClick={() => setActiveRoom(room.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-body text-sm tracking-wide ${
+              className={`px-5 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-body text-sm tracking-[0.1em] ${
                 activeRoom === room.id
-                  ? "bg-champagne-gold text-white shadow-lg shadow-champagne-gold/20"
-                  : "bg-card border border-border/30 text-muted-foreground hover:border-champagne-gold/30"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-card border border-border text-muted-foreground hover:border-foreground/20"
               }`}
             >
-              <span>{room.icon}</span>
-              <span>{room.label}</span>
+              {room.label}
             </button>
           ))}
         </div>
 
         {/* Connected Devices Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-6">
           <h2 className="font-heading text-xl text-foreground">Connected Devices</h2>
-          <span className="bg-champagne-gold/10 text-champagne-gold px-3 py-1 rounded-full text-sm font-body">
+          <span className="bg-primary/10 text-foreground px-3 py-1 rounded-full text-sm font-body tracking-wide">
             {devices.length}
           </span>
         </div>
@@ -160,61 +160,55 @@ const Controls = () => {
           {devices.map((device) => (
             <div
               key={device.id}
-              className={`relative rounded-3xl p-5 transition-all duration-500 cursor-pointer group ${
+              className={`relative rounded-3xl p-6 transition-all duration-500 cursor-pointer group border ${
                 device.isOn
-                  ? "bg-gradient-to-br from-champagne-gold to-champagne-gold/80 text-white shadow-xl shadow-champagne-gold/20"
-                  : "bg-card border border-border/30 text-foreground hover:border-champagne-gold/30"
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card border-border text-foreground hover:border-foreground/20"
               }`}
               onClick={() => handleDeviceClick(device)}
             >
-              {/* Connection Icons */}
-              <div className="absolute top-4 right-4 flex gap-2">
-                <Wifi className={`w-4 h-4 ${device.isOn ? "text-white/70" : "text-muted-foreground/50"}`} strokeWidth={1.5} />
-                {device.id === "ac" && (
-                  <Bluetooth className={`w-4 h-4 ${device.isOn ? "text-white/70" : "text-muted-foreground/50"}`} strokeWidth={1.5} />
+              {/* Connection Status */}
+              <div className="absolute top-5 right-5 flex items-center gap-2">
+                <Wifi className={`w-4 h-4 ${device.isOn ? "text-primary-foreground/60" : "text-muted-foreground/50"}`} strokeWidth={1.5} />
+                {device.hasNavigation && (
+                  <ChevronRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                    device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"
+                  }`} />
                 )}
               </div>
 
               {/* Device Icon */}
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${
-                device.isOn ? "bg-white/20" : "bg-champagne-gold/10"
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+                device.isOn ? "bg-primary-foreground/10" : "bg-primary/5"
               }`}>
-                <device.icon className={`w-6 h-6 ${device.isOn ? "text-white" : "text-champagne-gold"}`} strokeWidth={1.5} />
+                <device.icon className={`w-7 h-7 ${device.isOn ? "text-primary-foreground" : "text-foreground"}`} strokeWidth={1.5} />
               </div>
 
               {/* Device Info */}
-              <h3 className="font-heading text-lg mb-1">{device.name}</h3>
-              {device.subDevices && (
-                <div className={`text-xs mb-3 ${device.isOn ? "text-white/70" : "text-muted-foreground"}`}>
-                  {device.subDevices.map((sub, idx) => (
-                    <p key={idx} className="font-body tracking-wide">• {sub}</p>
-                  ))}
-                </div>
-              )}
-              {device.deviceCount && !device.subDevices && (
-                <p className={`text-sm mb-3 font-body tracking-wide ${device.isOn ? "text-white/70" : "text-muted-foreground"}`}>
+              <p className={`text-[10px] tracking-[0.15em] uppercase font-body mb-1 ${
+                device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"
+              }`}>
+                {device.series}
+              </p>
+              <h3 className="font-heading text-lg leading-tight mb-2">{device.name}</h3>
+              
+              {device.deviceCount && (
+                <p className={`text-sm font-body tracking-wide ${device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
                   {device.deviceCount} Device{device.deviceCount > 1 ? "s" : ""}
                 </p>
               )}
 
-              {/* Toggle & Navigation */}
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center gap-2">
-                  <span className={`text-sm font-body tracking-wide ${device.isOn ? "text-white/70" : "text-muted-foreground"}`}>
-                    {device.isOn ? "On" : "Off"}
-                  </span>
-                  <Switch
-                    checked={device.isOn}
-                    onCheckedChange={() => toggleDevice(device.id)}
-                    onClick={(e) => e.stopPropagation()}
-                    className={device.isOn ? "data-[state=checked]:bg-white/30" : ""}
-                  />
-                </div>
-                {device.hasNavigation && (
-                  <ChevronRight className={`w-5 h-5 transition-transform group-hover:translate-x-1 ${
-                    device.isOn ? "text-white/70" : "text-muted-foreground"
-                  }`} />
-                )}
+              {/* Toggle */}
+              <div className="flex items-center justify-between mt-5 pt-5 border-t border-current/10">
+                <span className={`text-sm font-body tracking-[0.1em] ${device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"}`}>
+                  {device.isOn ? "ON" : "OFF"}
+                </span>
+                <Switch
+                  checked={device.isOn}
+                  onCheckedChange={() => toggleDevice(device.id)}
+                  onClick={(e) => e.stopPropagation()}
+                  className={device.isOn ? "data-[state=checked]:bg-primary-foreground/20" : ""}
+                />
               </div>
             </div>
           ))}
