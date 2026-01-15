@@ -38,7 +38,7 @@ const phases: Phase[] = [
   },
   {
     id: "2",
-    title: "Wiring & Infrastructure",
+    title: "Wiring",
     targetDate: "30 Sep 2024",
     status: "completed",
     statusDate: "30 Sep 2024",
