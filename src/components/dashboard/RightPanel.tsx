@@ -1,8 +1,6 @@
 import { Sun, Cloud, Wifi, MessageCircle, FileText, Droplets, Wind } from "lucide-react";
-
 const RightPanel = () => {
-  return (
-    <>
+  return <>
       {/* Spacer to maintain layout flow */}
       <div className="hidden xl:block w-72 flex-shrink-0" />
       
@@ -75,38 +73,7 @@ const RightPanel = () => {
       </div>
 
       {/* Project Documents */}
-      <div className="bg-white rounded-3xl p-5 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-        <h3 className="font-serif text-lg text-charcoal mb-4">Project Documents</h3>
-        <div className="space-y-2">
-          <button className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-charcoal/5 transition-colors text-left group">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center group-hover:bg-champagne-gold/20 transition-colors">
-              <FileText className="w-5 h-5 text-champagne-gold" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-charcoal truncate">Warranty.pdf</p>
-              <p className="text-xs text-charcoal/50">5-year coverage</p>
-            </div>
-          </button>
-          <button className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-charcoal/5 transition-colors text-left group">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center group-hover:bg-champagne-gold/20 transition-colors">
-              <FileText className="w-5 h-5 text-champagne-gold" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-charcoal truncate">Villa_Manual.pdf</p>
-              <p className="text-xs text-charcoal/50">User guide</p>
-            </div>
-          </button>
-          <button className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-charcoal/5 transition-colors text-left group">
-            <div className="w-10 h-10 rounded-xl bg-champagne-gold/10 flex items-center justify-center group-hover:bg-champagne-gold/20 transition-colors">
-              <FileText className="w-5 h-5 text-champagne-gold" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-charcoal truncate">Floor_Plan.pdf</p>
-              <p className="text-xs text-charcoal/50">Smart zones layout</p>
-            </div>
-          </button>
-        </div>
-      </div>
+      
 
       {/* Date Display */}
       <div className="text-center mt-auto pt-4">
@@ -115,13 +82,11 @@ const RightPanel = () => {
             weekday: "long",
             year: "numeric",
             month: "long",
-            day: "numeric",
+            day: "numeric"
           })}
         </p>
       </div>
       </aside>
-    </>
-  );
+    </>;
 };
-
 export default RightPanel;
