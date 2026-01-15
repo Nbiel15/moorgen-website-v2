@@ -116,8 +116,8 @@ const ProjectJourney = () => {
         <div className="p-6 max-w-7xl mx-auto">
           {/* Page Title */}
           <div className="mb-6">
-            <h1 className="font-serif text-2xl lg:text-3xl text-foreground">Project Progress</h1>
-            <p className="font-sans text-sm text-muted-foreground mt-1">Villa Seminyak Smart Home Installation</p>
+            <h1 className="font-heading text-2xl lg:text-3xl text-foreground">Project Progress</h1>
+            <p className="font-body text-sm text-muted-foreground mt-1">Villa Seminyak Smart Home Installation</p>
           </div>
 
           {/* Top Row: 4 Summary Cards */}
@@ -127,10 +127,10 @@ const ProjectJourney = () => {
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-background/60">Total Progress</span>
+                  <span className="font-body text-xs uppercase tracking-wider text-background/60">Total Progress</span>
                 </div>
-                <p className="font-serif text-4xl font-bold">85%</p>
-                <p className="font-sans text-xs text-[#D4AF37] mt-1">+4.2% from last week</p>
+                <p className="font-heading text-4xl font-bold">85%</p>
+                <p className="font-body text-xs text-[#D4AF37] mt-1">+4.2% from last week</p>
               </CardContent>
             </Card>
 
@@ -139,10 +139,10 @@ const ProjectJourney = () => {
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <CalendarIcon className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Handover Date</span>
+                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">Handover Date</span>
                 </div>
-                <p className="font-serif text-2xl font-bold text-foreground">20 Dec 2024</p>
-                <p className="font-sans text-xs text-muted-foreground mt-1">45 Days Remaining</p>
+                <p className="font-heading text-2xl font-bold text-foreground">20 Dec 2024</p>
+                <p className="font-body text-xs text-muted-foreground mt-1">45 Days Remaining</p>
               </CardContent>
             </Card>
 
@@ -151,10 +151,10 @@ const ProjectJourney = () => {
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Users className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Active Engineers</span>
+                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">Active Engineers</span>
                 </div>
-                <p className="font-serif text-2xl font-bold text-foreground">3 People</p>
-                <p className="font-sans text-xs text-green-600 mt-1">All on-site</p>
+                <p className="font-heading text-2xl font-bold text-foreground">3 People</p>
+                <p className="font-body text-xs text-green-600 mt-1">All on-site</p>
               </CardContent>
             </Card>
 
@@ -163,9 +163,9 @@ const ProjectJourney = () => {
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <Wifi className="w-4 h-4 text-green-500" />
-                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">System Status</span>
+                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">System Status</span>
                 </div>
-                <p className="font-serif text-2xl font-bold text-foreground">98% Online</p>
+                <p className="font-heading text-2xl font-bold text-foreground">98% Online</p>
                 <div className="flex items-center gap-1 mt-2">
                   {[...Array(6)].map((_, i) => (
                     <div 
@@ -184,8 +184,8 @@ const ProjectJourney = () => {
             {/* Left: Project Journey Timeline */}
             <Card className="lg:col-span-2 bg-white border border-border shadow-sm">
               <CardHeader className="pb-4">
-                <CardTitle className="font-serif text-xl text-foreground">Project Journey Timeline</CardTitle>
-                <p className="font-sans text-sm text-muted-foreground">Installation milestones & progress</p>
+                <CardTitle className="font-heading text-xl text-foreground">Project Journey Timeline</CardTitle>
+                <p className="font-body text-sm text-muted-foreground">Installation milestones & progress</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="relative space-y-1">
@@ -216,31 +216,31 @@ const ProjectJourney = () => {
                             <div className="flex items-start justify-between mb-2">
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <h4 className="font-sans font-semibold text-foreground">{phase.title}</h4>
+                                  <h4 className="font-heading font-semibold text-foreground">{phase.title}</h4>
                                   {isInProgress && (
                                     <span className="px-2 py-0.5 bg-[#D4AF37]/15 text-[#D4AF37] text-[10px] font-semibold uppercase rounded-full">
                                       Active
                                     </span>
                                   )}
                                 </div>
-                                <p className="font-sans text-xs text-muted-foreground mt-0.5">
+                                <p className="font-body text-xs text-muted-foreground mt-0.5">
                                   Target: {phase.targetDate}
                                 </p>
                               </div>
                               {phase.status === "completed" && (
-                                <span className="flex items-center gap-1 text-xs text-foreground/70 font-sans">
+                                <span className="flex items-center gap-1 text-xs text-foreground/70 font-body">
                                   <Check className="w-3 h-3" />
                                   Completed
                                 </span>
                               )}
                             </div>
-                            <p className="font-sans text-sm text-muted-foreground mb-3">{phase.description}</p>
+                            <p className="font-body text-sm text-muted-foreground mb-3">{phase.description}</p>
                             {phase.photos.length > 0 && (
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setSelectedPhase(phase)}
-                                className="font-sans text-xs h-8 rounded-lg"
+                                className="font-body text-xs h-8 rounded-lg"
                               >
                                 <Camera className="w-3 h-3 mr-1.5" />
                                 View Evidence
@@ -258,18 +258,18 @@ const ProjectJourney = () => {
             {/* Right: Upcoming Deadline Calendar */}
             <Card className="bg-white border border-border shadow-sm">
               <CardHeader className="pb-4">
-                <CardTitle className="font-serif text-xl text-foreground">Upcoming Deadline</CardTitle>
-                <p className="font-sans text-sm text-muted-foreground">Next milestone target</p>
+                <CardTitle className="font-heading text-xl text-foreground">Upcoming Deadline</CardTitle>
+                <p className="font-body text-sm text-muted-foreground">Next milestone target</p>
               </CardHeader>
               <CardContent className="pt-0">
                 {/* Mini Calendar */}
                 <div className="bg-[#F5F5F5] rounded-xl p-4 mb-4">
                   <div className="text-center mb-3">
-                    <p className="font-sans text-xs uppercase tracking-wider text-muted-foreground">October 2024</p>
+                    <p className="font-body text-xs uppercase tracking-wider text-muted-foreground">October 2024</p>
                   </div>
                   <div className="grid grid-cols-7 gap-1 text-center mb-2">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
-                      <span key={i} className="font-sans text-[10px] text-muted-foreground">{d}</span>
+                      <span key={i} className="font-body text-[10px] text-muted-foreground">{d}</span>
                     ))}
                   </div>
                   <div className="grid grid-cols-7 gap-1 text-center">
@@ -280,7 +280,7 @@ const ProjectJourney = () => {
                       return (
                         <span 
                           key={i} 
-                          className={`font-sans text-xs py-1.5 rounded-lg ${
+                          className={`font-body text-xs py-1.5 rounded-lg ${
                             isHighlight 
                               ? "bg-[#D4AF37] text-background font-semibold" 
                               : isPast 
@@ -301,11 +301,11 @@ const ProjectJourney = () => {
                     <div className="w-6 h-6 rounded-full bg-[#D4AF37] flex items-center justify-center">
                       <div className="w-2 h-2 bg-background rounded-full animate-pulse" />
                     </div>
-                    <p className="font-sans font-semibold text-foreground text-sm">Fine-tuning & Handover</p>
+                    <p className="font-heading font-semibold text-foreground text-sm">Fine-tuning & Handover</p>
                   </div>
-                  <p className="font-sans text-xs text-muted-foreground">System calibration and final handover to owner.</p>
+                  <p className="font-body text-xs text-muted-foreground">System calibration and final handover to owner.</p>
                   <div className="mt-3 pt-3 border-t border-[#D4AF37]/20">
-                    <p className="font-sans text-xs text-[#D4AF37] font-medium">Target: December 20, 2024</p>
+                    <p className="font-body text-xs text-[#D4AF37] font-medium">Target: December 20, 2024</p>
                   </div>
                 </div>
               </CardContent>
@@ -317,37 +317,37 @@ const ProjectJourney = () => {
             {/* Left: Latest Field Evidence */}
             <Card className="lg:col-span-2 bg-white border border-border shadow-sm">
               <CardHeader className="pb-4">
-                <CardTitle className="font-serif text-xl text-foreground">Latest Field Evidence</CardTitle>
-                <p className="font-sans text-sm text-muted-foreground">Documentation from on-site work</p>
+                <CardTitle className="font-heading text-xl text-foreground">Latest Field Evidence</CardTitle>
+                <p className="font-body text-sm text-muted-foreground">Documentation from on-site work</p>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Phase</th>
-                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Technician</th>
-                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Date</th>
-                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Status</th>
-                        <th className="text-right font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Action</th>
+                        <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Phase</th>
+                        <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Technician</th>
+                        <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Date</th>
+                        <th className="text-left font-body text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Status</th>
+                        <th className="text-right font-body text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {evidenceData.map((item, index) => (
                         <tr key={index} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
                           <td className="py-4 px-2">
-                            <span className="font-sans text-sm text-foreground font-medium">{item.phase}</span>
+                            <span className="font-body text-sm text-foreground font-medium">{item.phase}</span>
                           </td>
                           <td className="py-4 px-2">
                             <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center text-background text-[10px] font-sans">
+                              <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center text-background text-[10px] font-body">
                                 {item.technician.charAt(0)}
                               </div>
-                              <span className="font-sans text-sm text-foreground">{item.technician}</span>
+                              <span className="font-body text-sm text-foreground">{item.technician}</span>
                             </div>
                           </td>
                           <td className="py-4 px-2">
-                            <span className="font-sans text-sm text-muted-foreground">{item.date}</span>
+                            <span className="font-body text-sm text-muted-foreground">{item.date}</span>
                           </td>
                           <td className="py-4 px-2">
                             <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase ${
@@ -363,7 +363,7 @@ const ProjectJourney = () => {
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="font-sans text-xs h-8 text-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
+                              className="font-body text-xs h-8 text-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
                               onClick={() => {
                                 const phase = phases.find(p => p.title.includes(item.phase.split(" ")[0]));
                                 if (phase) setSelectedPhase(phase);
@@ -385,19 +385,19 @@ const ProjectJourney = () => {
             <Card className="bg-white border border-border shadow-sm flex flex-col">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="font-serif text-xl text-foreground">Direct Engineer Chat</CardTitle>
+                  <CardTitle className="font-heading text-xl text-foreground">Direct Engineer Chat</CardTitle>
                   <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
                 </div>
                 {/* Engineer Profile */}
                 <div className="flex items-center gap-3 mt-3 p-3 bg-[#F5F5F5] rounded-xl">
-                  <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-sans font-medium">
+                  <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-body font-medium">
                     W
                   </div>
                   <div>
-                    <p className="font-sans font-semibold text-foreground text-sm">Wayan Sudarta</p>
+                    <p className="font-heading font-semibold text-foreground text-sm">Wayan Sudarta</p>
                     <div className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full bg-green-500" />
-                      <span className="font-sans text-xs text-muted-foreground">Online • Lead Engineer</span>
+                      <span className="font-body text-xs text-muted-foreground">Online • Lead Engineer</span>
                     </div>
                   </div>
                 </div>
@@ -410,14 +410,14 @@ const ProjectJourney = () => {
                       W
                     </div>
                     <div className="bg-[#F5F5F5] rounded-2xl rounded-bl-sm px-3 py-2 max-w-[85%]">
-                      <p className="font-sans text-sm text-foreground">Wiring for the master suite is now 100% verified. All panels tested and operational.</p>
-                      <p className="font-sans text-[10px] text-muted-foreground mt-1">10:30 AM</p>
+                      <p className="font-body text-sm text-foreground">Wiring for the master suite is now 100% verified. All panels tested and operational.</p>
+                      <p className="font-body text-[10px] text-muted-foreground mt-1">10:30 AM</p>
                     </div>
                   </div>
                   <div className="flex gap-2 justify-end">
                     <div className="bg-foreground text-background rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
-                      <p className="font-sans text-sm">Excellent work! Please proceed to living room.</p>
-                      <p className="font-sans text-[10px] text-background/50 mt-1">10:45 AM</p>
+                      <p className="font-body text-sm">Excellent work! Please proceed to living room.</p>
+                      <p className="font-body text-[10px] text-background/50 mt-1">10:45 AM</p>
                     </div>
                     <div className="w-6 h-6 rounded-full bg-[#D4AF37] flex items-center justify-center text-background text-[10px] flex-shrink-0 mt-1">
                       A
@@ -434,7 +434,7 @@ const ProjectJourney = () => {
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder="Type a message..."
-                    className="flex-1 bg-[#F5F5F5] border-0 rounded-xl font-sans text-sm h-9"
+                    className="flex-1 bg-[#F5F5F5] border-0 rounded-xl font-body text-sm h-9"
                   />
                   <button className="p-2 bg-foreground text-background rounded-full hover:bg-foreground/90 transition-colors">
                     <Send className="w-4 h-4" />
@@ -449,7 +449,7 @@ const ProjectJourney = () => {
         <Dialog open={!!selectedPhase} onOpenChange={() => setSelectedPhase(null)}>
           <DialogContent className="max-w-2xl">
             <DialogHeader>
-              <DialogTitle className="font-serif text-xl">{selectedPhase?.title} - Field Evidence</DialogTitle>
+              <DialogTitle className="font-heading text-xl">{selectedPhase?.title} - Field Evidence</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-4 mt-4">
               {selectedPhase?.photos.map((photo, index) => (
@@ -459,7 +459,7 @@ const ProjectJourney = () => {
               ))}
             </div>
             {selectedPhase?.photos.length === 0 && (
-              <div className="text-center py-8 text-muted-foreground font-sans">
+              <div className="text-center py-8 text-muted-foreground font-body">
                 <Camera className="w-10 h-10 mx-auto mb-2 opacity-30" />
                 <p>No photos available yet</p>
               </div>
