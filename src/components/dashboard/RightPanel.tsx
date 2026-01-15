@@ -5,7 +5,7 @@ const RightPanel = () => {
       <div className="hidden xl:block w-72 flex-shrink-0" />
       
       {/* Fixed Right Sidebar */}
-      <aside className="hidden xl:flex flex-col w-72 fixed right-0 top-0 h-screen bg-[#FAFAFA]/80 backdrop-blur-sm border-l border-[#E5E5E5]/50 p-6 gap-5 overflow-y-auto z-50">
+      <aside className="hidden xl:flex flex-col w-72 fixed right-0 top-0 h-screen bg-[#FAFAFA]/80 backdrop-blur-sm border-l border-[#E5E5E5]/50 p-6 pt-24 gap-5 overflow-y-auto z-50 justify-center">
       {/* System Health Widget */}
       <div className="bg-white rounded-3xl p-5 border border-[#E5E5E5] shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <h3 className="font-serif text-lg text-charcoal mb-4">System Health</h3>
