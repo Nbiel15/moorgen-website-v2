@@ -307,9 +307,7 @@ const Controls = () => {
                   </div>
 
                   {/* Navigation Arrow */}
-                  {device.hasNavigation && <div className={cn("flex items-center justify-center w-9 h-9 rounded-xl", "transition-all duration-300", device.isOn ? "bg-accent/20 text-accent hover:bg-accent hover:text-accent-foreground" : "bg-muted text-muted-foreground hover:bg-accent/10 hover:text-accent")}>
-                      <ChevronRight className="w-5 h-5" />
-                    </div>}
+                  {device.hasNavigation}
                 </div>
               </div>
             </div>)}
