@@ -25,7 +25,7 @@ const DashboardSidebar = () => {
         {/* Logo - Positioned at top */}
         <div className="absolute top-20">
           <div 
-            className="w-10 h-10 rounded-xl bg-gradient-to-br from-champagne-gold to-champagne-gold/70 flex items-center justify-center shadow-sm cursor-pointer hover:shadow-md transition-shadow"
+            className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center shadow-sm cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => navigate("/lifestyle-dashboard")}
           >
             <span className="text-white font-serif font-bold text-lg">M</span>
