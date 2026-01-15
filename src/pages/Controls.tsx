@@ -275,7 +275,9 @@ const Controls = () => {
 
                 {/* Location & Units */}
                 <div className="flex items-center gap-2 mb-5">
-                  {device.location}
+                  {device.location && <span className={cn("text-xs font-body px-2.5 py-1 rounded-lg", device.isOn ? "bg-primary-foreground/10 text-primary-foreground/80 ring-1 ring-primary-foreground/10" : "bg-muted text-muted-foreground")}>
+                      {device.location}
+                    </span>}
                   {device.deviceCount && <span className={cn("text-xs font-body", device.isOn ? "text-primary-foreground/60" : "text-muted-foreground")}>
                       {device.deviceCount} unit{device.deviceCount > 1 ? "s" : ""}
                     </span>}
