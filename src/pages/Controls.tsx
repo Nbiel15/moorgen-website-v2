@@ -141,81 +141,33 @@ const Controls = () => {
 
         {/* Device Grid - 2x2 Layout */}
         <div className="grid grid-cols-2 gap-4 md:gap-6">
-          {devices.map(device => (
-            <div 
-              key={device.id} 
-              className={cn(
-                "relative rounded-3xl p-5 md:p-6 cursor-pointer group overflow-hidden",
-                "transition-all duration-500 ease-out",
-                "hover:scale-[1.02] hover:-translate-y-1",
-                device.isOn 
-                  ? "bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-2xl shadow-primary/20" 
-                  : "bg-card/80 backdrop-blur-sm border border-border text-foreground hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5"
-              )}
-              onClick={() => handleDeviceClick(device)}
-            >
+          {devices.map(device => <div key={device.id} className={cn("relative rounded-3xl p-5 md:p-6 cursor-pointer group overflow-hidden", "transition-all duration-500 ease-out", "hover:scale-[1.02] hover:-translate-y-1", device.isOn ? "bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-2xl shadow-primary/20" : "bg-card/80 backdrop-blur-sm border border-border text-foreground hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5")} onClick={() => handleDeviceClick(device)}>
               {/* Animated Background Glow */}
-              {device.isOn && (
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/5 animate-pulse" />
-              )}
+              {device.isOn && <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent/5 animate-pulse" />}
               
               {/* Decorative Corner Accent */}
-              <div className={cn(
-                "absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl transition-opacity duration-500",
-                device.isOn ? "bg-accent/30 opacity-100" : "bg-accent/10 opacity-0 group-hover:opacity-50"
-              )} />
+              <div className={cn("absolute -top-12 -right-12 w-24 h-24 rounded-full blur-2xl transition-opacity duration-500", device.isOn ? "bg-accent/30 opacity-100" : "bg-accent/10 opacity-0 group-hover:opacity-50")} />
 
               {/* Top Row: Icon + Status */}
               <div className="relative flex items-start justify-between mb-4 md:mb-6">
                 {/* Device Icon with Enhanced Styling */}
-                <div className={cn(
-                  "relative w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center",
-                  "transition-all duration-500",
-                  device.isOn 
-                    ? "bg-accent/20 shadow-[0_0_30px_rgba(212,175,55,0.4)] ring-1 ring-accent/30" 
-                    : "bg-muted/50 group-hover:bg-accent/10 group-hover:shadow-lg"
-                )}>
+                <div className={cn("relative w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center", "transition-all duration-500", device.isOn ? "bg-accent/20 shadow-[0_0_30px_rgba(212,175,55,0.4)] ring-1 ring-accent/30" : "bg-muted/50 group-hover:bg-accent/10 group-hover:shadow-lg")}>
                   {/* Sparkle Effect for Active */}
-                  {device.isOn && (
-                    <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-accent animate-pulse" />
-                  )}
+                  {device.isOn && <Sparkles className="absolute -top-1 -right-1 w-3 h-3 text-accent animate-pulse" />}
                   
-                  {device.id === "lock" ? (
-                    device.isOn ? (
-                      <Lock className="w-6 h-6 md:w-7 md:h-7 text-accent transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
-                    ) : (
-                      <LockOpen className="w-6 h-6 md:w-7 md:h-7 text-foreground transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} />
-                    )
-                  ) : (
-                    <device.icon className={cn(
-                      "w-6 h-6 md:w-7 md:h-7 transition-all duration-300 group-hover:scale-110",
-                      device.isOn ? "text-accent" : "text-foreground"
-                    )} strokeWidth={1.5} />
-                  )}
+                  {device.id === "lock" ? device.isOn ? <Lock className="w-6 h-6 md:w-7 md:h-7 text-accent transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} /> : <LockOpen className="w-6 h-6 md:w-7 md:h-7 text-foreground transition-transform duration-300 group-hover:scale-110" strokeWidth={1.5} /> : <device.icon className={cn("w-6 h-6 md:w-7 md:h-7 transition-all duration-300 group-hover:scale-110", device.isOn ? "text-accent" : "text-foreground")} strokeWidth={1.5} />}
                 </div>
 
                 {/* Connection Status Badge */}
-                <div className={cn(
-                  "flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase",
-                  "transition-all duration-300",
-                  device.isOn 
-                    ? "bg-green-500/20 text-green-400" 
-                    : "bg-muted text-muted-foreground group-hover:bg-accent/10 group-hover:text-accent"
-                )}>
-                  <span className={cn(
-                    "w-1.5 h-1.5 rounded-full",
-                    device.isOn ? "bg-green-400 animate-pulse" : "bg-muted-foreground"
-                  )} />
+                <div className={cn("flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-medium tracking-wider uppercase", "transition-all duration-300", device.isOn ? "bg-green-500/20 text-green-400" : "bg-muted text-muted-foreground group-hover:bg-accent/10 group-hover:text-accent")}>
+                  <span className={cn("w-1.5 h-1.5 rounded-full", device.isOn ? "bg-green-400 animate-pulse" : "bg-muted-foreground")} />
                   <Wifi className="w-3 h-3" strokeWidth={2} />
                 </div>
               </div>
 
               {/* Device Info */}
               <div className="relative space-y-1 mb-3">
-                <p className={cn(
-                  "text-[10px] tracking-[0.2em] uppercase font-body",
-                  device.isOn ? "text-accent" : "text-muted-foreground"
-                )}>
+                <p className={cn("text-[10px] tracking-[0.2em] uppercase font-body", device.isOn ? "text-accent" : "text-muted-foreground")}>
                   {device.series}
                 </p>
                 <h3 className="font-heading text-base md:text-lg leading-tight line-clamp-2">
@@ -225,62 +177,27 @@ const Controls = () => {
 
               {/* Location & Device Count */}
               <div className="relative flex items-center gap-2 mb-4">
-                {device.location && (
-                  <span className={cn(
-                    "text-xs font-body px-2 py-0.5 rounded-md",
-                    device.isOn ? "bg-white/10 text-primary-foreground/70" : "bg-muted text-muted-foreground"
-                  )}>
+                {device.location && <span className={cn("text-xs font-body px-2 py-0.5 rounded-md", device.isOn ? "bg-white/10 text-primary-foreground/70" : "bg-muted text-muted-foreground")}>
                     {device.location}
-                  </span>
-                )}
-                {device.deviceCount && (
-                  <span className={cn(
-                    "text-xs font-body",
-                    device.isOn ? "text-primary-foreground/60" : "text-muted-foreground"
-                  )}>
+                  </span>}
+                {device.deviceCount && <span className={cn("text-xs font-body", device.isOn ? "text-primary-foreground/60" : "text-muted-foreground")}>
                     {device.deviceCount} unit{device.deviceCount > 1 ? "s" : ""}
-                  </span>
-                )}
+                  </span>}
               </div>
 
               {/* Bottom Row: Toggle + Arrow */}
-              <div className={cn(
-                "relative flex items-center justify-between pt-4 border-t",
-                device.isOn ? "border-white/10" : "border-border"
-              )}>
+              <div className={cn("relative flex items-center justify-between pt-4 border-t", device.isOn ? "border-white/10" : "border-border")}>
                 <div className="flex items-center gap-3">
-                  <Switch 
-                    checked={device.isOn} 
-                    onCheckedChange={() => toggleDevice(device.id)} 
-                    onClick={e => e.stopPropagation()} 
-                    className={cn(
-                      "transition-all duration-300",
-                      device.isOn ? "data-[state=checked]:bg-accent" : ""
-                    )} 
-                  />
-                  <span className={cn(
-                    "text-xs font-body font-medium tracking-[0.15em] uppercase",
-                    device.isOn ? "text-accent" : "text-muted-foreground"
-                  )}>
+                  <Switch checked={device.isOn} onCheckedChange={() => toggleDevice(device.id)} onClick={e => e.stopPropagation()} className={cn("transition-all duration-300", device.isOn ? "data-[state=checked]:bg-accent" : "")} />
+                  <span className={cn("text-xs font-body font-medium tracking-[0.15em] uppercase", device.isOn ? "text-accent" : "text-muted-foreground")}>
                     {device.isOn ? "Active" : "Standby"}
                   </span>
                 </div>
 
                 {/* Navigation Arrow */}
-                {device.hasNavigation && (
-                  <div className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center",
-                    "transition-all duration-300 group-hover:translate-x-1",
-                    device.isOn 
-                      ? "bg-accent/20 text-accent" 
-                      : "bg-muted text-muted-foreground group-hover:bg-accent/20 group-hover:text-accent"
-                  )}>
-                    <ChevronRight className="w-4 h-4" strokeWidth={2} />
-                  </div>
-                )}
+                {device.hasNavigation}
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
       </main>
     </DashboardLayout>;
