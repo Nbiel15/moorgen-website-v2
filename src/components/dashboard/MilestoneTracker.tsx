@@ -114,7 +114,8 @@ const MilestoneTracker = () => {
 
   const completedCount = milestones.filter(m => m.status === "completed").length;
   const totalCount = milestones.length;
-  const overallProgress = Math.round((completedCount / totalCount) * 100);
+  const inProgressMilestone = milestones.find(m => m.status === "in-progress");
+  const overallProgress = Math.round((completedCount / totalCount) * 100 + (inProgressMilestone?.progress || 0) / totalCount);
 
   return (
     <motion.div 
