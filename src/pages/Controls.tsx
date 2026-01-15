@@ -133,7 +133,7 @@ const Controls = () => {
         {/* Connected Devices Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="font-heading text-xl text-foreground">Connected Devices</h2>
-          <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-body tracking-wide">
+          <span className="text-accent px-3 py-1 rounded-full text-sm font-body tracking-wide bg-primary">
             {devices.length}
           </span>
         </div>
