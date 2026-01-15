@@ -253,10 +253,10 @@ const ProjectJourney = () => {
 
                         {/* Content */}
                         <div className={`flex-1 ${isLast ? 'pb-0' : 'pb-2'}`}>
-                          <div className={`rounded-xl border transition-all ${
+                          <div className={`rounded-xl border transition-all duration-200 ${
                             isInProgress 
-                              ? "border-[#D4AF37] bg-[#D4AF37]/5" 
-                              : "border-border hover:border-muted-foreground/30"
+                              ? "border-[#D4AF37] bg-[#D4AF37]/5 hover:bg-[#D4AF37]/10 hover:shadow-md hover:shadow-[#D4AF37]/10" 
+                              : "border-border hover:border-muted-foreground/30 hover:bg-muted/30 hover:shadow-sm"
                           }`}>
                             {/* Clickable Header */}
                             <div 
