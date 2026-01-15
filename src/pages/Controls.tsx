@@ -124,7 +124,7 @@ const Controls = () => {
 
         {/* Room Tabs with Gold underline for active */}
         <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide">
-          {roomTabs.map(room => <button key={room.id} onClick={() => setActiveRoom(room.id)} className={`relative px-5 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-body text-sm font-semibold tracking-[0.1em] ${activeRoom === room.id ? "bg-accent/10 text-accent border border-accent/30" : "bg-card border border-border text-muted-foreground hover:border-foreground/20"}`}>
+          {roomTabs.map(room => <button key={room.id} onClick={() => setActiveRoom(room.id)} className={`relative px-5 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-body text-sm font-semibold tracking-[0.1em] ${activeRoom === room.id ? "bg-accent/10 text-foreground border border-accent/30" : "bg-card border border-border text-muted-foreground hover:border-foreground/20"}`}>
               {room.label}
               {activeRoom === room.id && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-accent rounded-full" />}
             </button>)}
