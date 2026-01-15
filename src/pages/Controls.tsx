@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SunDim, Lock, Thermometer, Blinds, Zap, Activity, Wifi } from "lucide-react";
+import { SunDim, Lock, LockOpen, Thermometer, Blinds, Zap, Activity, Wifi } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Switch } from "@/components/ui/switch";
 interface Device {
@@ -149,7 +149,15 @@ const Controls = () => {
 
               {/* Device Icon - Gold glow when active */}
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 ${device.isOn ? "bg-accent/20 shadow-[0_0_20px_rgba(212,175,55,0.3)]" : "bg-primary/5"}`}>
-                <device.icon className={`w-7 h-7 transition-colors ${device.isOn ? "text-accent" : "text-foreground"}`} strokeWidth={1.5} />
+                {device.id === "lock" ? (
+                  device.isOn ? (
+                    <Lock className={`w-7 h-7 transition-all duration-300 text-accent`} strokeWidth={1.5} />
+                  ) : (
+                    <LockOpen className={`w-7 h-7 transition-all duration-300 text-foreground`} strokeWidth={1.5} />
+                  )
+                ) : (
+                  <device.icon className={`w-7 h-7 transition-colors ${device.isOn ? "text-accent" : "text-foreground"}`} strokeWidth={1.5} />
+                )}
               </div>
 
               {/* Device Info */}
