@@ -370,15 +370,24 @@ const AdvancedDeviceControl = () => {
                 !isPowered && "opacity-50"
               )}
             >
+              <div className="flex justify-between text-xs text-muted-foreground mb-2 font-body">
+                <span>{minTemp}°C</span>
+                <span>{maxTemp}°C</span>
+              </div>
               <input
                 type="range"
                 min={minTemp}
                 max={maxTemp}
+                step={1}
                 value={temperature}
                 onChange={(e) => setTemperature(Number(e.target.value))}
                 disabled={!isPowered}
+                dir="ltr"
+                style={{ direction: 'ltr', transform: 'none' }}
                 className={cn(
                   "w-full h-1 bg-border rounded-full appearance-none",
+                  "[&::-webkit-slider-runnable-track]:bg-border",
+                  "[&::-webkit-slider-runnable-track]:rounded-full",
                   "[&::-webkit-slider-thumb]:appearance-none",
                   "[&::-webkit-slider-thumb]:w-5",
                   "[&::-webkit-slider-thumb]:h-5",
