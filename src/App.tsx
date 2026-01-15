@@ -9,7 +9,6 @@ import TechnicalWorkspace from "./pages/TechnicalWorkspace";
 import Controls from "./pages/Controls";
 import AdvancedDeviceControl from "./pages/AdvancedDeviceControl";
 import ProjectJourney from "./pages/ProjectJourney";
-import Documents from "./pages/Documents";
 import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
 
@@ -28,7 +27,6 @@ const App = () => (
           <Route path="/controls" element={<Controls />} />
           <Route path="/advanced-control" element={<AdvancedDeviceControl />} />
           <Route path="/progress" element={<ProjectJourney />} />
-          <Route path="/documents" element={<Documents />} />
           <Route path="/support" element={<Support />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

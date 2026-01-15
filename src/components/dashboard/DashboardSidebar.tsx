@@ -1,4 +1,4 @@
-import { Home, Sliders, TrendingUp, FileText, Headphones, Sparkles } from "lucide-react";
+import { Home, Sliders, TrendingUp, Headphones, Sparkles } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -6,7 +6,6 @@ const navItems = [
   { icon: Home, label: "Home", path: "/lifestyle-dashboard" },
   { icon: Sliders, label: "Controls", path: "/controls" },
   { icon: TrendingUp, label: "Progress", path: "/progress" },
-  { icon: FileText, label: "Documents", path: "/documents" },
   { icon: Headphones, label: "Support", path: "/support" },
 ];
 

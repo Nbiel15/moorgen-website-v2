@@ -1,11 +1,10 @@
-import { Home, Sliders, TrendingUp, FileText, User } from "lucide-react";
+import { Home, Sliders, TrendingUp, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/lifestyle-dashboard" },
   { icon: Sliders, label: "Controls", path: "/controls" },
   { icon: TrendingUp, label: "Progress", path: "/progress" },
-  { icon: FileText, label: "Docs", path: "/documents" },
   { icon: User, label: "Support", path: "/support" },
 ];
 
