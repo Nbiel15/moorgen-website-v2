@@ -143,7 +143,7 @@ const ProjectJourney = () => {
           </div>
 
           {/* Top Row: 4 Summary Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-4 mb-6">
             {/* Card 1: Total Progress - Black */}
             <Card className="bg-foreground text-background border-0 shadow-lg">
               <CardContent className="p-5">
