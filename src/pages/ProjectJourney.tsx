@@ -111,28 +111,6 @@ const ProjectJourney = () => {
   return (
     <DashboardLayout>
       <div className="min-h-screen bg-[#F5F5F5]">
-        {/* Top Header Bar */}
-        <header className="bg-white border-b border-border px-6 py-4">
-          <div className="flex items-center justify-between max-w-7xl mx-auto">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input 
-                placeholder="Search project..." 
-                className="pl-10 bg-[#F5F5F5] border-0 rounded-xl font-sans text-sm h-10"
-              />
-            </div>
-            <div className="flex items-center gap-4 ml-6">
-              <button className="relative p-2 hover:bg-muted rounded-full transition-colors">
-                <Bell className="w-5 h-5 text-muted-foreground" />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-[#D4AF37] rounded-full" />
-              </button>
-              <Avatar className="w-9 h-9 border-2 border-[#D4AF37]/20">
-                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" />
-                <AvatarFallback className="bg-foreground text-background font-sans text-sm">JD</AvatarFallback>
-              </Avatar>
-            </div>
-          </div>
-        </header>
 
         {/* Main Content */}
         <div className="p-6 max-w-7xl mx-auto">
