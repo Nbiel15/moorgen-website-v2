@@ -142,56 +142,56 @@ const ProjectJourney = () => {
           </div>
 
           {/* Top Row: 4 Summary Cards */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             {/* Card 1: Total Progress - Black */}
-            <Card className="bg-foreground text-background border-0 shadow-lg">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-body text-xs uppercase tracking-wider text-background/60">Total Progress</span>
+            <Card className="bg-foreground text-background border-0 shadow-sm">
+              <CardContent className="p-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <TrendingUp className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span className="font-body text-[10px] uppercase tracking-wider text-background/60">Total Progress</span>
                 </div>
-                <p className="font-heading text-4xl font-bold">85%</p>
-                <p className="font-body text-xs text-[#D4AF37] mt-1">+4.2% from last week</p>
+                <p className="font-heading text-2xl font-bold">85%</p>
+                <p className="font-body text-[10px] text-[#D4AF37] mt-0.5">+4.2% from last week</p>
               </CardContent>
             </Card>
 
             {/* Card 2: Handover Date */}
             <Card className="bg-white border border-border shadow-sm">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <CalendarIcon className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">Handover Date</span>
+              <CardContent className="p-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <CalendarIcon className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">Handover Date</span>
                 </div>
-                <p className="font-heading text-2xl font-bold text-foreground">20 Dec 2024</p>
-                <p className="font-body text-xs text-muted-foreground mt-1">45 Days Remaining</p>
+                <p className="font-heading text-lg font-bold text-foreground">20 Dec 2024</p>
+                <p className="font-body text-[10px] text-muted-foreground mt-0.5">45 Days Remaining</p>
               </CardContent>
             </Card>
 
             {/* Card 3: Active Engineers */}
             <Card className="bg-white border border-border shadow-sm">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Users className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">Active Engineers</span>
+              <CardContent className="p-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Users className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">Active Engineers</span>
                 </div>
-                <p className="font-heading text-2xl font-bold text-foreground">3 People</p>
-                <p className="font-body text-xs text-green-600 mt-1">All on-site</p>
+                <p className="font-heading text-lg font-bold text-foreground">3 People</p>
+                <p className="font-body text-[10px] text-green-600 mt-0.5">All on-site</p>
               </CardContent>
             </Card>
 
             {/* Card 4: System Status */}
             <Card className="bg-white border border-border shadow-sm">
-              <CardContent className="p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <Wifi className="w-4 h-4 text-green-500" />
-                  <span className="font-body text-xs uppercase tracking-wider text-muted-foreground">System Status</span>
+              <CardContent className="p-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Wifi className="w-3.5 h-3.5 text-green-500" />
+                  <span className="font-body text-[10px] uppercase tracking-wider text-muted-foreground">System Status</span>
                 </div>
-                <p className="font-heading text-2xl font-bold text-foreground">98% Online</p>
-                <div className="flex items-center gap-1 mt-2">
+                <p className="font-heading text-lg font-bold text-foreground">98% Online</p>
+                <div className="flex items-center gap-0.5 mt-1">
                   {[...Array(6)].map((_, i) => (
                     <div 
                       key={i} 
-                      className="flex-1 h-1.5 rounded-full bg-green-500"
+                      className="flex-1 h-1 rounded-full bg-green-500"
                       style={{ opacity: 0.4 + (i * 0.12) }}
                     />
                   ))}
