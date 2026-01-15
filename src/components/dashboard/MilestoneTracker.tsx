@@ -86,10 +86,10 @@ const MilestoneTracker = () => {
     switch (status) {
       case "completed":
         return {
-          border: "border-green-500/30",
-          bg: "bg-gradient-to-br from-green-500 to-emerald-600",
-          iconBg: "bg-green-500/10",
-          icon: <Check className="w-4 h-4 text-white" />,
+          border: "border-border",
+          bg: "bg-charcoal",
+          iconBg: "bg-charcoal/10",
+          icon: <div className="w-2 h-2 bg-white rounded-full" />,
         };
       case "in-progress":
         return {
