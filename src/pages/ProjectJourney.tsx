@@ -184,8 +184,21 @@ const ProjectJourney = () => {
             {/* Left: Project Journey Timeline */}
             <Card className="lg:col-span-2 bg-white border border-border shadow-sm">
               <CardHeader className="pb-4">
-                <CardTitle className="font-heading text-xl text-foreground">Project Journey Timeline</CardTitle>
-                <p className="font-body text-sm text-muted-foreground">Installation milestones & progress</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="font-heading text-xl text-foreground">Project Journey Timeline</CardTitle>
+                    <p className="font-body text-sm text-muted-foreground">Installation milestones & progress</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => document.getElementById('engineer-chat')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="font-body text-xs h-8 rounded-lg border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37]/10"
+                  >
+                    <MessageCircle className="w-3 h-3 mr-1.5" />
+                    Chat with Engineer
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="relative space-y-1">
@@ -382,7 +395,7 @@ const ProjectJourney = () => {
             </Card>
 
             {/* Right: Direct Engineer Chat */}
-            <Card className="bg-white border border-border shadow-sm flex flex-col">
+            <Card id="engineer-chat" className="bg-white border border-border shadow-sm flex flex-col">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="font-heading text-xl text-foreground">Direct Engineer Chat</CardTitle>
