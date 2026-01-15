@@ -75,7 +75,7 @@ const Controls = () => {
   }, {
     id: "shading",
     name: "Motorized Blinds",
-    series: "Ombre Luxe",
+    series: "Ombre Luxious",
     type: "Shading",
     icon: Blinds,
     isOn: false,
