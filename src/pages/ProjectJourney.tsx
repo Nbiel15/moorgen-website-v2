@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Check, Clock, Search, Bell, Send, Paperclip, ChevronRight, Eye, Camera, TrendingUp, Calendar as CalendarIcon, Users, Wifi, MessageCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
@@ -84,6 +84,27 @@ const evidenceData = [
 const ProjectJourney = () => {
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(null);
   const [chatInput, setChatInput] = useState("");
+  const [showFloatingChat, setShowFloatingChat] = useState(false);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingChat(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (chatRef.current) {
+      observer.observe(chatRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToChat = () => {
+    chatRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const getStatusStyles = (status: MilestoneStatus) => {
     switch (status) {
@@ -192,7 +213,7 @@ const ProjectJourney = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => document.getElementById('engineer-chat')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={scrollToChat}
                     className="font-body text-xs h-8 rounded-lg border-[#D4AF37]/30 text-[#D4AF37] hover:bg-[#D4AF37]/10"
                   >
                     <MessageCircle className="w-3 h-3 mr-1.5" />
@@ -395,7 +416,7 @@ const ProjectJourney = () => {
             </Card>
 
             {/* Right: Direct Engineer Chat */}
-            <Card id="engineer-chat" className="bg-white border border-border shadow-sm flex flex-col">
+            <Card ref={chatRef} id="engineer-chat" className="bg-white border border-border shadow-sm flex flex-col">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="font-heading text-xl text-foreground">Direct Engineer Chat</CardTitle>
@@ -479,6 +500,18 @@ const ProjectJourney = () => {
             )}
           </DialogContent>
         </Dialog>
+
+        {/* Floating Chat Button */}
+        <button
+          onClick={scrollToChat}
+          className={`fixed bottom-24 lg:bottom-8 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-foreground text-background rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ${
+            showFloatingChat ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'
+          }`}
+        >
+          <MessageCircle className="w-5 h-5" />
+          <span className="font-body text-sm font-medium hidden sm:inline">Chat with Engineer</span>
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-background" />
+        </button>
       </div>
     </DashboardLayout>
   );
