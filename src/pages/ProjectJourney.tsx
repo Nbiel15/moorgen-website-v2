@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Check, Clock, AlertCircle, Image, Send, Paperclip, Users, Calendar, Activity, Target, ChevronDown, ChevronUp, Camera } from "lucide-react";
+import { Check, Clock, Search, Bell, Send, Paperclip, ChevronRight, Eye, Camera, TrendingUp, Calendar as CalendarIcon, Users, Wifi, MessageCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type MilestoneStatus = "completed" | "in-progress" | "pending";
 
@@ -16,6 +18,7 @@ interface Phase {
   description: string;
   photos: string[];
   approved: boolean;
+  technician: string;
 }
 
 const phases: Phase[] = [
@@ -29,9 +32,9 @@ const phases: Phase[] = [
     photos: [
       "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400",
       "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
     ],
     approved: true,
+    technician: "Wayan Sudarta",
   },
   {
     id: "2",
@@ -42,9 +45,9 @@ const phases: Phase[] = [
     description: "Installation of all smart home wiring, network cables, and power distribution.",
     photos: [
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
     ],
     approved: true,
+    technician: "Made Kusuma",
   },
   {
     id: "3",
@@ -57,6 +60,7 @@ const phases: Phase[] = [
       "https://images.unsplash.com/photo-1558002038-1055907df827?w=400",
     ],
     approved: false,
+    technician: "Wayan Sudarta",
   },
   {
     id: "4",
@@ -67,157 +71,26 @@ const phases: Phase[] = [
     description: "System calibration, scene programming, and final handover to owner.",
     photos: [],
     approved: false,
+    technician: "Assigned",
   },
 ];
 
-const chatMessages = [
-  {
-    id: "1",
-    sender: "engineer",
-    name: "Engineer Wayan",
-    message: "The Living Room panels are being configured now. The Milan Series installation is proceeding smoothly.",
-    time: "10:30 AM",
-    avatar: "W",
-  },
-  {
-    id: "2",
-    sender: "user",
-    name: "You",
-    message: "Excellent! Please send photos once completed.",
-    time: "10:45 AM",
-    avatar: "A",
-  },
+const evidenceData = [
+  { phase: "Site Analysis", technician: "Wayan Sudarta", date: "12 Aug 2024", status: "Approved", hasPhoto: true },
+  { phase: "Wiring", technician: "Made Kusuma", date: "30 Sep 2024", status: "Approved", hasPhoto: true },
+  { phase: "Device Installation", technician: "Wayan Sudarta", date: "In Progress", status: "Pending", hasPhoto: true },
 ];
-
-// Right Sidebar Component
-const RightSidebar = () => {
-  const [chatInput, setChatInput] = useState("");
-  const nextMilestone = phases.find(p => p.status === "in-progress" || p.status === "pending");
-
-  return (
-    <aside className="hidden xl:flex w-80 flex-col border-l border-border bg-card">
-      {/* Next Milestone Card */}
-      <div className="p-5 border-b border-border">
-        <div className="flex items-center gap-2 mb-4">
-          <Target className="w-4 h-4 text-[#D4AF37]" />
-          <h3 className="font-serif text-base text-foreground">Next Milestone</h3>
-        </div>
-        
-        {nextMilestone && (
-          <div className="bg-muted/50 rounded-xl p-4 border border-border">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-7 h-7 rounded-full bg-[#D4AF37] flex items-center justify-center">
-                <div className="w-2 h-2 bg-background rounded-full animate-pulse" />
-              </div>
-              <div>
-                <p className="font-sans font-medium text-foreground text-sm">{nextMilestone.title}</p>
-                <p className="font-sans text-xs text-muted-foreground">{nextMilestone.targetDate}</p>
-              </div>
-            </div>
-            <p className="font-sans text-xs text-muted-foreground leading-relaxed">{nextMilestone.description}</p>
-          </div>
-        )}
-      </div>
-
-      {/* Engineer Chat */}
-      <div className="flex-1 flex flex-col min-h-0">
-        <div className="p-5 border-b border-border">
-          <h3 className="font-serif text-base text-foreground mb-3">Direct Engineer Chat</h3>
-          
-          {/* Engineer Profile */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-foreground flex items-center justify-center text-background font-sans font-medium text-sm">
-              W
-            </div>
-            <div>
-              <p className="font-sans font-medium text-foreground text-sm">Engineer Wayan</p>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                <span className="font-sans text-xs text-muted-foreground">Online</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3">
-          {chatMessages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex gap-2 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-            >
-              {msg.sender !== "user" && (
-                <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center text-background font-sans text-[10px] flex-shrink-0 mt-1">
-                  {msg.avatar}
-                </div>
-              )}
-              <div
-                className={`max-w-[85%] rounded-2xl px-3 py-2 ${
-                  msg.sender === "user"
-                    ? "bg-foreground text-background rounded-br-sm"
-                    : "bg-muted border border-border text-foreground rounded-bl-sm"
-                }`}
-              >
-                <p className="font-sans text-xs leading-relaxed">{msg.message}</p>
-                <p className={`font-sans text-[10px] mt-1 ${
-                  msg.sender === "user" ? "text-background/50" : "text-muted-foreground"
-                }`}>{msg.time}</p>
-              </div>
-              {msg.sender === "user" && (
-                <div className="w-6 h-6 rounded-full bg-[#D4AF37] flex items-center justify-center text-background font-sans text-[10px] flex-shrink-0 mt-1">
-                  {msg.avatar}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Chat Input */}
-        <div className="p-3 border-t border-border">
-          <div className="flex items-center gap-2">
-            <button className="p-1.5 hover:bg-muted rounded-full transition-colors">
-              <Paperclip className="w-4 h-4 text-muted-foreground" />
-            </button>
-            <input
-              type="text"
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              placeholder="Type a message..."
-              className="flex-1 px-3 py-2 bg-muted border border-border rounded-full font-sans text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-[#D4AF37]/50 focus:border-[#D4AF37]"
-            />
-            <button className="p-2 bg-foreground text-background rounded-full hover:bg-foreground/90 transition-colors">
-              <Send className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </aside>
-  );
-};
 
 const ProjectJourney = () => {
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(null);
-  const [approvedPhases, setApprovedPhases] = useState<string[]>(["1", "2"]);
-  const [expandedId, setExpandedId] = useState<string | null>("3");
-  
-  const progress = 85;
-
-  const handleApprove = (phaseId: string) => {
-    if (!approvedPhases.includes(phaseId)) {
-      setApprovedPhases([...approvedPhases, phaseId]);
-    }
-  };
-
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
+  const [chatInput, setChatInput] = useState("");
 
   const getStatusStyles = (status: MilestoneStatus) => {
     switch (status) {
       case "completed":
         return {
           bg: "bg-foreground",
-          icon: <Check className="w-3.5 h-3.5 text-background" />,
+          icon: <Check className="w-3 h-3 text-background" />,
           line: "bg-foreground",
         };
       case "in-progress":
@@ -228,266 +101,394 @@ const ProjectJourney = () => {
         };
       case "pending":
         return {
-          bg: "bg-background border-2 border-border",
-          icon: <div className="w-2 h-2 bg-muted-foreground/30 rounded-full" />,
+          bg: "bg-muted border-2 border-border",
+          icon: <Clock className="w-3 h-3 text-muted-foreground" />,
           line: "bg-border",
         };
     }
   };
 
   return (
-    <DashboardLayout showRightPanel rightPanel={<RightSidebar />}>
-      <div className="p-4 lg:p-6 xl:p-8 max-w-5xl">
-        {/* Page Header */}
-        <div className="mb-6">
-          <h1 className="font-serif text-2xl lg:text-3xl text-foreground mb-1">Project Journey</h1>
-          <p className="font-sans text-sm text-muted-foreground">Track your smart home installation progress</p>
-        </div>
-
-        {/* Summary Cards Row */}
-        <div className="grid grid-cols-2 gap-3 lg:gap-4 mb-6">
-          {/* Card 1: Overall Progress - Obsidian Black */}
-          <Card className="bg-foreground text-background border-0 shadow-md col-span-2 lg:col-span-1">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-background/60 mb-0.5">Overall Progress</p>
-                  <p className="font-serif text-2xl lg:text-3xl font-semibold">{progress}%</p>
-                  <p className="font-sans text-xs text-[#D4AF37] mt-0.5">On Track</p>
-                </div>
-                <div className="relative w-14 h-14">
-                  <svg className="w-full h-full -rotate-90">
-                    <circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
-                    <circle
-                      cx="28" cy="28" r="24" fill="none" stroke="#D4AF37" strokeWidth="4" strokeLinecap="round"
-                      strokeDasharray={2 * Math.PI * 24}
-                      strokeDashoffset={2 * Math.PI * 24 - (progress / 100) * 2 * Math.PI * 24}
-                      className="transition-all duration-1000 ease-out"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Card 2: Handover Countdown */}
-          <Card className="bg-card border border-border shadow-sm">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-4 h-4 text-[#D4AF37]" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-muted-foreground">Countdown</p>
-                  <p className="font-serif text-xl font-semibold text-foreground">45 Days</p>
-                  <p className="font-sans text-[10px] text-muted-foreground truncate">20 Dec 2024</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Card 3: Field Team */}
-          <Card className="bg-card border border-border shadow-sm">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-foreground/5 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-4 h-4 text-foreground" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-muted-foreground">Field Team</p>
-                  <p className="font-serif text-xl font-semibold text-foreground">3 Active</p>
-                  <p className="font-sans text-[10px] text-green-600">Engineers</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Card 4: System Health */}
-          <Card className="bg-card border border-border shadow-sm">
-            <CardContent className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                  <Activity className="w-4 h-4 text-green-600" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-sans text-[10px] uppercase tracking-wider text-muted-foreground">System</p>
-                  <p className="font-serif text-xl font-semibold text-foreground">Online</p>
-                  <p className="font-sans text-[10px] text-green-600">All OK</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Main Timeline Section */}
-        <Card className="border border-border shadow-sm">
-          <CardContent className="p-4 lg:p-6">
-            <div className="mb-6">
-              <h2 className="font-serif text-xl text-foreground">The Journey</h2>
-              <p className="font-sans text-xs text-muted-foreground mt-0.5">Installation milestones & progress</p>
+    <DashboardLayout>
+      <div className="min-h-screen bg-[#F5F5F5]">
+        {/* Top Header Bar */}
+        <header className="bg-white border-b border-border px-6 py-4">
+          <div className="flex items-center justify-between max-w-7xl mx-auto">
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input 
+                placeholder="Search project..." 
+                className="pl-10 bg-[#F5F5F5] border-0 rounded-xl font-sans text-sm h-10"
+              />
             </div>
+            <div className="flex items-center gap-4 ml-6">
+              <button className="relative p-2 hover:bg-muted rounded-full transition-colors">
+                <Bell className="w-5 h-5 text-muted-foreground" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-[#D4AF37] rounded-full" />
+              </button>
+              <Avatar className="w-9 h-9 border-2 border-[#D4AF37]/20">
+                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" />
+                <AvatarFallback className="bg-foreground text-background font-sans text-sm">JD</AvatarFallback>
+              </Avatar>
+            </div>
+          </div>
+        </header>
 
-            {/* Vertical Timeline */}
-            <div className="relative space-y-3">
-              {phases.map((phase, index) => {
-                const styles = getStatusStyles(phase.status);
-                const isExpanded = expandedId === phase.id;
-                const isInProgress = phase.status === "in-progress";
-                const isLast = index === phases.length - 1;
+        {/* Main Content */}
+        <div className="p-6 max-w-7xl mx-auto">
+          {/* Page Title */}
+          <div className="mb-6">
+            <h1 className="font-serif text-2xl lg:text-3xl text-foreground">Project Progress</h1>
+            <p className="font-sans text-sm text-muted-foreground mt-1">Villa Seminyak Smart Home Installation</p>
+          </div>
 
-                return (
-                  <div key={phase.id} className="relative">
-                    {/* Connecting Line */}
-                    {!isLast && (
-                      <div className={`absolute left-[15px] top-8 w-0.5 h-[calc(100%-8px)] ${styles.line}`} />
-                    )}
+          {/* Top Row: 4 Summary Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            {/* Card 1: Total Progress - Black */}
+            <Card className="bg-foreground text-background border-0 shadow-lg">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <TrendingUp className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-sans text-xs uppercase tracking-wider text-background/60">Total Progress</span>
+                </div>
+                <p className="font-serif text-4xl font-bold">85%</p>
+                <p className="font-sans text-xs text-[#D4AF37] mt-1">+4.2% from last week</p>
+              </CardContent>
+            </Card>
 
-                    {/* Milestone Card */}
-                    <div
-                      className={`relative rounded-xl border transition-all duration-300 ${
-                        isInProgress 
-                          ? "border-[#D4AF37] bg-[#D4AF37]/[0.02] shadow-[0_0_15px_rgba(212,175,55,0.08)]" 
-                          : "border-border hover:border-muted-foreground/30 bg-card"
-                      }`}
-                    >
-                      <button
-                        onClick={() => toggleExpand(phase.id)}
-                        className="w-full flex items-center gap-3 p-3 lg:p-4 text-left"
-                      >
-                        {/* Status Icon */}
-                        <div className={`w-8 h-8 rounded-full ${styles.bg} flex items-center justify-center flex-shrink-0`}>
-                          {styles.icon}
+            {/* Card 2: Handover Date */}
+            <Card className="bg-white border border-border shadow-sm">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <CalendarIcon className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Handover Date</span>
+                </div>
+                <p className="font-serif text-2xl font-bold text-foreground">20 Dec 2024</p>
+                <p className="font-sans text-xs text-muted-foreground mt-1">45 Days Remaining</p>
+              </CardContent>
+            </Card>
+
+            {/* Card 3: Active Engineers */}
+            <Card className="bg-white border border-border shadow-sm">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Users className="w-4 h-4 text-[#D4AF37]" />
+                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">Active Engineers</span>
+                </div>
+                <p className="font-serif text-2xl font-bold text-foreground">3 People</p>
+                <p className="font-sans text-xs text-green-600 mt-1">All on-site</p>
+              </CardContent>
+            </Card>
+
+            {/* Card 4: System Status */}
+            <Card className="bg-white border border-border shadow-sm">
+              <CardContent className="p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Wifi className="w-4 h-4 text-green-500" />
+                  <span className="font-sans text-xs uppercase tracking-wider text-muted-foreground">System Status</span>
+                </div>
+                <p className="font-serif text-2xl font-bold text-foreground">98% Online</p>
+                <div className="flex items-center gap-1 mt-2">
+                  {[...Array(6)].map((_, i) => (
+                    <div 
+                      key={i} 
+                      className="flex-1 h-1.5 rounded-full bg-green-500"
+                      style={{ opacity: 0.4 + (i * 0.12) }}
+                    />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Middle Section: Timeline + Calendar */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            {/* Left: Project Journey Timeline */}
+            <Card className="lg:col-span-2 bg-white border border-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="font-serif text-xl text-foreground">Project Journey Timeline</CardTitle>
+                <p className="font-sans text-sm text-muted-foreground">Installation milestones & progress</p>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="relative space-y-1">
+                  {phases.map((phase, index) => {
+                    const styles = getStatusStyles(phase.status);
+                    const isLast = index === phases.length - 1;
+                    const isInProgress = phase.status === "in-progress";
+
+                    return (
+                      <div key={phase.id} className="relative flex gap-4">
+                        {/* Timeline Line & Dot */}
+                        <div className="flex flex-col items-center">
+                          <div className={`w-7 h-7 rounded-full ${styles.bg} flex items-center justify-center z-10`}>
+                            {styles.icon}
+                          </div>
+                          {!isLast && (
+                            <div className={`w-0.5 flex-1 min-h-[60px] ${styles.line}`} />
+                          )}
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h4 className="font-sans font-medium text-foreground text-sm">{phase.title}</h4>
-                            {isInProgress && (
-                              <span className="px-2 py-0.5 bg-[#D4AF37]/15 text-[#D4AF37] text-[9px] font-semibold uppercase tracking-wider rounded-full">
-                                In Progress
-                              </span>
-                            )}
-                            {approvedPhases.includes(phase.id) && (
-                              <span className="px-2 py-0.5 bg-foreground/5 text-foreground/70 text-[9px] font-medium uppercase tracking-wider rounded-full flex items-center gap-0.5">
-                                <Check className="w-2.5 h-2.5" /> Approved
-                              </span>
-                            )}
-                          </div>
-                          <p className="font-sans text-xs text-muted-foreground mt-0.5">Target: {phase.targetDate}</p>
-                        </div>
-
-                        {/* Expand Icon */}
-                        <div className="flex-shrink-0 text-muted-foreground">
-                          {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                        </div>
-                      </button>
-
-                      {/* Expanded Content */}
-                      {isExpanded && (
-                        <div className="px-3 lg:px-4 pb-4 pt-0">
-                          <div className="pl-11 space-y-3">
-                            <p className="font-sans text-sm text-muted-foreground">{phase.description}</p>
-
-                            {/* Status Info */}
-                            <div className="flex items-center gap-4 text-sm">
+                        <div className={`flex-1 pb-6 ${isLast ? 'pb-0' : ''}`}>
+                          <div className={`p-4 rounded-xl border transition-all ${
+                            isInProgress 
+                              ? "border-[#D4AF37] bg-[#D4AF37]/5" 
+                              : "border-border hover:border-muted-foreground/30"
+                          }`}>
+                            <div className="flex items-start justify-between mb-2">
                               <div>
-                                <span className="font-sans text-[10px] uppercase tracking-wider text-muted-foreground">Status</span>
-                                <p className={`font-sans text-sm font-medium ${
-                                  phase.status === "completed" ? "text-foreground" :
-                                  phase.status === "in-progress" ? "text-[#D4AF37]" :
-                                  "text-muted-foreground"
-                                }`}>
-                                  {phase.statusDate}
+                                <div className="flex items-center gap-2">
+                                  <h4 className="font-sans font-semibold text-foreground">{phase.title}</h4>
+                                  {isInProgress && (
+                                    <span className="px-2 py-0.5 bg-[#D4AF37]/15 text-[#D4AF37] text-[10px] font-semibold uppercase rounded-full">
+                                      Active
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="font-sans text-xs text-muted-foreground mt-0.5">
+                                  Target: {phase.targetDate}
                                 </p>
                               </div>
+                              {phase.status === "completed" && (
+                                <span className="flex items-center gap-1 text-xs text-foreground/70 font-sans">
+                                  <Check className="w-3 h-3" />
+                                  Completed
+                                </span>
+                              )}
                             </div>
-
-                            {/* Action Buttons */}
-                            <div className="flex flex-wrap gap-2 pt-1">
+                            <p className="font-sans text-sm text-muted-foreground mb-3">{phase.description}</p>
+                            {phase.photos.length > 0 && (
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="font-sans text-xs gap-1.5 h-8 rounded-lg"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setSelectedPhase(phase);
-                                }}
-                                disabled={phase.photos.length === 0}
+                                onClick={() => setSelectedPhase(phase)}
+                                className="font-sans text-xs h-8 rounded-lg"
                               >
-                                <Camera className="w-3.5 h-3.5" />
-                                Evidence ({phase.photos.length})
+                                <Camera className="w-3 h-3 mr-1.5" />
+                                View Evidence
                               </Button>
-
-                              {!approvedPhases.includes(phase.id) && phase.status !== "pending" && (
-                                <Button
-                                  size="sm"
-                                  className="font-sans text-xs gap-1.5 h-8 bg-foreground text-background hover:bg-foreground/90 rounded-lg"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleApprove(phase.id);
-                                  }}
-                                >
-                                  <Check className="w-3.5 h-3.5" />
-                                  Approve
-                                </Button>
-                              )}
-                            </div>
+                            )}
                           </div>
                         </div>
-                      )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Right: Upcoming Deadline Calendar */}
+            <Card className="bg-white border border-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="font-serif text-xl text-foreground">Upcoming Deadline</CardTitle>
+                <p className="font-sans text-sm text-muted-foreground">Next milestone target</p>
+              </CardHeader>
+              <CardContent className="pt-0">
+                {/* Mini Calendar */}
+                <div className="bg-[#F5F5F5] rounded-xl p-4 mb-4">
+                  <div className="text-center mb-3">
+                    <p className="font-sans text-xs uppercase tracking-wider text-muted-foreground">October 2024</p>
+                  </div>
+                  <div className="grid grid-cols-7 gap-1 text-center mb-2">
+                    {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
+                      <span key={i} className="font-sans text-[10px] text-muted-foreground">{d}</span>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-7 gap-1 text-center">
+                    {[...Array(31)].map((_, i) => {
+                      const day = i + 1;
+                      const isHighlight = day === 19;
+                      const isPast = day < 15;
+                      return (
+                        <span 
+                          key={i} 
+                          className={`font-sans text-xs py-1.5 rounded-lg ${
+                            isHighlight 
+                              ? "bg-[#D4AF37] text-background font-semibold" 
+                              : isPast 
+                                ? "text-muted-foreground/40" 
+                                : "text-foreground"
+                          }`}
+                        >
+                          {day}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Next Milestone Info */}
+                <div className="border border-[#D4AF37]/30 rounded-xl p-4 bg-[#D4AF37]/5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-[#D4AF37] flex items-center justify-center">
+                      <div className="w-2 h-2 bg-background rounded-full animate-pulse" />
+                    </div>
+                    <p className="font-sans font-semibold text-foreground text-sm">Fine-tuning & Handover</p>
+                  </div>
+                  <p className="font-sans text-xs text-muted-foreground">System calibration and final handover to owner.</p>
+                  <div className="mt-3 pt-3 border-t border-[#D4AF37]/20">
+                    <p className="font-sans text-xs text-[#D4AF37] font-medium">Target: December 20, 2024</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Bottom Row: Evidence Table + Chat */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Left: Latest Field Evidence */}
+            <Card className="lg:col-span-2 bg-white border border-border shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="font-serif text-xl text-foreground">Latest Field Evidence</CardTitle>
+                <p className="font-sans text-sm text-muted-foreground">Documentation from on-site work</p>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Phase</th>
+                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Technician</th>
+                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Date</th>
+                        <th className="text-left font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Status</th>
+                        <th className="text-right font-sans text-xs uppercase tracking-wider text-muted-foreground py-3 px-2">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {evidenceData.map((item, index) => (
+                        <tr key={index} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
+                          <td className="py-4 px-2">
+                            <span className="font-sans text-sm text-foreground font-medium">{item.phase}</span>
+                          </td>
+                          <td className="py-4 px-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center text-background text-[10px] font-sans">
+                                {item.technician.charAt(0)}
+                              </div>
+                              <span className="font-sans text-sm text-foreground">{item.technician}</span>
+                            </div>
+                          </td>
+                          <td className="py-4 px-2">
+                            <span className="font-sans text-sm text-muted-foreground">{item.date}</span>
+                          </td>
+                          <td className="py-4 px-2">
+                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase ${
+                              item.status === "Approved" 
+                                ? "bg-foreground/10 text-foreground" 
+                                : "bg-[#D4AF37]/15 text-[#D4AF37]"
+                            }`}>
+                              {item.status === "Approved" && <Check className="w-2.5 h-2.5" />}
+                              {item.status}
+                            </span>
+                          </td>
+                          <td className="py-4 px-2 text-right">
+                            <Button 
+                              variant="ghost" 
+                              size="sm" 
+                              className="font-sans text-xs h-8 text-[#D4AF37] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
+                              onClick={() => {
+                                const phase = phases.find(p => p.title.includes(item.phase.split(" ")[0]));
+                                if (phase) setSelectedPhase(phase);
+                              }}
+                            >
+                              <Eye className="w-3 h-3 mr-1" />
+                              View Photo
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Right: Direct Engineer Chat */}
+            <Card className="bg-white border border-border shadow-sm flex flex-col">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="font-serif text-xl text-foreground">Direct Engineer Chat</CardTitle>
+                  <MessageCircle className="w-4 h-4 text-[#D4AF37]" />
+                </div>
+                {/* Engineer Profile */}
+                <div className="flex items-center gap-3 mt-3 p-3 bg-[#F5F5F5] rounded-xl">
+                  <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-sans font-medium">
+                    W
+                  </div>
+                  <div>
+                    <p className="font-sans font-semibold text-foreground text-sm">Wayan Sudarta</p>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-green-500" />
+                      <span className="font-sans text-xs text-muted-foreground">Online • Lead Engineer</span>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col pt-0 min-h-0">
+                {/* Chat Messages */}
+                <div className="flex-1 overflow-y-auto space-y-3 mb-4 max-h-[200px]">
+                  <div className="flex gap-2">
+                    <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center text-background text-[10px] flex-shrink-0 mt-1">
+                      W
+                    </div>
+                    <div className="bg-[#F5F5F5] rounded-2xl rounded-bl-sm px-3 py-2 max-w-[85%]">
+                      <p className="font-sans text-sm text-foreground">Wiring for the master suite is now 100% verified. All panels tested and operational.</p>
+                      <p className="font-sans text-[10px] text-muted-foreground mt-1">10:30 AM</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 justify-end">
+                    <div className="bg-foreground text-background rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
+                      <p className="font-sans text-sm">Excellent work! Please proceed to living room.</p>
+                      <p className="font-sans text-[10px] text-background/50 mt-1">10:45 AM</p>
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-[#D4AF37] flex items-center justify-center text-background text-[10px] flex-shrink-0 mt-1">
+                      A
+                    </div>
+                  </div>
+                </div>
 
-        {/* Mobile Chat Card - Only visible on smaller screens */}
-        <Card className="xl:hidden mt-6 border border-border shadow-sm">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2 mb-4">
-              <Target className="w-4 h-4 text-[#D4AF37]" />
-              <h3 className="font-serif text-base text-foreground">Engineer Chat</h3>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-xl">
-              <div className="w-9 h-9 rounded-full bg-foreground flex items-center justify-center text-background font-sans font-medium text-sm">
-                W
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-sans font-medium text-foreground text-sm">Engineer Wayan</p>
-                <p className="font-sans text-xs text-muted-foreground truncate">The Living Room panels are being configured...</p>
-              </div>
-              <Button size="sm" variant="outline" className="shrink-0 h-8 text-xs">
-                Open Chat
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Photo Gallery Dialog */}
-      <Dialog open={!!selectedPhase} onOpenChange={() => setSelectedPhase(null)}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="font-serif text-xl">
-              {selectedPhase?.title} - Field Evidence
-            </DialogTitle>
-          </DialogHeader>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
-            {selectedPhase?.photos.map((photo, index) => (
-              <div key={index} className="aspect-square rounded-xl overflow-hidden border border-border">
-                <img
-                  src={photo}
-                  alt={`${selectedPhase.title} photo ${index + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
+                {/* Chat Input */}
+                <div className="flex items-center gap-2 pt-3 border-t border-border">
+                  <button className="p-2 hover:bg-muted rounded-full transition-colors">
+                    <Paperclip className="w-4 h-4 text-muted-foreground" />
+                  </button>
+                  <Input
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder="Type a message..."
+                    className="flex-1 bg-[#F5F5F5] border-0 rounded-xl font-sans text-sm h-9"
+                  />
+                  <button className="p-2 bg-foreground text-background rounded-full hover:bg-foreground/90 transition-colors">
+                    <Send className="w-4 h-4" />
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+
+        {/* Photo Gallery Dialog */}
+        <Dialog open={!!selectedPhase} onOpenChange={() => setSelectedPhase(null)}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="font-serif text-xl">{selectedPhase?.title} - Field Evidence</DialogTitle>
+            </DialogHeader>
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              {selectedPhase?.photos.map((photo, index) => (
+                <div key={index} className="relative aspect-video rounded-xl overflow-hidden">
+                  <img src={photo} alt={`Evidence ${index + 1}`} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+            {selectedPhase?.photos.length === 0 && (
+              <div className="text-center py-8 text-muted-foreground font-sans">
+                <Camera className="w-10 h-10 mx-auto mb-2 opacity-30" />
+                <p>No photos available yet</p>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
     </DashboardLayout>
   );
 };
