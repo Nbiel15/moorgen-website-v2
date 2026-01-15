@@ -126,18 +126,7 @@ const Controls = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex gap-3 animate-fade-in" style={{
-            animationDelay: "0.1s"
-          }}>
-              <button className="group flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-accent/10 border border-accent/20 hover:bg-accent/20 hover:border-accent/40 transition-all duration-300">
-                <Power className="w-4 h-4 text-accent" />
-                <span className="text-sm font-body text-accent">All Off</span>
-              </button>
-              <button className="group flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-card border border-border hover:bg-muted/50 hover:border-accent/30 transition-all duration-300">
-                <Shield className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                <span className="text-sm font-body text-muted-foreground group-hover:text-foreground transition-colors">Security</span>
-              </button>
-            </div>
+            
           </div>
         </div>
       </header>
