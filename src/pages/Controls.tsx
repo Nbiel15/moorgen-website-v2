@@ -143,7 +143,7 @@ const Controls = () => {
           {devices.map(device => <div key={device.id} className={`relative rounded-3xl p-6 transition-all duration-500 cursor-pointer group border ${device.isOn ? "bg-primary text-primary-foreground border-primary shadow-lg" : "bg-card border-border text-foreground hover:border-foreground/20"}`} onClick={() => handleDeviceClick(device)}>
               {/* Connection Status */}
               <div className="absolute top-5 right-5 flex items-center gap-2">
-                <Wifi className={`w-4 h-4 ${device.isOn ? "text-green-500" : "text-green-500/50"}`} strokeWidth={1.5} />
+                <Wifi className={`w-4 h-4 ${device.isOn ? "text-green-500" : "text-muted-foreground"}`} strokeWidth={1.5} />
                 {device.hasNavigation}
               </div>
 
