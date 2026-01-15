@@ -245,7 +245,7 @@ const ProjectJourney = () => {
         </div>
 
         {/* Summary Cards Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
+        <div className="grid grid-cols-2 gap-3 lg:gap-4 mb-6">
           {/* Card 1: Overall Progress - Obsidian Black */}
           <Card className="bg-foreground text-background border-0 shadow-md col-span-2 lg:col-span-1">
             <CardContent className="p-4">
