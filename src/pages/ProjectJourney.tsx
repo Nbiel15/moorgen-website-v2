@@ -247,7 +247,7 @@ const ProjectJourney = () => {
                             {styles.icon}
                           </div>
                           {!isLast && (
-                            <div className={`w-0.5 flex-1 ${styles.line}`} style={{ minHeight: isExpanded ? '80px' : '40px', transition: 'min-height 0.3s ease-out' }} />
+                            <div className={`w-0.5 flex-1 ${styles.line}`} />
                           )}
                         </div>
 
