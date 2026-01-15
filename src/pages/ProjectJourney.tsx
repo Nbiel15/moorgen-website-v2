@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Check, Clock, Search, Bell, Send, Paperclip, ChevronRight, Eye, Camera, TrendingUp, Calendar as CalendarIcon, Users, Wifi, MessageCircle } from "lucide-react";
+import { Check, Clock, Search, Bell, Send, Paperclip, ChevronRight, ChevronDown, ChevronUp, Eye, Camera, TrendingUp, Calendar as CalendarIcon, Users, Wifi, MessageCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -86,6 +86,29 @@ const ProjectJourney = () => {
   const [chatInput, setChatInput] = useState("");
   const [showFloatingChat, setShowFloatingChat] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
+  
+  // Initialize expanded state: only "in-progress" phases start expanded
+  const [expandedPhases, setExpandedPhases] = useState<Set<string>>(() => {
+    const initialExpanded = new Set<string>();
+    phases.forEach(phase => {
+      if (phase.status === "in-progress") {
+        initialExpanded.add(phase.id);
+      }
+    });
+    return initialExpanded;
+  });
+
+  const togglePhase = (phaseId: string) => {
+    setExpandedPhases(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(phaseId)) {
+        newSet.delete(phaseId);
+      } else {
+        newSet.add(phaseId);
+      }
+      return newSet;
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -214,6 +237,7 @@ const ProjectJourney = () => {
                     const styles = getStatusStyles(phase.status);
                     const isLast = index === phases.length - 1;
                     const isInProgress = phase.status === "in-progress";
+                    const isExpanded = expandedPhases.has(phase.id);
 
                     return (
                       <div key={phase.id} className="relative flex gap-4">
@@ -223,19 +247,23 @@ const ProjectJourney = () => {
                             {styles.icon}
                           </div>
                           {!isLast && (
-                            <div className={`w-0.5 flex-1 min-h-[60px] ${styles.line}`} />
+                            <div className={`w-0.5 flex-1 ${styles.line}`} style={{ minHeight: isExpanded ? '80px' : '40px', transition: 'min-height 0.3s ease-out' }} />
                           )}
                         </div>
 
                         {/* Content */}
-                        <div className={`flex-1 pb-6 ${isLast ? 'pb-0' : ''}`}>
-                          <div className={`p-4 rounded-xl border transition-all ${
+                        <div className={`flex-1 ${isLast ? 'pb-0' : 'pb-2'}`}>
+                          <div className={`rounded-xl border transition-all ${
                             isInProgress 
                               ? "border-[#D4AF37] bg-[#D4AF37]/5" 
                               : "border-border hover:border-muted-foreground/30"
                           }`}>
-                            <div className="flex items-start justify-between mb-2">
-                              <div>
+                            {/* Clickable Header */}
+                            <div 
+                              onClick={() => togglePhase(phase.id)}
+                              className="p-4 cursor-pointer select-none flex items-start justify-between"
+                            >
+                              <div className="flex-1">
                                 <div className="flex items-center gap-2">
                                   <h4 className="font-heading font-semibold text-foreground">{phase.title}</h4>
                                   {isInProgress && (
@@ -248,25 +276,47 @@ const ProjectJourney = () => {
                                   Target: {phase.targetDate}
                                 </p>
                               </div>
-                              {phase.status === "completed" && (
-                                <span className="flex items-center gap-1 text-xs text-foreground/70 font-body">
-                                  <Check className="w-3 h-3" />
-                                  Completed
-                                </span>
-                              )}
+                              <div className="flex items-center gap-2">
+                                {phase.status === "completed" && (
+                                  <span className="flex items-center gap-1 text-xs text-foreground/70 font-body">
+                                    <Check className="w-3 h-3" />
+                                    Completed
+                                  </span>
+                                )}
+                                {isExpanded ? (
+                                  <ChevronUp className="w-4 h-4 text-muted-foreground transition-transform duration-300" />
+                                ) : (
+                                  <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform duration-300" />
+                                )}
+                              </div>
                             </div>
-                            <p className="font-body text-sm text-muted-foreground mb-3">{phase.description}</p>
-                            {phase.photos.length > 0 && (
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => setSelectedPhase(phase)}
-                                className="font-body text-xs h-8 rounded-lg"
-                              >
-                                <Camera className="w-3 h-3 mr-1.5" />
-                                View Evidence
-                              </Button>
-                            )}
+                            
+                            {/* Collapsible Content */}
+                            <div 
+                              className="overflow-hidden transition-all duration-300 ease-out"
+                              style={{
+                                maxHeight: isExpanded ? '200px' : '0px',
+                                opacity: isExpanded ? 1 : 0,
+                              }}
+                            >
+                              <div className="px-4 pb-4">
+                                <p className="font-body text-sm text-muted-foreground mb-3">{phase.description}</p>
+                                {phase.photos.length > 0 && (
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setSelectedPhase(phase);
+                                    }}
+                                    className="font-body text-xs h-8 rounded-lg"
+                                  >
+                                    <Camera className="w-3 h-3 mr-1.5" />
+                                    View Evidence
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
