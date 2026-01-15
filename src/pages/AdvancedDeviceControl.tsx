@@ -94,13 +94,6 @@ const AdvancedDeviceControl = () => {
 
   return (
     <DashboardLayout>
-      {/* Dynamic Background Gradient */}
-      <div 
-        className={cn(
-          "fixed inset-0 bg-gradient-to-br transition-all duration-1000 pointer-events-none",
-          getTemperatureGradient()
-        )} 
-      />
 
       {/* Header */}
       <motion.header 
@@ -219,10 +212,17 @@ const AdvancedDeviceControl = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
               className={cn(
-                "relative w-64 h-64 md:w-80 md:h-80 transition-opacity duration-300",
+                "relative w-64 h-64 md:w-80 md:h-80 transition-all duration-500 rounded-full",
                 !isPowered && "opacity-50"
               )}
             >
+              {/* Dynamic Background Gradient - Only on dial */}
+              <div 
+                className={cn(
+                  "absolute -inset-8 rounded-full bg-gradient-to-br transition-all duration-1000 blur-2xl opacity-50",
+                  getTemperatureGradient()
+                )} 
+              />
               {/* Background Track - 270 degree arc */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                 <circle
