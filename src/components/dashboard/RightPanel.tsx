@@ -1,12 +1,30 @@
-import { Sun, Cloud, Wifi, MessageCircle, Droplets, Wind, ArrowRight, Clock } from "lucide-react";
+import { Sun, Cloud, Wifi, MessageCircle, Droplets, Wind, ArrowRight, Clock, CloudRain, CloudSnow, CloudLightning, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useWeather } from "@/hooks/use-weather";
 
 const RightPanel = () => {
+  const { weather, loading, error, getWeatherDescription, getUVDescription } = useWeather();
+  
   const recentUpdates = [
     { id: 1, message: "Wiring phase started", time: "2h ago", isNew: true },
     { id: 2, message: "Site survey completed", time: "1d ago", isNew: false },
     { id: 3, message: "Permits approved", time: "3d ago", isNew: false },
   ];
+
+  const getWeatherIcon = (code: number, isDay: boolean) => {
+    if (code === 0) return <Sun className="w-12 h-12 text-amber-400" />;
+    if (code <= 3) return (
+      <div className="relative">
+        <Sun className="w-12 h-12 text-amber-400" />
+        <Cloud className="w-7 h-7 text-sky-300 absolute -bottom-1 -right-1" />
+      </div>
+    );
+    if (code <= 48) return <Cloud className="w-12 h-12 text-gray-400" />;
+    if (code <= 67 || (code >= 80 && code <= 82)) return <CloudRain className="w-12 h-12 text-sky-500" />;
+    if (code <= 77 || (code >= 85 && code <= 86)) return <CloudSnow className="w-12 h-12 text-sky-300" />;
+    if (code >= 95) return <CloudLightning className="w-12 h-12 text-yellow-500" />;
+    return <Cloud className="w-12 h-12 text-gray-400" />;
+  };
   return <>
       {/* Spacer to maintain layout flow */}
       <div className="hidden xl:block w-72 flex-shrink-0" />
@@ -45,38 +63,48 @@ const RightPanel = () => {
         </button>
       </div>
 
-      {/* Bali Weather (Uluwatu) */}
+      {/* Bali Weather (Uluwatu) - Live */}
       <div className="bg-gradient-to-br from-sky-50 to-blue-50 rounded-3xl p-5 border border-sky-100">
         <h3 className="font-serif text-lg text-charcoal mb-4">Bali Weather</h3>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="text-xs text-charcoal/50 mb-1">Uluwatu</p>
-            <p className="font-serif text-3xl text-charcoal">29°C</p>
-            <p className="text-xs text-charcoal/50 mt-1">Partly Cloudy</p>
+        
+        {loading ? (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-8 h-8 text-sky-400 animate-spin" />
           </div>
-          <div className="relative">
-            <Sun className="w-12 h-12 text-amber-400" />
-            <Cloud className="w-7 h-7 text-sky-300 absolute -bottom-1 -right-1" />
+        ) : error ? (
+          <div className="text-center py-4">
+            <p className="text-sm text-charcoal/50">Unable to load weather</p>
           </div>
-        </div>
+        ) : weather ? (
+          <>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-xs text-charcoal/50 mb-1">Uluwatu</p>
+                <p className="font-serif text-3xl text-charcoal">{weather.temperature}°C</p>
+                <p className="text-xs text-charcoal/50 mt-1">{getWeatherDescription(weather.weatherCode)}</p>
+              </div>
+              {getWeatherIcon(weather.weatherCode, weather.isDay)}
+            </div>
 
-        <div className="grid grid-cols-3 gap-2 pt-4 border-t border-sky-200/50">
-          <div className="text-center">
-            <Droplets className="w-4 h-4 text-sky-400 mx-auto mb-1" />
-            <p className="text-sm font-medium text-charcoal">68%</p>
-            <p className="text-[10px] text-charcoal/40">Humidity</p>
-          </div>
-          <div className="text-center">
-            <Sun className="w-4 h-4 text-amber-500 mx-auto mb-1" />
-            <p className="text-sm font-medium text-charcoal">High</p>
-            <p className="text-[10px] text-charcoal/40">UV Index</p>
-          </div>
-          <div className="text-center">
-            <Wind className="w-4 h-4 text-sky-400 mx-auto mb-1" />
-            <p className="text-sm font-medium text-charcoal">12 km/h</p>
-            <p className="text-[10px] text-charcoal/40">Wind</p>
-          </div>
-        </div>
+            <div className="grid grid-cols-3 gap-2 pt-4 border-t border-sky-200/50">
+              <div className="text-center">
+                <Droplets className="w-4 h-4 text-sky-400 mx-auto mb-1" />
+                <p className="text-sm font-medium text-charcoal">{weather.humidity}%</p>
+                <p className="text-[10px] text-charcoal/40">Humidity</p>
+              </div>
+              <div className="text-center">
+                <Sun className="w-4 h-4 text-amber-500 mx-auto mb-1" />
+                <p className="text-sm font-medium text-charcoal">{getUVDescription(weather.uvIndex)}</p>
+                <p className="text-[10px] text-charcoal/40">UV Index</p>
+              </div>
+              <div className="text-center">
+                <Wind className="w-4 h-4 text-sky-400 mx-auto mb-1" />
+                <p className="text-sm font-medium text-charcoal">{weather.windSpeed} km/h</p>
+                <p className="text-[10px] text-charcoal/40">Wind</p>
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
 
       {/* Quick Progress Updates */}
