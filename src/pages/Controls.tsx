@@ -94,7 +94,7 @@ const Controls = () => {
         {/* Quick Status Bar */}
         <div className="grid grid-cols-3 gap-2 md:gap-4 mb-8">
           <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 bg-primary">
               <Activity className="w-4 h-4 md:w-5 md:h-5 text-accent" strokeWidth={1.5} />
             </div>
             <div className="text-center sm:text-left min-w-0">
@@ -103,7 +103,7 @@ const Controls = () => {
             </div>
           </div>
           <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 bg-primary">
               <Zap className="w-4 h-4 md:w-5 md:h-5 text-accent" strokeWidth={1.5} />
             </div>
             <div className="text-center sm:text-left min-w-0">
@@ -112,7 +112,7 @@ const Controls = () => {
             </div>
           </div>
           <div className="bg-card rounded-2xl md:rounded-3xl p-2 sm:p-3 md:p-4 border border-border flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 bg-primary">
               <Thermometer className="w-4 h-4 md:w-5 md:h-5 text-accent" strokeWidth={1.5} />
             </div>
             <div className="text-center sm:text-left min-w-0">
