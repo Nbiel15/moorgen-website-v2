@@ -63,13 +63,9 @@ const SmartPanelControls = () => {
       {/* Header */}
       <div className="flex items-center justify-between mb-5 md:mb-8">
         <div className="flex items-center gap-3">
-          <motion.div 
-            animate={{ rotate: [0, 180, 360] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center"
-          >
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
             <Sparkles className="w-4 h-4 text-champagne-gold" />
-          </motion.div>
+          </div>
           <h3 className="font-serif text-lg md:text-xl text-charcoal">Smart Panel Controls</h3>
         </div>
         <motion.div 
