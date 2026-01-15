@@ -27,7 +27,6 @@ const AdvancedDeviceControl = () => {
   const [fanSpeed, setFanSpeed] = useState("Auto");
   const [isLoaded, setIsLoaded] = useState(false);
   const [tempAnimating, setTempAnimating] = useState(false);
-  const prevTempRef = useRef(temperature);
 
   const minTemp = 16;
   const maxTemp = 30;
@@ -43,27 +42,48 @@ const AdvancedDeviceControl = () => {
     dialRotationSpring.set((tempPercentage / 100) * 270 - 135);
   }, [tempPercentage, dialRotationSpring]);
 
-  // Temperature counter animation
+  // Temperature counter animation - debounced to prevent overlap
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  
   useEffect(() => {
-    if (prevTempRef.current !== temperature) {
-      setTempAnimating(true);
-      const direction = temperature > prevTempRef.current ? 1 : -1;
-      const steps = Math.abs(temperature - prevTempRef.current);
-      let currentStep = 0;
-      
-      const interval = setInterval(() => {
-        currentStep++;
-        setDisplayTemp(prev => prev + direction);
-        if (currentStep >= steps) {
-          clearInterval(interval);
-          setTempAnimating(false);
-        }
-      }, 50);
-      
-      prevTempRef.current = temperature;
-      return () => clearInterval(interval);
+    // Clear any existing interval when temperature changes
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
     }
-  }, [temperature]);
+    
+    // If display is already correct, do nothing
+    if (displayTemp === temperature) {
+      setTempAnimating(false);
+      return;
+    }
+    
+    setTempAnimating(true);
+    const direction = temperature > displayTemp ? 1 : -1;
+    
+    intervalRef.current = setInterval(() => {
+      setDisplayTemp(prev => {
+        const next = prev + direction;
+        // Check if we've reached or passed the target
+        if ((direction > 0 && next >= temperature) || (direction < 0 && next <= temperature)) {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+          setTempAnimating(false);
+          return temperature;
+        }
+        return next;
+      });
+    }, 30);
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [temperature, displayTemp]);
 
   // Page load animation trigger
   useEffect(() => {
