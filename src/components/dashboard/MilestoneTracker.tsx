@@ -161,7 +161,7 @@ const MilestoneTracker = () => {
 
               {/* Expanded Content */}
               {isExpanded && (
-                <div className="px-4 pb-4 pt-0">
+                <div className="px-4 pb-4 pt-0 animate-accordion-down origin-top">
                   <div className="pl-12">
                     <p className="text-sm text-charcoal/70 mb-4">{milestone.description}</p>
 
