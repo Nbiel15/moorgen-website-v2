@@ -37,6 +37,8 @@ interface ChatMessage {
   id: string;
   text: string;
   sender: "architect" | "other";
+  senderName: string;
+  avatar: string;
   timestamp: string;
 }
 
@@ -116,15 +118,15 @@ const initialPhases: Phase[] = [
 ];
 
 const ownerMessages: ChatMessage[] = [
-  { id: "1", text: "Good morning! When can we expect the living room panels to be ready?", sender: "other", timestamp: "9:30 AM" },
-  { id: "2", text: "The installation is progressing well. We anticipate completion by end of week.", sender: "architect", timestamp: "9:45 AM" },
-  { id: "3", text: "Perfect. Will the champagne gold finish match the samples?", sender: "other", timestamp: "10:00 AM" },
+  { id: "1", text: "Good morning! When can we expect the living room panels to be ready?", sender: "other", senderName: "James Wilson", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face", timestamp: "9:30 AM" },
+  { id: "2", text: "The installation is progressing well. We anticipate completion by end of week.", sender: "architect", senderName: "You", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face", timestamp: "9:45 AM" },
+  { id: "3", text: "Perfect. Will the champagne gold finish match the samples?", sender: "other", senderName: "James Wilson", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face", timestamp: "10:00 AM" },
 ];
 
 const engineerMessages: ChatMessage[] = [
-  { id: "1", text: "Architect, the CAT6 runs are complete. Ready for panel mounting.", sender: "other", timestamp: "8:15 AM" },
-  { id: "2", text: "Excellent work. Please ensure 50mm clearance from the frame edges.", sender: "architect", timestamp: "8:30 AM" },
-  { id: "3", text: "Confirmed. Sending photos of the mounting templates now.", sender: "other", timestamp: "8:45 AM" },
+  { id: "1", text: "Architect, the CAT6 runs are complete. Ready for panel mounting.", sender: "other", senderName: "Michael Chen", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face", timestamp: "8:15 AM" },
+  { id: "2", text: "Excellent work. Please ensure 50mm clearance from the frame edges.", sender: "architect", senderName: "You", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face", timestamp: "8:30 AM" },
+  { id: "3", text: "Confirmed. Sending photos of the mounting templates now.", sender: "other", senderName: "Michael Chen", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face", timestamp: "8:45 AM" },
 ];
 
 const resources = [
@@ -369,21 +371,37 @@ const ArchitectDashboard = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className={`flex ${message.sender === "architect" ? "justify-end" : "justify-start"}`}
+                        className={`flex gap-2 ${message.sender === "architect" ? "flex-row-reverse" : "flex-row"}`}
                       >
-                        <div
-                          className={`max-w-[85%] p-3 rounded-2xl ${
-                            message.sender === "architect"
-                              ? "bg-gradient-to-br from-[#1a1a1a] to-[#252525] text-white"
-                              : "bg-gray-100 text-moorgen-black"
-                          }`}
-                        >
-                          <p className="text-sm font-heading leading-relaxed">{message.text}</p>
-                          <p className={`text-xs mt-1 font-heading ${
-                            message.sender === "architect" ? "text-white/50" : "text-moorgen-black/40"
+                        {/* Avatar */}
+                        <img
+                          src={message.avatar}
+                          alt={message.senderName}
+                          className="w-8 h-8 rounded-full object-cover flex-shrink-0 border-2 border-champagne-gold/20"
+                        />
+                        
+                        <div className={`max-w-[75%] ${message.sender === "architect" ? "items-end" : "items-start"}`}>
+                          {/* Name */}
+                          <p className={`text-xs font-heading mb-1 ${
+                            message.sender === "architect" ? "text-right text-moorgen-black/50" : "text-left text-moorgen-black/50"
                           }`}>
-                            {message.timestamp}
+                            {message.senderName}
                           </p>
+                          
+                          <div
+                            className={`p-3 rounded-2xl ${
+                              message.sender === "architect"
+                                ? "bg-gradient-to-br from-[#1a1a1a] to-[#252525] text-white"
+                                : "bg-gray-100 text-moorgen-black"
+                            }`}
+                          >
+                            <p className="text-sm font-heading leading-relaxed">{message.text}</p>
+                            <p className={`text-xs mt-1 font-heading ${
+                              message.sender === "architect" ? "text-white/50" : "text-moorgen-black/40"
+                            }`}>
+                              {message.timestamp}
+                            </p>
+                          </div>
                         </div>
                       </motion.div>
                     ))}
