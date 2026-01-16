@@ -202,7 +202,7 @@ const ProjectJourney = () => {
         </header>
 
         {/* Main Content */}
-        <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
+        <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-20 lg:pb-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
             {/* Card 1: Total Progress */}
