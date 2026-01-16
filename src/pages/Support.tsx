@@ -234,27 +234,6 @@ const Support = () => {
                 </motion.div>
                 
                 {/* Quick Search Tags */}
-              <motion.div initial={{
-                opacity: 0
-              }} animate={{
-                opacity: 1
-              }} transition={{
-                delay: 0.3
-              }} className="flex flex-wrap gap-2 mt-4">
-                  {["Reset Panel", "Dim Lights", "Schedule Scene", "Connect Device"].map((tag, index) => (
-                    <motion.button
-                      key={tag}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + index * 0.05 }}
-                      whileHover={{ scale: 1.05, backgroundColor: "rgba(212, 175, 55, 0.2)" }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1.5 text-xs font-body text-champagne-gold/70 hover:text-champagne-gold bg-champagne-gold/5 hover:bg-champagne-gold/10 rounded-full border border-champagne-gold/20 hover:border-champagne-gold/40 transition-all duration-300"
-                    >
-                      {tag}
-                    </motion.button>
-                  ))}
-                </motion.div>
               </motion.div>
             </div>
           </div>
