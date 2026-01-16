@@ -7,6 +7,7 @@ import Controls from "@/pages/Controls";
 import AdvancedDeviceControl from "@/pages/AdvancedDeviceControl";
 import ProjectJourney from "@/pages/ProjectJourney";
 import EngineerChat from "@/pages/EngineerChat";
+import ArchitectDashboard from "@/pages/ArchitectDashboard";
 import Support from "@/pages/Support";
 import NotFound from "@/pages/NotFound";
 import PageTransition from "./PageTransition";
@@ -24,6 +25,7 @@ const AnimatedRoutes = () => {
         <Route path="/advanced-control" element={<PageTransition><AdvancedDeviceControl /></PageTransition>} />
         <Route path="/progress" element={<PageTransition><ProjectJourney /></PageTransition>} />
         <Route path="/engineer-chat" element={<PageTransition><EngineerChat /></PageTransition>} />
+        <Route path="/architect-dashboard" element={<PageTransition><ArchitectDashboard /></PageTransition>} />
         <Route path="/support" element={<PageTransition><Support /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
