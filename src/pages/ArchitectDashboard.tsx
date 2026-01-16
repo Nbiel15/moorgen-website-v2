@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ArchitectLayout from "@/components/layout/ArchitectLayout";
+import FloatingReportButton from "@/components/FloatingReportButton";
 import { 
   Briefcase, 
   ClipboardCheck, 
@@ -632,6 +633,7 @@ const ArchitectDashboard = () => {
           </div>
         </motion.div>
       </div>
+      <FloatingReportButton />
     </ArchitectLayout>
   );
 };

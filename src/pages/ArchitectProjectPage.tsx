@@ -23,6 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import ArchitectLayout from "@/components/layout/ArchitectLayout";
+import FloatingReportButton from "@/components/FloatingReportButton";
 
 type PhaseStatus = "completed" | "in-progress" | "pending";
 
@@ -582,6 +583,7 @@ const ArchitectProjectPage = () => {
           </Card>
         </motion.div>
       </div>
+      <FloatingReportButton />
     </ArchitectLayout>
   );
 };

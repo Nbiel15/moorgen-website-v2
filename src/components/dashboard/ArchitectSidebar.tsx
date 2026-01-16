@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/architect-dashboard" },
-  { icon: FolderKanban, label: "Projects", path: "/architect-projects" },
-  { icon: ClipboardCheck, label: "Validations", path: "/architect-validations" },
+  { icon: FolderKanban, label: "Projects", path: "/architect-project" },
+  { icon: ClipboardCheck, label: "Reporting", path: "/architect-reporting" },
   { icon: MessageSquare, label: "Messages", path: "/architect-messages" },
   { icon: FileArchive, label: "Resources", path: "/architect-resources" },
   { icon: Settings, label: "Settings", path: "/architect-settings" },
