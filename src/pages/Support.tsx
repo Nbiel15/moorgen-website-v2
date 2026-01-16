@@ -216,7 +216,7 @@ const Support = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.2
-        }} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        }} className="grid grid-cols-2 gap-4 md:gap-6">
             {supportCategories.map((category, index) => <motion.div key={category.title} initial={{
             opacity: 0,
             y: 20
@@ -318,6 +318,6 @@ const MobileSupportManager = () => {
     </div>;
 };
 const MobileDocumentation = () => {
-  return;
+  return null;
 };
 export default Support;
