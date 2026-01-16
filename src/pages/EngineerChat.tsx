@@ -111,7 +111,7 @@ const EngineerChat = () => {
             
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="relative flex-shrink-0">
-                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-foreground flex items-center justify-center text-background font-heading font-semibold text-base sm:text-lg">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-champagne-gold flex items-center justify-center text-white font-heading font-semibold text-base sm:text-lg">
                   W
                 </div>
                 <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-500 rounded-full border-2 border-background" />
