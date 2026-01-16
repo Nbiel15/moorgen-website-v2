@@ -271,7 +271,7 @@ const ArchitectProjectPage = () => {
                 <CardContent className="p-6">
                   <h2 className="font-heading text-xl text-charcoal mb-6 flex items-center gap-2">
                     <Layers className="w-5 h-5 text-champagne-gold" />
-                    Project Journey Timeline
+                    Approval Project
                   </h2>
 
                   <div className="space-y-4">
