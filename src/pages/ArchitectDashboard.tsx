@@ -626,7 +626,7 @@ const ArchitectDashboard = () => {
                   transition={{ delay: 0.7 + index * 0.1 }}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-sm border border-champagne-gold/10 hover:border-champagne-gold/30 hover:bg-white/10 transition-all text-left group"
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-charcoal/80 border border-champagne-gold/10 hover:border-champagne-gold/30 hover:bg-charcoal transition-all text-left group"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-amber-500/10 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
                     {resource.icon}
