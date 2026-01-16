@@ -123,6 +123,16 @@ const ArchitectReportingPage = () => {
     });
   };
 
+  const publishSingleMilestone = (id: string) => {
+    setMilestones(milestones.map(m => 
+      m.id === id ? { ...m, isDraft: false } : m
+    ));
+    toast({
+      title: "Milestone Published",
+      description: "This milestone has been synced to Owner Dashboard.",
+    });
+  };
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "completed": return <CheckCircle2 className="w-4 h-4 text-emerald-500" />;
@@ -594,6 +604,26 @@ const ArchitectReportingPage = () => {
                                     onChange={(e) => updateMilestone(milestone.id, "architectRemark", e.target.value)}
                                     className="font-playfair min-h-[100px] rounded-xl border-border bg-foreground/5 focus:border-champagne focus:ring-champagne/20 transition-all duration-300 resize-none"
                                   />
+                                </div>
+
+                                {/* Push to Owner Button */}
+                                <div className="pt-4 border-t border-border/50">
+                                  <motion.div 
+                                    whileHover={{ scale: 1.02 }} 
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full"
+                                  >
+                                    <Button
+                                      onClick={() => publishSingleMilestone(milestone.id)}
+                                      disabled={!milestone.isDraft}
+                                      className="w-full font-playfair bg-gradient-to-r from-champagne to-champagne-light hover:from-champagne-dark hover:to-champagne text-foreground font-semibold shadow-lg shadow-champagne/25 transition-all duration-300 relative overflow-hidden group h-12 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                      <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                                      <Send className="w-4 h-4 mr-2" />
+                                      {milestone.isDraft ? "Push to Owner" : "Published"}
+                                      {milestone.isDraft && <Sparkles className="w-4 h-4 ml-2 opacity-60" />}
+                                    </Button>
+                                  </motion.div>
                                 </div>
                               </>
                             )}
