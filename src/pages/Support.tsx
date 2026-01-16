@@ -8,30 +8,34 @@ const supportCategories = [{
   icon: Lightbulb,
   title: "Lighting Issues",
   description: "Dimming, scheduling, and scene configuration",
-  color: "from-amber-500/20 to-amber-600/10",
-  borderColor: "border-amber-500/30",
-  iconColor: "text-amber-500"
+  color: "from-[#1a1a1a] via-[#252525] to-[#1a1a1a]",
+  borderColor: "border-champagne-gold/40",
+  iconColor: "text-champagne-gold",
+  glowColor: "shadow-champagne-gold/20"
 }, {
   icon: Thermometer,
   title: "Climate Control",
   description: "HVAC, temperature sensors, and automation",
-  color: "from-sky-500/20 to-sky-600/10",
-  borderColor: "border-sky-500/30",
-  iconColor: "text-sky-500"
+  color: "from-[#1a1a1a] via-[#252525] to-[#1a1a1a]",
+  borderColor: "border-champagne-gold/40",
+  iconColor: "text-champagne-gold",
+  glowColor: "shadow-champagne-gold/20"
 }, {
   icon: Shield,
   title: "Security Systems",
   description: "Cameras, access control, and alerts",
-  color: "from-emerald-500/20 to-emerald-600/10",
-  borderColor: "border-emerald-500/30",
-  iconColor: "text-emerald-500"
+  color: "from-[#1a1a1a] via-[#252525] to-[#1a1a1a]",
+  borderColor: "border-champagne-gold/40",
+  iconColor: "text-champagne-gold",
+  glowColor: "shadow-champagne-gold/20"
 }, {
   icon: Wifi,
   title: "Network & Integration",
   description: "Connectivity, third-party devices, and protocols",
-  color: "from-violet-500/20 to-violet-600/10",
-  borderColor: "border-violet-500/30",
-  iconColor: "text-violet-500"
+  color: "from-[#1a1a1a] via-[#252525] to-[#1a1a1a]",
+  borderColor: "border-champagne-gold/40",
+  iconColor: "text-champagne-gold",
+  glowColor: "shadow-champagne-gold/20"
 }];
 const manuals = [{
   name: "Milan Series Touch Panel Guide",
@@ -230,14 +234,26 @@ const Support = () => {
                 </motion.div>
                 
                 {/* Quick Search Tags */}
-                <motion.div initial={{
+              <motion.div initial={{
                 opacity: 0
               }} animate={{
                 opacity: 1
               }} transition={{
                 delay: 0.3
               }} className="flex flex-wrap gap-2 mt-4">
-                  {["Reset Panel", "Dim Lights", "Schedule Scene", "Connect Device"].map((tag, index) => {})}
+                  {["Reset Panel", "Dim Lights", "Schedule Scene", "Connect Device"].map((tag, index) => (
+                    <motion.button
+                      key={tag}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 + index * 0.05 }}
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(212, 175, 55, 0.2)" }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-3 py-1.5 text-xs font-body text-champagne-gold/70 hover:text-champagne-gold bg-champagne-gold/5 hover:bg-champagne-gold/10 rounded-full border border-champagne-gold/20 hover:border-champagne-gold/40 transition-all duration-300"
+                    >
+                      {tag}
+                    </motion.button>
+                  ))}
                 </motion.div>
               </motion.div>
             </div>
@@ -255,7 +271,7 @@ const Support = () => {
           duration: 0.5,
           delay: 0.2
         }} className="grid grid-cols-2 gap-4 md:gap-6">
-            {supportCategories.map((category, index) => <motion.div key={category.title} initial={{
+          {supportCategories.map((category, index) => <motion.div key={category.title} initial={{
             opacity: 0,
             y: 20
           }} animate={{
@@ -266,29 +282,57 @@ const Support = () => {
             delay: 0.1 * (index + 1)
           }} whileHover={{
             scale: 1.02,
-            y: -4
+            y: -6
           }} whileTap={{
             scale: 0.98
-          }} className={`relative overflow-hidden rounded-2xl border ${category.borderColor} bg-gradient-to-br ${category.color} backdrop-blur-sm p-6 cursor-pointer group transition-all duration-300 hover:shadow-lg`}>
-                {/* Background Glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          }} className={`relative overflow-hidden rounded-2xl border-2 ${category.borderColor} bg-gradient-to-br ${category.color} p-6 md:p-8 cursor-pointer group transition-all duration-500 hover:shadow-2xl hover:${category.glowColor} hover:border-champagne-gold/60`}>
+                {/* Luxury Background Pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-champagne-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
-                <div className="relative">
-                  <div className={`w-14 h-14 rounded-2xl bg-background/80 backdrop-blur-sm flex items-center justify-center mb-4 border border-border/30 group-hover:scale-110 transition-transform duration-300`}>
-                    <category.icon className={`w-7 h-7 ${category.iconColor}`} />
+                {/* Corner Accent */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-champagne-gold/10 to-transparent rounded-bl-[100px] opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Animated Border Glow */}
+                <motion.div 
+                  className="absolute inset-0 rounded-2xl border border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-500"
+                  animate={{
+                    boxShadow: ["0 0 0 0 rgba(212, 175, 55, 0)", "0 0 20px 2px rgba(212, 175, 55, 0.1)", "0 0 0 0 rgba(212, 175, 55, 0)"]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                <div className="relative z-10">
+                  {/* Icon Container with Gold Ring */}
+                  <div className="relative mb-5">
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center border border-champagne-gold/30 group-hover:border-champagne-gold/60 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-champagne-gold/10`}>
+                      <category.icon className={`w-8 h-8 ${category.iconColor} group-hover:scale-110 transition-transform duration-300`} />
+                    </div>
+                    {/* Subtle Glow Behind Icon */}
+                    <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-champagne-gold/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
                   </div>
                   
-                  <h3 className="font-heading text-xl text-foreground mb-2">{category.title}</h3>
-                  <p className="text-sm text-muted-foreground font-body">{category.description}</p>
+                  <h3 className="font-heading text-xl md:text-2xl text-white mb-2 group-hover:text-champagne-gold transition-colors duration-300">{category.title}</h3>
+                  <p className="text-sm text-white/60 font-body leading-relaxed">{category.description}</p>
                   
-                  <div className="mt-4 flex items-center gap-2 text-xs text-champagne-gold font-body opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>View Solutions</span>
-                    <motion.span animate={{
-                  x: [0, 4, 0]
-                }} transition={{
-                  duration: 1.5,
-                  repeat: Infinity
-                }}>
+                  {/* Elegant CTA */}
+                  <div className="mt-5 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    <div className="h-px flex-1 bg-gradient-to-r from-champagne-gold/60 to-transparent" />
+                    <span className="text-xs text-champagne-gold font-body tracking-wider uppercase">Explore</span>
+                    <motion.span 
+                      className="text-champagne-gold"
+                      animate={{
+                        x: [0, 6, 0]
+                      }} 
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
                       →
                     </motion.span>
                   </div>
