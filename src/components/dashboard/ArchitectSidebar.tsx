@@ -31,61 +31,59 @@ const ArchitectSidebar = () => {
       <div className="hidden lg:block w-20 flex-shrink-0" />
       
       {/* Fixed Sidebar */}
-      <aside className="hidden lg:flex flex-col w-20 fixed left-0 top-0 h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a1a1a] to-[#0a0a0a] border-r border-champagne-gold/10 items-center justify-center z-50">
-        {/* Decorative top accent */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/40 to-transparent" />
-        
-        {/* Logo - Positioned at top */}
-        <div className="absolute top-8 group">
+      <aside className="hidden lg:flex flex-col w-20 fixed left-0 top-0 h-screen bg-[#FAFAFA]/80 backdrop-blur-sm border-r border-[#E5E5E5]/50 items-center justify-center z-50">
+        {/* Logo - Positioned at top with hover animation */}
+        <div className="absolute top-20 group">
           <div 
             className={cn(
-              "w-12 h-12 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center cursor-pointer",
-              "border border-champagne-gold/30",
-              "shadow-lg shadow-champagne-gold/10",
+              "w-10 h-10 rounded-xl bg-foreground flex items-center justify-center cursor-pointer",
+              "shadow-sm hover:shadow-lg hover:shadow-accent/20",
               "transition-all duration-300 ease-out",
-              "hover:scale-110 hover:-translate-y-0.5 hover:border-champagne-gold/50",
+              "hover:scale-110 hover:-translate-y-0.5",
               "active:scale-95"
             )}
             onClick={() => navigate("/architect-dashboard")}
           >
-            <span className="text-champagne-gold font-heading font-bold text-xl transition-transform duration-300 group-hover:scale-110">A</span>
+            <span className="text-white font-serif font-bold text-lg transition-transform duration-300 group-hover:scale-110">A</span>
           </div>
           {/* Glow effect on hover */}
-          <div className="absolute inset-0 rounded-xl bg-champagne-gold/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+          <div className="absolute inset-0 rounded-xl bg-accent/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
         </div>
 
         {/* Role Label */}
-        <div className="absolute top-24 flex flex-col items-center">
-          <span className="text-[10px] text-champagne-gold/60 font-heading tracking-widest uppercase">Architect</span>
-          <div className="w-6 h-px bg-champagne-gold/20 mt-2" />
+        <div className="absolute top-36 flex flex-col items-center">
+          <span className="text-[10px] text-charcoal/50 font-heading tracking-widest uppercase">Architect</span>
+          <div className="w-6 h-px bg-charcoal/10 mt-2" />
         </div>
 
-        {/* Navigation - Centered vertically */}
-        <nav className="flex flex-col gap-2 mt-8">
+        {/* Navigation - Centered vertically with staggered animation */}
+        <nav className="flex flex-col gap-3 mt-8">
           {navItems.map((item, index) => (
             <div 
               key={item.label} 
               className="relative group"
-              style={{ animationDelay: `${index * 50}ms` }}
+              style={{ 
+                animationDelay: `${index * 50}ms`,
+              }}
             >
               <button
                 onClick={() => navigate(item.path)}
                 className={cn(
-                  "relative w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden",
+                  "relative w-12 h-12 rounded-2xl flex items-center justify-center overflow-hidden",
                   "transition-all duration-300 ease-out",
                   "hover:scale-110 hover:-translate-y-0.5",
                   "active:scale-95",
                   isActive(item.path)
-                    ? "bg-gradient-to-br from-champagne-gold/30 to-champagne-gold/10 text-champagne-gold shadow-lg shadow-champagne-gold/20 border border-champagne-gold/30"
-                    : "text-white/40 hover:text-white/70 hover:bg-white/5 border border-transparent hover:border-champagne-gold/20"
+                    ? "bg-gradient-to-br from-accent/20 to-accent/10 text-accent shadow-lg shadow-accent/10"
+                    : "text-charcoal/40 hover:text-charcoal/70 hover:bg-white/80 hover:shadow-md"
                 )}
                 title={item.label}
               >
                 {/* Active indicator glow */}
                 {isActive(item.path) && (
                   <>
-                    <div className="absolute inset-0 bg-gradient-to-br from-champagne-gold/10 to-transparent animate-pulse" />
-                    <Sparkles className="absolute top-1 right-1 w-2.5 h-2.5 text-champagne-gold animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent animate-pulse" />
+                    <Sparkles className="absolute top-1 right-1 w-2.5 h-2.5 text-accent animate-pulse" />
                   </>
                 )}
                 
@@ -102,16 +100,15 @@ const ArchitectSidebar = () => {
               <div className={cn(
                 "absolute left-full ml-3 top-1/2 -translate-y-1/2",
                 "px-3 py-1.5 rounded-lg",
-                "bg-gradient-to-r from-[#1a1a1a] to-[#252525] text-white text-xs font-heading tracking-wide",
-                "border border-champagne-gold/20",
+                "bg-foreground text-white text-xs font-medium tracking-wide",
                 "opacity-0 translate-x-2 pointer-events-none",
                 "group-hover:opacity-100 group-hover:translate-x-0",
                 "transition-all duration-200 ease-out",
-                "whitespace-nowrap shadow-lg shadow-black/50"
+                "whitespace-nowrap shadow-lg"
               )}>
                 {item.label}
                 {/* Arrow */}
-                <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-[#1a1a1a]" />
+                <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-foreground" />
               </div>
 
               {/* Active indicator bar */}
@@ -119,21 +116,12 @@ const ArchitectSidebar = () => {
                 "absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-1 rounded-full",
                 "transition-all duration-300 ease-out",
                 isActive(item.path) 
-                  ? "h-6 bg-champagne-gold shadow-[0_0_10px_rgba(212,175,55,0.5)]" 
+                  ? "h-6 bg-accent shadow-[0_0_10px_rgba(212,175,55,0.5)]" 
                   : "h-0 bg-transparent"
               )} />
             </div>
           ))}
         </nav>
-
-        {/* Decorative bottom accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/40 to-transparent" />
-        
-        {/* Bottom decorative element */}
-        <div className="absolute bottom-8 flex flex-col items-center gap-2">
-          <div className="w-6 h-px bg-champagne-gold/20" />
-          <div className="w-2 h-2 rounded-full bg-champagne-gold/30 animate-pulse" />
-        </div>
       </aside>
     </>
   );
