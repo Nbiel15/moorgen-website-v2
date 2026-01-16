@@ -211,36 +211,6 @@ const ArchitectReportingPage = () => {
                 Create and publish progress reports to the Owner Dashboard
               </p>
             </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3">
-              <Button
-                variant="outline"
-                onClick={() => setPreviewMode(!previewMode)}
-                className="font-body border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-2xl transition-all duration-300"
-              >
-                {previewMode ? <EyeOff className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
-                {previewMode ? "Edit Mode" : "Preview"}
-              </Button>
-              
-              <Button
-                variant="outline"
-                onClick={saveDraft}
-                className="font-body border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-2xl transition-all duration-300"
-              >
-                <Save className="w-4 h-4 mr-2" />
-                Save Draft
-              </Button>
-              
-              <Button
-                onClick={publishToOwner}
-                className="font-body bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-2xl shadow-lg shadow-accent/20 transition-all duration-300"
-                disabled={milestones.length === 0}
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Push to Owner
-              </Button>
-            </div>
           </motion.div>
         </div>
       </header>
