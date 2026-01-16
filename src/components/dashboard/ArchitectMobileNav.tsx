@@ -26,10 +26,7 @@ const ArchitectMobileNav = () => {
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
       {/* Background with blur and gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#1a1a1a] to-[#1a1a1a]/95 backdrop-blur-lg" />
-      
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#FAFAFA] via-[#FAFAFA] to-[#FAFAFA]/95 backdrop-blur-lg border-t border-gray-200" />
       
       <div className="relative flex items-center justify-around px-2 py-3 safe-area-inset-bottom">
         {navItems.map((item) => (
@@ -41,14 +38,14 @@ const ArchitectMobileNav = () => {
               "transition-all duration-300 ease-out",
               isActive(item.path)
                 ? "text-champagne-gold"
-                : "text-white/40 active:text-white/60"
+                : "text-gray-500 active:text-gray-700"
             )}
           >
             {/* Active background */}
             {isActive(item.path) && (
               <motion.div
                 layoutId="architect-mobile-nav-active"
-                className="absolute inset-0 bg-gradient-to-t from-champagne-gold/20 to-champagne-gold/5 rounded-xl border border-champagne-gold/20"
+                className="absolute inset-0 bg-gradient-to-t from-champagne-gold/10 to-champagne-gold/5 rounded-xl border border-champagne-gold/30"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
               />
             )}
