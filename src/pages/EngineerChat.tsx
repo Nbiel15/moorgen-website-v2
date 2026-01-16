@@ -93,7 +93,7 @@ const EngineerChat = () => {
   return <div className="h-[100svh] flex flex-col bg-background overflow-hidden">
       {/* Context Bar */}
       <div className="flex-shrink-0 bg-champagne-gold/10 border-b border-champagne-gold/20 px-3 sm:px-4 py-2">
-        <p className="text-center text-[11px] sm:text-xs font-body text-champagne-gold">Currently on Progress: Device Installation Phase<span className="font-semibold">Device Installation Phase</span>
+        <p className="text-center text-[11px] sm:text-xs font-body text-champagne-gold">Currently on Progress: <span className="font-semibold">Device Installation Phase</span>
         </p>
       </div>
 
