@@ -579,81 +579,7 @@ const ProjectJourney = () => {
             </motion.div>
 
             {/* Engineer Chat */}
-            <motion.div ref={chatRef} initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            delay: 0.6
-          }} className="bg-card rounded-2xl md:rounded-3xl p-4 sm:p-5 border border-border/50 shadow-sm flex flex-col">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
-                    <MessageCircle className="w-4 h-4 text-champagne-gold" />
-                  </div>
-                  <h3 className="font-serif text-base md:text-lg text-foreground">Engineer Chat</h3>
-                </div>
-                <motion.div animate={{
-                scale: [1, 1.2, 1]
-              }} transition={{
-                duration: 2,
-                repeat: Infinity
-              }} className="w-2 h-2 bg-green-500 rounded-full" />
-              </div>
-
-              {/* Engineer Profile */}
-              <div className="flex items-center gap-3 p-3 bg-muted/30 rounded-xl mb-4">
-                <div className="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center text-white font-medium">
-                  W
-                </div>
-                <div>
-                  <p className="font-heading font-semibold text-foreground text-sm">Wayan Sudarta</p>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    <span className="text-[10px] text-muted-foreground">Online • Lead Engineer</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Chat Messages */}
-              <div className="flex-1 overflow-y-auto space-y-3 mb-4 max-h-[180px] sm:max-h-[200px]">
-                <div className="flex gap-2">
-                  <div className="w-6 h-6 rounded-full bg-charcoal flex items-center justify-center text-white text-[10px] flex-shrink-0 mt-1">
-                    W
-                  </div>
-                  <div className="bg-muted/50 rounded-2xl rounded-bl-sm px-3 py-2 max-w-[85%]">
-                    <p className="text-xs sm:text-sm text-foreground">Wiring for the master suite is now 100% verified. All panels tested.</p>
-                    <p className="text-[9px] text-muted-foreground mt-1">10:30 AM</p>
-                  </div>
-                </div>
-                <div className="flex gap-2 justify-end">
-                  <div className="bg-charcoal text-white rounded-2xl rounded-br-sm px-3 py-2 max-w-[85%]">
-                    <p className="text-xs sm:text-sm">Excellent work! Please proceed to living room.</p>
-                    <p className="text-[9px] text-white/50 mt-1">10:45 AM</p>
-                  </div>
-                  <div className="w-6 h-6 rounded-full bg-champagne-gold flex items-center justify-center text-white text-[10px] flex-shrink-0 mt-1">
-                    A
-                  </div>
-                </div>
-              </div>
-
-              {/* Chat Input */}
-              <div className="flex items-center gap-2 pt-3 border-t border-border">
-                <button className="p-2 hover:bg-muted rounded-full transition-colors">
-                  <Paperclip className="w-4 h-4 text-muted-foreground" />
-                </button>
-                <Input value={chatInput} onChange={e => setChatInput(e.target.value)} placeholder="Type a message..." className="flex-1 bg-muted/50 border-0 rounded-xl text-xs sm:text-sm h-8 sm:h-9" />
-                <motion.button whileHover={{
-                scale: 1.05
-              }} whileTap={{
-                scale: 0.95
-              }} className="p-2 bg-champagne-gold text-white rounded-full hover:bg-champagne-gold/90 transition-colors">
-                  <Send className="w-4 h-4" />
-                </motion.button>
-              </div>
-            </motion.div>
+            
           </div>
         </main>
 
@@ -685,14 +611,17 @@ const ProjectJourney = () => {
         </Dialog>
 
         {/* Floating Chat Button */}
-        <motion.button 
-          onClick={() => navigate('/engineer-chat')} 
-          initial={{ y: 20, opacity: 0 }} 
-          animate={{ y: 0, opacity: 1 }} 
-          whileHover={{ scale: 1.05 }} 
-          whileTap={{ scale: 0.95 }} 
-          className="fixed bottom-24 lg:bottom-8 right-4 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 bg-charcoal text-white rounded-full shadow-xl"
-        >
+        <motion.button onClick={() => navigate('/engineer-chat')} initial={{
+        y: 20,
+        opacity: 0
+      }} animate={{
+        y: 0,
+        opacity: 1
+      }} whileHover={{
+        scale: 1.05
+      }} whileTap={{
+        scale: 0.95
+      }} className="fixed bottom-24 lg:bottom-8 right-4 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 bg-charcoal text-white rounded-full shadow-xl">
           <MessageCircle className="w-5 h-5" />
           <span className="text-sm font-medium hidden sm:inline">Chat with Engineer</span>
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
