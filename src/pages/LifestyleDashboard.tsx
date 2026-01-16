@@ -4,6 +4,7 @@ import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 import SmartPanelControls from "@/components/dashboard/SmartPanelControls";
 import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
+import ChatWithEngineerButton from "@/components/ChatWithEngineerButton";
 
 const LifestyleDashboard = () => {
   return (
@@ -25,6 +26,9 @@ const LifestyleDashboard = () => {
           <MilestoneTracker />
         </motion.div>
       </div>
+
+      {/* Floating Chat Button */}
+      <ChatWithEngineerButton />
     </DashboardLayout>
   );
 };

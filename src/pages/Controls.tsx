@@ -5,6 +5,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { Slider } from "@/components/ui/slider";
+import ChatWithEngineerButton from "@/components/ChatWithEngineerButton";
 interface Device {
   id: string;
   name: string;
@@ -319,6 +320,9 @@ const Controls = () => {
           </button>
         </div>
       </main>
+
+      {/* Floating Chat Button */}
+      <ChatWithEngineerButton />
     </DashboardLayout>;
 };
 export default Controls;
