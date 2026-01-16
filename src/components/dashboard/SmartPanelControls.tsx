@@ -85,20 +85,31 @@ const SmartPanelControls = () => {
       className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_50px_rgba(0,0,0,0.1)] transition-shadow duration-500"
     >
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 mb-5 md:mb-6">
-        {/* Title */}
-        <div className="flex items-center gap-2.5 flex-shrink-0">
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-champagne-gold" />
+      <div className="flex flex-col gap-3 mb-5 md:mb-6">
+        {/* Title Row */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-champagne-gold" />
+            </div>
+            <h3 className="font-serif text-base sm:text-lg md:text-xl text-charcoal">Smart Panel Controls</h3>
           </div>
-          <h3 className="font-serif text-base sm:text-lg md:text-xl text-charcoal">Smart Panel Controls</h3>
+          
+          {/* Live Indicator */}
+          <motion.div 
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20"
+          >
+            <span className="text-[9px] sm:text-[10px] font-medium text-green-600 uppercase tracking-wider">Live</span>
+          </motion.div>
         </div>
-        
-        {/* Room Selector */}
+
+        {/* Room Selector - Full Width on Mobile */}
         <Select value={selectedRoom} onValueChange={setSelectedRoom}>
-          <SelectTrigger className="w-auto min-w-[140px] sm:min-w-[160px] h-9 bg-white/90 border-champagne-gold/30 hover:border-champagne-gold/60 focus:ring-champagne-gold/20 rounded-xl text-charcoal text-xs sm:text-sm font-medium transition-all duration-300">
+          <SelectTrigger className="w-full h-10 bg-white/90 border-champagne-gold/30 hover:border-champagne-gold/60 focus:ring-champagne-gold/20 rounded-xl text-charcoal text-sm font-medium transition-all duration-300">
             <div className="flex items-center gap-2">
-              <Home className="w-3.5 h-3.5 text-champagne-gold" />
+              <Home className="w-4 h-4 text-champagne-gold" />
               <SelectValue placeholder="Select Room" />
             </div>
           </SelectTrigger>
