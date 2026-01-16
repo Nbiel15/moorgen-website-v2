@@ -623,7 +623,7 @@ const ProjectJourney = () => {
         scale: 0.95
       }} className="fixed bottom-24 lg:bottom-8 right-4 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 bg-charcoal text-white rounded-full shadow-xl">
           <MessageCircle className="w-5 h-5" />
-          <span className="text-sm font-medium hidden sm:inline">Chat with Engineer</span>
+          <span className="text-sm font-medium hidden sm:inline">Chat with Architect</span>
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
         </motion.button>
       </div>
