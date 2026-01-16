@@ -197,24 +197,36 @@ const ArchitectProjectPage = () => {
 
   return (
     <ArchitectLayout>
-      <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] via-[#FAFAFA] to-[#F5F5F5] p-4 sm:p-6 lg:p-8">
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 sm:mb-8"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1A1A1A] mb-2">
-                Villa Uluwatu - Technical Management
+      {/* Premium Header with Gradient */}
+      <header className="relative overflow-hidden border-b border-border/50 bg-gradient-to-br from-background via-background to-muted/30">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-accent/5 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl" />
+        
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-10">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          >
+            {/* Title Section */}
+            <div className="animate-fade-in">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <p className="text-xs text-accent tracking-[0.3em] uppercase font-body">Project Management</p>
+              </div>
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground">
+                Villa Uluwatu
               </h1>
-              <p className="font-body text-muted-foreground text-sm sm:text-base">
+              <p className="text-muted-foreground font-body mt-2 text-sm md:text-base">
                 Real-time project tracking and collaboration hub
               </p>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
+      </header>
+
+      <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
 
         {/* Summary Cards - 2x2 Grid */}
         <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
@@ -583,7 +595,7 @@ const ArchitectProjectPage = () => {
             </CardContent>
           </Card>
         </motion.div>
-      </div>
+      </main>
       <FloatingReportButton />
     </ArchitectLayout>
   );
