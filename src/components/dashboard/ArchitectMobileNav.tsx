@@ -25,8 +25,8 @@ const ArchitectMobileNav = () => {
 
   return (
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
-      {/* Background with blur and gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#1a1a1a] to-[#1a1a1a]/95 backdrop-blur-lg" />
+      {/* Background with blur */}
+      <div className="absolute inset-0 bg-white backdrop-blur-lg" />
       
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-champagne-gold/30 to-transparent" />
