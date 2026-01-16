@@ -496,7 +496,7 @@ const ArchitectResources = () => {
                           </div>
 
                           {/* Quick Actions */}
-                          <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-2">
                             <Button
                               size="sm"
                               variant="outline"
