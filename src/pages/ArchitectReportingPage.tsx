@@ -186,29 +186,38 @@ const ArchitectReportingPage = () => {
 
   return (
     <ArchitectLayout>
-      <div className="min-h-screen bg-[#FAFAFA] p-6 lg:p-8">
-        {/* Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div>
-              <h1 className="font-heading text-3xl lg:text-4xl text-[#1A1A1A] mb-2">
-                Live Project Reporting
+      {/* Premium Header with Gradient */}
+      <header className="relative overflow-hidden border-b border-border/50 bg-gradient-to-br from-background via-background to-muted/30">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-accent/5 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-2xl" />
+        
+        <div className="relative mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-10">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          >
+            {/* Title Section */}
+            <div className="animate-fade-in">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <p className="text-xs text-accent tracking-[0.3em] uppercase font-body">Project Reporting</p>
+              </div>
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl text-foreground">
+                Live Reporting
               </h1>
-              <p className="font-body text-muted-foreground">
+              <p className="text-muted-foreground font-body mt-2 text-sm md:text-base">
                 Create and publish progress reports to the Owner Dashboard
               </p>
             </div>
-            
+
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3">
               <Button
                 variant="outline"
                 onClick={() => setPreviewMode(!previewMode)}
-                className="font-playfair border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white rounded-2xl transition-all duration-300"
+                className="font-body border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-2xl transition-all duration-300"
               >
                 {previewMode ? <EyeOff className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
                 {previewMode ? "Edit Mode" : "Preview"}
@@ -217,7 +226,7 @@ const ArchitectReportingPage = () => {
               <Button
                 variant="outline"
                 onClick={saveDraft}
-                className="font-playfair border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white rounded-2xl transition-all duration-300"
+                className="font-body border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent rounded-2xl transition-all duration-300"
               >
                 <Save className="w-4 h-4 mr-2" />
                 Save Draft
@@ -225,17 +234,19 @@ const ArchitectReportingPage = () => {
               
               <Button
                 onClick={publishToOwner}
-                className="font-playfair bg-[#D4AF37] hover:bg-[#B8972F] text-[#1A1A1A] font-semibold rounded-2xl shadow-lg transition-all duration-300"
+                className="font-body bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-2xl shadow-lg shadow-accent/20 transition-all duration-300"
                 disabled={milestones.length === 0}
               >
                 <Send className="w-4 h-4 mr-2" />
                 Push to Owner
               </Button>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
+      </header>
 
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
+      <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
             {/* Left Side - Progress Input Area */}
             <motion.div 
               className="xl:col-span-2 space-y-6"
@@ -814,7 +825,7 @@ const ArchitectReportingPage = () => {
               </div>
             </motion.div>
           </div>
-        </div>
+      </main>
     </ArchitectLayout>
   );
 };
