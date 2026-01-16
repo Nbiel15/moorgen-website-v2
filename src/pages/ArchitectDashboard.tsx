@@ -594,53 +594,41 @@ const ArchitectDashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-moorgen-black via-charcoal to-moorgen-black p-5 sm:p-6 lg:p-8 border border-champagne-gold/10"
+          className="bg-white rounded-2xl sm:rounded-3xl border border-charcoal/5 p-5 sm:p-6 lg:p-8 shadow-sm"
         >
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-champagne-gold/10 to-transparent rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-champagne-gold/5 to-transparent rounded-full blur-3xl" />
-          
-          {/* Corner accents */}
-          <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-champagne-gold/30 rounded-tl-lg" />
-          <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-champagne-gold/30 rounded-tr-lg" />
-          <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-champagne-gold/30 rounded-bl-lg" />
-          <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-champagne-gold/30 rounded-br-lg" />
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 sm:mb-6">
+            <h3 className="text-lg sm:text-xl font-heading text-moorgen-black flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-champagne-gold/20 flex items-center justify-center">
+                <Download className="w-5 h-5 text-champagne-gold" />
+              </div>
+              Architect Resources
+            </h3>
+            <span className="text-xs text-charcoal/50 font-heading">4 files available</span>
+          </div>
 
-          <div className="relative z-10">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 sm:mb-6">
-              <h3 className="text-lg sm:text-xl font-heading text-white flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-champagne-gold/20 flex items-center justify-center">
-                  <Download className="w-5 h-5 text-champagne-gold" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {resources.map((resource, index) => (
+              <motion.button
+                key={resource.name}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 + index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#FAFAFA] border border-charcoal/5 hover:border-champagne-gold/40 hover:shadow-md transition-all text-left group"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-champagne-gold/15 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
+                  {resource.icon}
                 </div>
-                Architect Resources
-              </h3>
-              <span className="text-xs text-champagne-gold/60">4 files available</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              {resources.map((resource, index) => (
-                <motion.button
-                  key={resource.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 + index * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-charcoal border border-champagne-gold/10 hover:border-champagne-gold/30 hover:bg-charcoal transition-all text-left group"
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-amber-500/10 flex items-center justify-center text-xl sm:text-2xl group-hover:scale-110 transition-transform">
-                    {resource.icon}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white font-heading text-xs sm:text-sm truncate group-hover:text-champagne-gold transition-colors">{resource.name}</p>
-                    <p className="text-white/30 text-[10px] sm:text-xs font-heading mt-0.5">
-                      {resource.type} • {resource.size}
-                    </p>
-                  </div>
-                  <Download className="w-4 h-4 text-white/30 group-hover:text-champagne-gold group-hover:animate-bounce transition-colors" />
-                </motion.button>
-              ))}
-            </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-moorgen-black font-heading text-xs sm:text-sm truncate group-hover:text-champagne-gold transition-colors">{resource.name}</p>
+                  <p className="text-charcoal/40 text-[10px] sm:text-xs font-heading mt-0.5">
+                    {resource.type} • {resource.size}
+                  </p>
+                </div>
+                <Download className="w-4 h-4 text-charcoal/30 group-hover:text-champagne-gold transition-colors" />
+              </motion.button>
+            ))}
           </div>
         </motion.div>
       </div>
