@@ -403,7 +403,7 @@ const ArchitectResources = () => {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-champagne-gold/20 scrollbar-track-transparent"
                 >
                   {filteredResources.map((resource) => {
                     const fileStyle = getFileIcon(resource.type);
@@ -536,7 +536,7 @@ const ArchitectResources = () => {
                   className="rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm overflow-hidden"
                 >
                   {/* List Header */}
-                  <div className="grid grid-cols-12 gap-4 px-4 py-3 border-b border-border/50 bg-muted/30">
+                  <div className="grid grid-cols-12 gap-4 px-4 py-3 border-b border-border/50 bg-muted/30 sticky top-0 z-10">
                     <div className="col-span-6 md:col-span-5 text-xs font-heading font-semibold text-muted-foreground uppercase tracking-wider">
                       Name
                     </div>
@@ -551,6 +551,8 @@ const ArchitectResources = () => {
                     </div>
                   </div>
 
+                  {/* Scrollable List Items */}
+                  <div className="max-h-[55vh] overflow-y-auto">
                   {/* List Items */}
                   {filteredResources.map((resource, index) => {
                     const fileStyle = getFileIcon(resource.type);
@@ -635,6 +637,7 @@ const ArchitectResources = () => {
                       </motion.div>
                     );
                   })}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
