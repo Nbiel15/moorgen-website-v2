@@ -35,6 +35,7 @@ interface Phase {
   description: string;
   isActive?: boolean;
   submittedBy?: string;
+  progressPhoto?: string;
 }
 
 interface ChatMessage {
@@ -60,7 +61,8 @@ const initialPhases: Phase[] = [
     status: "approved",
     date: "15 Oct 2024",
     description: "Initial site survey completed. Electrical load calculations verified.",
-    submittedBy: "Engineer Wayan"
+    submittedBy: "Engineer Wayan",
+    progressPhoto: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
   },
   {
     id: "wiring",
@@ -68,7 +70,8 @@ const initialPhases: Phase[] = [
     status: "approved",
     date: "28 Oct 2024",
     description: "CAT6 and power wiring installed to all smart panel locations.",
-    submittedBy: "Engineer Wayan"
+    submittedBy: "Engineer Wayan",
+    progressPhoto: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80"
   },
   {
     id: "installation",
@@ -77,7 +80,8 @@ const initialPhases: Phase[] = [
     date: "Awaiting Review",
     description: "Installing Milan Series smart panels across 12 zones.",
     isActive: true,
-    submittedBy: "Engineer Wayan"
+    submittedBy: "Engineer Wayan",
+    progressPhoto: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
   },
   {
     id: "integration",
@@ -376,15 +380,30 @@ const ArchitectProjectPage = () => {
 
                                 {/* On-Site Tools */}
                                 <div className="bg-[#FAFAFA] rounded-2xl p-4 space-y-4">
-                                  {/* Capture Photo Button */}
-                                  <Button
-                                    onClick={handleCapturePhoto}
-                                    variant="outline"
-                                    className="w-full justify-start gap-2 font-body rounded-xl border-gray-200 hover:border-champagne-gold hover:text-champagne-gold"
-                                  >
-                                    <Camera className="w-4 h-4" />
-                                    Capture Field Photo
-                                  </Button>
+                                  {/* Progress Photo */}
+                                  {phase.progressPhoto ? (
+                                    <div className="space-y-2">
+                                      <label className="font-body text-sm text-moorgen-muted block">
+                                        Progress Photo
+                                      </label>
+                                      <div className="relative rounded-xl overflow-hidden">
+                                        <img 
+                                          src={phase.progressPhoto} 
+                                          alt={`${phase.title} progress`}
+                                          className="w-full h-48 object-cover"
+                                        />
+                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                                          <p className="text-white text-xs font-body">
+                                            Submitted by {phase.submittedBy || "Engineer"}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div className="flex items-center justify-center h-32 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300">
+                                      <p className="text-sm text-gray-400 font-body">No progress photo submitted</p>
+                                    </div>
+                                  )}
 
                                   {/* Design Remark Textarea */}
                                   <div>
