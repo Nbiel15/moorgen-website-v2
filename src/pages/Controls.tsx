@@ -96,6 +96,10 @@ const Controls = () => {
       intensity: value[0]
     } : device));
   };
+  const toggleAllDevices = () => {
+    const allOn = devices.every(d => d.isOn);
+    setDevices(devices.map(device => ({ ...device, isOn: !allOn })));
+  };
   const handleDeviceClick = (device: Device) => {
     if (device.hasNavigation) {
       navigate("/advanced-control");
@@ -137,23 +141,27 @@ const Controls = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 animate-fade-in" style={{
         animationDelay: "0.15s"
       }}>
-          {/* Active Devices */}
-          <div className="group relative overflow-hidden rounded-2xl md:rounded-3xl p-4 md:p-5 bg-gradient-to-br from-accent/10 via-card to-card border border-accent/20 hover:border-accent/40 transition-all duration-500 hover:shadow-lg hover:shadow-accent/10">
+          {/* Active Devices - Toggle All Button */}
+          <button 
+            onClick={toggleAllDevices}
+            className="group relative overflow-hidden rounded-2xl md:rounded-3xl p-4 md:p-5 bg-gradient-to-br from-accent/10 via-card to-card border border-accent/20 hover:border-accent/40 transition-all duration-500 hover:shadow-lg hover:shadow-accent/10 text-left active:scale-95"
+          >
             <div className="absolute -top-10 -right-10 w-24 h-24 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-colors duration-500" />
             <div className="relative">
               <div className="flex items-center justify-between mb-3">
-                <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Power className="w-5 h-5 text-accent" strokeWidth={1.5} />
                 </div>
-                <div className="flex items-center gap-1">
-                  <TrendingUp className="w-3 h-3 text-green-500" />
-                  <span className="text-[10px] text-green-500 font-medium">+2</span>
+                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                  <span className="text-[10px] text-accent font-medium">
+                    {activeDevices === devices.length ? "Turn Off" : "Turn On"}
+                  </span>
                 </div>
               </div>
               <p className="text-2xl md:text-3xl font-heading text-foreground">{activeDevices}</p>
-              <p className="text-[10px] md:text-xs text-muted-foreground tracking-[0.15em] uppercase mt-1">Active Devices</p>
+              <p className="text-[10px] md:text-xs text-muted-foreground tracking-[0.15em] uppercase mt-1">Tap to toggle all</p>
             </div>
-          </div>
+          </button>
 
           {/* Energy Usage */}
           <div className="group relative overflow-hidden rounded-2xl md:rounded-3xl p-4 md:p-5 bg-card border border-border hover:border-accent/30 transition-all duration-500 hover:shadow-lg">
