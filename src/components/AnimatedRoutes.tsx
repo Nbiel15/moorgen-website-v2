@@ -8,6 +8,7 @@ import ProjectJourney from "@/pages/ProjectJourney";
 import EngineerChat from "@/pages/EngineerChat";
 import ArchitectDashboard from "@/pages/ArchitectDashboard";
 import ArchitectProjectPage from "@/pages/ArchitectProjectPage";
+import ArchitectReportingPage from "@/pages/ArchitectReportingPage";
 import Support from "@/pages/Support";
 import NotFound from "@/pages/NotFound";
 import PageTransition from "./PageTransition";
@@ -26,6 +27,7 @@ const AnimatedRoutes = () => {
         <Route path="/engineer-chat" element={<PageTransition><EngineerChat /></PageTransition>} />
         <Route path="/architect-dashboard" element={<PageTransition><ArchitectDashboard /></PageTransition>} />
         <Route path="/architect-project" element={<PageTransition><ArchitectProjectPage /></PageTransition>} />
+        <Route path="/architect-reporting" element={<PageTransition><ArchitectReportingPage /></PageTransition>} />
         <Route path="/support" element={<PageTransition><Support /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
