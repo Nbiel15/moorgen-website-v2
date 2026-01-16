@@ -488,8 +488,7 @@ const ArchitectDashboard = () => {
                   }`}>
                     <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
-                  <span className="hidden sm:inline">Owner Chat</span>
-                  <span className="sm:hidden">Owner</span>
+                  <span>Owner Chat</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 </button>
                 <button
@@ -505,8 +504,7 @@ const ArchitectDashboard = () => {
                   }`}>
                     <Wrench className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
-                  <span className="hidden sm:inline">Engineer Chat</span>
-                  <span className="sm:hidden">Engineer</span>
+                  <span>Engineer Chat</span>
                 </button>
               </div>
 
