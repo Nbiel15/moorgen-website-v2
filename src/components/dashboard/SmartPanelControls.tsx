@@ -25,16 +25,15 @@ interface ModeConfig {
 interface Room {
   id: string;
   name: string;
-  icon: string;
 }
 
 const rooms: Room[] = [
-  { id: "living", name: "Living Room", icon: "🛋️" },
-  { id: "master", name: "Master Bedroom", icon: "🛏️" },
-  { id: "dining", name: "Dining Room", icon: "🍽️" },
-  { id: "kitchen", name: "Kitchen", icon: "👨‍🍳" },
-  { id: "study", name: "Study Room", icon: "📚" },
-  { id: "outdoor", name: "Outdoor Terrace", icon: "🌿" },
+  { id: "living", name: "Living Room" },
+  { id: "master", name: "Master Bedroom" },
+  { id: "dining", name: "Dining Room" },
+  { id: "kitchen", name: "Kitchen" },
+  { id: "study", name: "Study Room" },
+  { id: "outdoor", name: "Outdoor Terrace" },
 ];
 
 const modes: Record<ModeType, ModeConfig> = {
@@ -86,48 +85,46 @@ const SmartPanelControls = () => {
       className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-8 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_50px_rgba(0,0,0,0.1)] transition-shadow duration-500"
     >
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 md:mb-8">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-champagne-gold" />
+      <div className="flex flex-col gap-3 mb-5 md:mb-6">
+        {/* Title Row */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-champagne-gold" />
+            </div>
+            <h3 className="font-serif text-base sm:text-lg md:text-xl text-charcoal">Smart Panel Controls</h3>
           </div>
-          <h3 className="font-serif text-lg md:text-xl text-charcoal">Smart Panel Controls</h3>
-        </div>
-        
-        <div className="flex items-center gap-3">
-          {/* Room Selector */}
-          <Select value={selectedRoom} onValueChange={setSelectedRoom}>
-            <SelectTrigger className="w-[180px] sm:w-[200px] h-9 bg-white/90 border-champagne-gold/30 hover:border-champagne-gold/60 focus:ring-champagne-gold/20 rounded-xl text-charcoal text-sm font-medium transition-all duration-300">
-              <div className="flex items-center gap-2">
-                <span className="text-base">{currentRoom?.icon}</span>
-                <SelectValue placeholder="Select Room" />
-              </div>
-            </SelectTrigger>
-            <SelectContent className="bg-white border-champagne-gold/20 rounded-xl shadow-xl z-50">
-              {rooms.map((room) => (
-                <SelectItem 
-                  key={room.id} 
-                  value={room.id}
-                  className="cursor-pointer hover:bg-champagne-gold/10 focus:bg-champagne-gold/10 rounded-lg text-charcoal"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">{room.icon}</span>
-                    <span>{room.name}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
+          
           {/* Live Indicator */}
           <motion.div 
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 hidden sm:flex"
+            className="px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20"
           >
-            <span className="text-[10px] font-medium text-green-600 uppercase tracking-wider">Live</span>
+            <span className="text-[9px] sm:text-[10px] font-medium text-green-600 uppercase tracking-wider">Live</span>
           </motion.div>
         </div>
+
+        {/* Room Selector - Full Width on Mobile */}
+        <Select value={selectedRoom} onValueChange={setSelectedRoom}>
+          <SelectTrigger className="w-full h-10 bg-white/90 border-champagne-gold/30 hover:border-champagne-gold/60 focus:ring-champagne-gold/20 rounded-xl text-charcoal text-sm font-medium transition-all duration-300">
+            <div className="flex items-center gap-2">
+              <Home className="w-4 h-4 text-champagne-gold" />
+              <SelectValue placeholder="Select Room" />
+            </div>
+          </SelectTrigger>
+          <SelectContent className="bg-white border-champagne-gold/20 rounded-xl shadow-xl z-50">
+            {rooms.map((room) => (
+              <SelectItem 
+                key={room.id} 
+                value={room.id}
+                className="cursor-pointer hover:bg-champagne-gold/10 focus:bg-champagne-gold/10 rounded-lg text-charcoal py-2.5"
+              >
+                {room.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
