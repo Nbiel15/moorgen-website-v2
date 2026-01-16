@@ -535,7 +535,7 @@ const ArchitectDashboard = () => {
                           />
                         </motion.div>
                         
-                        <div className={`max-w-[80%] sm:max-w-[75%] ${message.sender === "architect" ? "items-end" : "items-start"}`}>
+                        <div className={`flex flex-col max-w-[80%] sm:max-w-[75%] ${message.sender === "architect" ? "items-end" : "items-start"}`}>
                           {/* Name */}
                           <p className={`text-[10px] sm:text-xs font-heading mb-1 ${
                             message.sender === "architect" ? "text-right text-charcoal/40" : "text-left text-charcoal/40"
