@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Index from "@/pages/Index";
 import LifestyleDashboard from "@/pages/LifestyleDashboard";
-import TechnicalWorkspace from "@/pages/TechnicalWorkspace";
 import Controls from "@/pages/Controls";
 import AdvancedDeviceControl from "@/pages/AdvancedDeviceControl";
 import ProjectJourney from "@/pages/ProjectJourney";
@@ -20,7 +19,6 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/lifestyle-dashboard" element={<PageTransition><LifestyleDashboard /></PageTransition>} />
-        <Route path="/technical-workspace" element={<PageTransition><TechnicalWorkspace /></PageTransition>} />
         <Route path="/controls" element={<PageTransition><Controls /></PageTransition>} />
         <Route path="/advanced-control" element={<PageTransition><AdvancedDeviceControl /></PageTransition>} />
         <Route path="/progress" element={<PageTransition><ProjectJourney /></PageTransition>} />

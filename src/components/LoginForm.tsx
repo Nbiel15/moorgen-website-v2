@@ -35,7 +35,7 @@ const LoginForm = () => {
     } else if (email === MOCK_CREDENTIALS.partner.email && password === MOCK_CREDENTIALS.partner.password) {
       setIsFadingOut(true);
       setTimeout(() => {
-        navigate("/technical-workspace");
+        navigate("/architect-dashboard");
       }, 500);
     } else {
       setError("Access denied. Please use your exclusive invitation credentials.");
