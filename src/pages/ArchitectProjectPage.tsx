@@ -337,7 +337,8 @@ const ArchitectProjectPage = () => {
                   </h2>
                 </div>
                 <CardContent className="p-3 sm:p-6">
-                  <div className="space-y-3 sm:space-y-4">
+                  <ScrollArea className="h-[400px] sm:h-[450px] pr-2 sm:pr-4">
+                    <div className="space-y-3 sm:space-y-4">
                     {phases.map((phase, index) => (
                       <motion.div
                         key={phase.id}
@@ -509,7 +510,8 @@ const ArchitectProjectPage = () => {
                         </AnimatePresence>
                       </motion.div>
                     ))}
-                  </div>
+                    </div>
+                  </ScrollArea>
                 </CardContent>
               </Card>
             </motion.div>
