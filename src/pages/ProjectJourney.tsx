@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Clock, Send, Paperclip, ChevronDown, Eye, Camera, TrendingUp, Calendar as CalendarIcon, Users, Wifi, MessageCircle, Sparkles, ArrowRight, MapPin, Shield } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
@@ -83,6 +84,7 @@ const evidenceData = [{
   hasPhoto: true
 }];
 const ProjectJourney = () => {
+  const navigate = useNavigate();
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(null);
   const [chatInput, setChatInput] = useState("");
   const [showFloatingChat, setShowFloatingChat] = useState(false);
@@ -683,17 +685,14 @@ const ProjectJourney = () => {
         </Dialog>
 
         {/* Floating Chat Button */}
-        <motion.button onClick={scrollToChat} initial={{
-        y: 20,
-        opacity: 0
-      }} animate={{
-        y: showFloatingChat ? 0 : 20,
-        opacity: showFloatingChat ? 1 : 0
-      }} whileHover={{
-        scale: 1.05
-      }} whileTap={{
-        scale: 0.95
-      }} className={`fixed bottom-24 lg:bottom-8 right-4 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 bg-charcoal text-white rounded-full shadow-xl ${showFloatingChat ? '' : 'pointer-events-none'}`}>
+        <motion.button 
+          onClick={() => navigate('/engineer-chat')} 
+          initial={{ y: 20, opacity: 0 }} 
+          animate={{ y: 0, opacity: 1 }} 
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }} 
+          className="fixed bottom-24 lg:bottom-8 right-4 sm:right-6 z-50 flex items-center gap-2 px-4 py-3 bg-charcoal text-white rounded-full shadow-xl"
+        >
           <MessageCircle className="w-5 h-5" />
           <span className="text-sm font-medium hidden sm:inline">Chat with Engineer</span>
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
