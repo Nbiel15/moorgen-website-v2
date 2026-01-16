@@ -197,58 +197,64 @@ const ArchitectProjectPage = () => {
 
   return (
     <ArchitectLayout>
-      <div className="min-h-screen bg-[#FAFAFA] p-6 lg:p-8">
+      <div className="min-h-screen bg-gradient-to-br from-[#FAFAFA] via-[#FAFAFA] to-[#F5F5F5] p-4 sm:p-6 lg:p-8">
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="font-heading text-3xl lg:text-4xl text-charcoal mb-2">
-            Villa Uluwatu - Technical Management
-          </h1>
-          <p className="font-body text-moorgen-muted">
-            Real-time project tracking and collaboration hub
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1A1A1A] mb-2">
+                Villa Uluwatu - Technical Management
+              </h1>
+              <p className="font-body text-muted-foreground text-sm sm:text-base">
+                Real-time project tracking and collaboration hub
+              </p>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* Summary Cards - 2x2 Grid */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
           {/* Project Health Card - Black */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
+            whileHover={{ scale: 1.02, y: -4 }}
           >
-            <Card className="bg-charcoal text-white border-0 rounded-3xl shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
+            <Card className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] text-white border-0 rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-body text-sm text-gray-400 mb-1">Project Health</p>
-                    <p className="font-heading text-3xl text-white">85%</p>
+                    <p className="font-body text-xs sm:text-sm text-gray-400 mb-1">Project Health</p>
+                    <p className="font-heading text-2xl sm:text-3xl lg:text-4xl text-white">85%</p>
                   </div>
-                  <div className="relative w-16 h-16">
-                    <svg className="w-16 h-16 transform -rotate-90">
+                  <div className="relative w-12 h-12 sm:w-16 sm:h-16">
+                    <svg className="w-12 h-12 sm:w-16 sm:h-16 transform -rotate-90">
                       <circle
-                        cx="32"
-                        cy="32"
-                        r="28"
+                        cx="50%"
+                        cy="50%"
+                        r="40%"
                         stroke="#333"
                         strokeWidth="4"
                         fill="none"
                       />
                       <circle
-                        cx="32"
-                        cy="32"
-                        r="28"
+                        cx="50%"
+                        cy="50%"
+                        r="40%"
                         stroke="#D4AF37"
                         strokeWidth="4"
                         fill="none"
                         strokeDasharray={`${85 * 1.76} ${100 * 1.76}`}
                         strokeLinecap="round"
+                        className="drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]"
                       />
                     </svg>
-                    <span className="absolute inset-0 flex items-center justify-center font-body text-xs text-champagne-gold">
+                    <span className="absolute inset-0 flex items-center justify-center font-body text-[10px] sm:text-xs text-[#D4AF37]">
                       85%
                     </span>
                   </div>
@@ -262,12 +268,14 @@ const ArchitectProjectPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.02, y: -4 }}
           >
-            <Card className="bg-white border border-gray-100 rounded-3xl shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
-                <p className="font-body text-sm text-moorgen-muted mb-1">Days to Handover</p>
-                <p className="font-heading text-3xl text-charcoal">45 Days</p>
-                <p className="font-body text-xs text-moorgen-muted mt-2">Target: 20 Dec 2024</p>
+            <Card className="bg-white border border-gray-100 rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#D4AF37]/10 to-transparent" />
+              <CardContent className="p-4 sm:p-6 relative">
+                <p className="font-body text-xs sm:text-sm text-muted-foreground mb-1">Days to Handover</p>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1A1A1A]">45</p>
+                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 sm:mt-2">Target: 20 Dec 2024</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -277,12 +285,17 @@ const ArchitectProjectPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
+            whileHover={{ scale: 1.02, y: -4 }}
           >
-            <Card className="bg-white border border-gray-100 rounded-3xl shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
-                <p className="font-body text-sm text-moorgen-muted mb-1">Pending Validations</p>
-                <p className="font-heading text-3xl text-charcoal">2 Tasks</p>
-                <p className="font-body text-xs text-champagne-gold mt-2">Action Required</p>
+            <Card className="bg-white border border-gray-100 rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-amber-500/10 to-transparent" />
+              <CardContent className="p-4 sm:p-6 relative">
+                <p className="font-body text-xs sm:text-sm text-muted-foreground mb-1">Pending Approvals</p>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1A1A1A]">2</p>
+                <p className="font-body text-[10px] sm:text-xs text-[#D4AF37] mt-1 sm:mt-2 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-pulse" />
+                  Action Required
+                </p>
               </CardContent>
             </Card>
           </motion.div>
@@ -292,72 +305,85 @@ const ArchitectProjectPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
+            whileHover={{ scale: 1.02, y: -4 }}
           >
-            <Card className="bg-white border border-gray-100 rounded-3xl shadow-lg hover:shadow-xl transition-shadow">
-              <CardContent className="p-6">
-                <p className="font-body text-sm text-moorgen-muted mb-1">Next Field Inspection</p>
-                <p className="font-heading text-3xl text-charcoal">Tomorrow</p>
-                <p className="font-body text-xs text-moorgen-muted mt-2">09:00 AM - Zone 4</p>
+            <Card className="bg-white border border-gray-100 rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 h-full relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-emerald-500/10 to-transparent" />
+              <CardContent className="p-4 sm:p-6 relative">
+                <p className="font-body text-xs sm:text-sm text-muted-foreground mb-1">Next Inspection</p>
+                <p className="font-heading text-2xl sm:text-3xl lg:text-4xl text-[#1A1A1A]">Tomorrow</p>
+                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mt-1 sm:mt-2">09:00 AM - Zone 4</p>
               </CardContent>
             </Card>
           </motion.div>
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Project Journey Timeline */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
+          {/* Approval Project */}
+          <div className="xl:col-span-2">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Card className="bg-white border border-gray-100 rounded-3xl shadow-lg">
-                <CardContent className="p-6">
-                  <h2 className="font-heading text-xl text-charcoal mb-6 flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-champagne-gold" />
+              <Card className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] p-4 sm:p-6">
+                  <h2 className="font-heading text-lg sm:text-xl text-white flex items-center gap-3">
+                    <div className="p-2 bg-[#D4AF37]/20 rounded-xl">
+                      <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
+                    </div>
                     Approval Project
                   </h2>
-
-                  <div className="space-y-4">
+                </div>
+                <CardContent className="p-3 sm:p-6">
+                  <div className="space-y-3 sm:space-y-4">
                     {phases.map((phase, index) => (
                       <motion.div
                         key={phase.id}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 * index }}
-                        className={`relative border rounded-3xl overflow-hidden transition-all ${
+                        whileHover={{ scale: 1.01 }}
+                        className={`relative border rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 ${
                           phase.isActive 
-                            ? "border-champagne-gold border-2 shadow-md" 
-                            : "border-gray-100"
+                            ? "border-[#D4AF37] border-2 shadow-lg shadow-[#D4AF37]/10 bg-gradient-to-r from-[#D4AF37]/5 to-transparent" 
+                            : "border-gray-100 hover:border-gray-200 hover:shadow-md"
                         }`}
                       >
                         {/* Timeline connector */}
                         {index < phases.length - 1 && (
-                          <div className="absolute left-8 top-full w-0.5 h-4 bg-gray-200 z-10" />
+                          <div className="absolute left-6 sm:left-8 top-full w-0.5 h-3 sm:h-4 bg-gray-200 z-10" />
                         )}
 
                         {/* Phase Header */}
                         <button
                           onClick={() => togglePhase(phase.id)}
-                          className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                          className="w-full flex items-center justify-between p-3 sm:p-4 hover:bg-gray-50/50 transition-colors"
                         >
-                          <div className="flex items-center gap-4">
-                            {getStatusIcon(phase.status)}
+                          <div className="flex items-center gap-2 sm:gap-4">
+                            <div className={`p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${
+                              phase.status === 'approved' ? 'bg-emerald-100' : 
+                              phase.status === 'pending-approval' ? 'bg-amber-100' :
+                              phase.status === 'rejected' ? 'bg-rose-100' : 'bg-gray-100'
+                            }`}>
+                              {getStatusIcon(phase.status)}
+                            </div>
                             <div className="text-left">
                               <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="font-heading text-base text-charcoal">
+                                <h3 className="font-heading text-sm sm:text-base text-[#1A1A1A]">
                                   {phase.title}
                                 </h3>
-                                {getStatusBadge(phase.status)}
+                                <span className="hidden sm:inline-flex">{getStatusBadge(phase.status)}</span>
                               </div>
-                              <p className="font-body text-sm text-moorgen-muted">
+                              <p className="font-body text-xs sm:text-sm text-muted-foreground">
                                 {phase.submittedBy ? `Submitted by ${phase.submittedBy}` : phase.date}
                               </p>
+                              <span className="sm:hidden mt-1 inline-flex">{getStatusBadge(phase.status)}</span>
                             </div>
                           </div>
                           <ChevronDown 
-                            className={`w-5 h-5 text-gray-400 transition-transform ${
+                            className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-300 ${
                               expandedPhases.includes(phase.id) ? "rotate-180" : ""
                             }`}
                           />
@@ -373,55 +399,61 @@ const ArchitectProjectPage = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <div className="px-4 pb-4 space-y-4">
-                                <p className="font-body text-sm text-moorgen-muted">
+                              <div className="px-3 sm:px-4 pb-3 sm:pb-4 space-y-3 sm:space-y-4">
+                                <p className="font-body text-xs sm:text-sm text-muted-foreground">
                                   {phase.description}
                                 </p>
 
                                 {/* On-Site Tools */}
-                                <div className="bg-[#FAFAFA] rounded-2xl p-4 space-y-4">
+                                <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 space-y-3 sm:space-y-4">
                                   {/* Progress Photo */}
                                   {phase.progressPhoto ? (
                                     <div className="space-y-2">
-                                      <label className="font-body text-sm text-moorgen-muted block">
+                                      <label className="font-body text-xs sm:text-sm text-muted-foreground block flex items-center gap-2">
+                                        <Camera className="w-3 h-3 sm:w-4 sm:h-4 text-[#D4AF37]" />
                                         Progress Photo
                                       </label>
-                                      <div className="relative rounded-xl overflow-hidden">
+                                      <motion.div 
+                                        className="relative rounded-xl overflow-hidden shadow-lg"
+                                        whileHover={{ scale: 1.02 }}
+                                        transition={{ duration: 0.2 }}
+                                      >
                                         <img 
                                           src={phase.progressPhoto} 
                                           alt={`${phase.title} progress`}
-                                          className="w-full h-48 object-cover"
+                                          className="w-full h-40 sm:h-48 object-cover"
                                         />
-                                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                                        <div className="absolute bottom-0 left-0 right-0 p-3">
                                           <p className="text-white text-xs font-body">
                                             Submitted by {phase.submittedBy || "Engineer"}
                                           </p>
                                         </div>
-                                      </div>
+                                      </motion.div>
                                     </div>
                                   ) : (
-                                    <div className="flex items-center justify-center h-32 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300">
-                                      <p className="text-sm text-gray-400 font-body">No progress photo submitted</p>
+                                    <div className="flex items-center justify-center h-24 sm:h-32 bg-gray-100 rounded-xl border-2 border-dashed border-gray-300">
+                                      <p className="text-xs sm:text-sm text-gray-400 font-body">No progress photo submitted</p>
                                     </div>
                                   )}
 
                                   {/* Design Remark Textarea */}
                                   <div>
-                                    <label className="font-body text-sm text-moorgen-muted mb-2 block">
+                                    <label className="font-body text-xs sm:text-sm text-muted-foreground mb-2 block">
                                       Architect's Design Remark
                                     </label>
                                     <Textarea
                                       placeholder="Add your professional notes here..."
                                       value={remarks[phase.id] || ""}
                                       onChange={(e) => setRemarks(prev => ({ ...prev, [phase.id]: e.target.value }))}
-                                      className="font-body text-sm rounded-xl border-gray-200 focus:border-champagne-gold resize-none"
+                                      className="font-body text-xs sm:text-sm rounded-xl border-gray-200 focus:border-[#D4AF37] focus:ring-[#D4AF37]/20 resize-none bg-white"
                                       rows={3}
                                     />
                                   </div>
 
                                   {/* Validation Toggle */}
-                                  <div className="flex items-center justify-between">
-                                    <span className="font-body text-sm text-charcoal">
+                                  <div className="flex items-center justify-between p-2 sm:p-3 bg-white rounded-xl border border-gray-100">
+                                    <span className="font-body text-xs sm:text-sm text-[#1A1A1A]">
                                       Professional Validation
                                     </span>
                                     <Switch
@@ -429,40 +461,46 @@ const ArchitectProjectPage = () => {
                                       onCheckedChange={(checked) => 
                                         setValidationStates(prev => ({ ...prev, [phase.id]: checked }))
                                       }
-                                      className="data-[state=checked]:bg-champagne-gold"
+                                      className="data-[state=checked]:bg-[#D4AF37]"
                                     />
                                   </div>
 
                                   {/* Approval Buttons */}
                                   {phase.status === "pending-approval" && (
-                                    <div className="flex gap-3 pt-2">
-                                      <Button
-                                        onClick={() => handleApprove(phase.id)}
-                                        className="flex-1 font-body bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl"
-                                      >
-                                        <CheckCircle2 className="w-4 h-4 mr-2" />
-                                        Approve
-                                      </Button>
-                                      <Button
-                                        onClick={() => handleReject(phase.id)}
-                                        variant="outline"
-                                        className="flex-1 font-body border-rose-300 text-rose-600 hover:bg-rose-50 rounded-xl"
-                                      >
-                                        <Circle className="w-4 h-4 mr-2" />
-                                        Reject
-                                      </Button>
+                                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
+                                      <motion.div className="flex-1" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                        <Button
+                                          onClick={() => handleApprove(phase.id)}
+                                          className="w-full font-body bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl shadow-lg shadow-emerald-500/25 text-xs sm:text-sm"
+                                        >
+                                          <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                                          Approve
+                                        </Button>
+                                      </motion.div>
+                                      <motion.div className="flex-1" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                        <Button
+                                          onClick={() => handleReject(phase.id)}
+                                          variant="outline"
+                                          className="w-full font-body border-rose-300 text-rose-600 hover:bg-rose-50 rounded-xl text-xs sm:text-sm"
+                                        >
+                                          <Circle className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                                          Reject
+                                        </Button>
+                                      </motion.div>
                                     </div>
                                   )}
 
                                   {/* Publish Button - only for approved phases */}
                                   {phase.status === "approved" && (
-                                    <Button
-                                      onClick={() => handlePublishUpdate(phase.title)}
-                                      className="w-full font-body bg-champagne-gold hover:bg-champagne-gold/90 text-charcoal rounded-xl"
-                                    >
-                                      <Zap className="w-4 h-4 mr-2" />
-                                      Publish Live Update to Owner
-                                    </Button>
+                                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                      <Button
+                                        onClick={() => handlePublishUpdate(phase.title)}
+                                        className="w-full font-body bg-gradient-to-r from-[#D4AF37] to-[#C4A030] hover:from-[#C4A030] hover:to-[#B8942A] text-[#1A1A1A] rounded-xl shadow-lg shadow-[#D4AF37]/25 text-xs sm:text-sm"
+                                      >
+                                        <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                                        Publish to Owner
+                                      </Button>
+                                    </motion.div>
                                   )}
                                 </div>
                               </div>
@@ -478,104 +516,113 @@ const ArchitectProjectPage = () => {
           </div>
 
           {/* Sidebar - Collaboration Hub */}
-          <div className="lg:col-span-1">
+          <div className="xl:col-span-1">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
+              className="sticky top-6"
             >
-              <Card className="bg-white border border-gray-100 rounded-3xl shadow-lg sticky top-6">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="font-heading text-lg text-charcoal flex items-center gap-2">
-                      <MessageCircle className="w-5 h-5 text-champagne-gold" />
-                      Collaboration Hub
-                    </h2>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="font-body text-xs text-moorgen-muted">Wayan Live</span>
+              <Card className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] p-3 sm:p-4">
+                  <h3 className="font-heading text-base sm:text-lg text-white flex items-center gap-2">
+                    <div className="p-1.5 sm:p-2 bg-[#D4AF37]/20 rounded-lg sm:rounded-xl">
+                      <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#D4AF37]" />
+                    </div>
+                    Collaboration Hub
+                  </h3>
+                </div>
+                <CardContent className="p-3 sm:p-4">
+                  <div className="flex items-center justify-end mb-3 sm:mb-4">
+                    <div className="flex items-center gap-2 px-2 py-1 bg-emerald-50 rounded-full">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                      <span className="font-body text-xs text-emerald-700">Wayan Live</span>
                     </div>
                   </div>
 
                   <Tabs defaultValue="engineer" className="w-full">
-                    <TabsList className="w-full bg-gray-100 rounded-xl p-1">
+                    <TabsList className="w-full bg-gray-100 rounded-xl p-1 h-auto">
                       <TabsTrigger 
                         value="owner" 
-                        className="flex-1 font-body text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-charcoal"
+                        className="flex-1 font-body text-xs sm:text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-[#1A1A1A] py-2"
                       >
-                        Client/Owner
+                        Client
                       </TabsTrigger>
                       <TabsTrigger 
                         value="engineer" 
-                        className="flex-1 font-body text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-charcoal"
+                        className="flex-1 font-body text-xs sm:text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-[#1A1A1A] py-2"
                       >
-                        Moorgen Engineer
+                        Engineer
                       </TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="owner" className="mt-4">
-                      <ScrollArea className="h-64 pr-2">
-                        <div className="space-y-3">
+                    <TabsContent value="owner" className="mt-3 sm:mt-4">
+                      <ScrollArea className="h-48 sm:h-64 pr-2">
+                        <div className="space-y-2 sm:space-y-3">
                           {ownerMessages.map((msg) => (
-                            <div
+                            <motion.div
                               key={msg.id}
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
                               className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
                             >
                               <div
-                                className={`max-w-[85%] rounded-2xl p-3 ${
+                                className={`max-w-[85%] rounded-xl sm:rounded-2xl p-2.5 sm:p-3 ${
                                   msg.sender === "You"
-                                    ? "bg-white border-2 border-champagne-gold"
+                                    ? "bg-white border-2 border-[#D4AF37]/50 shadow-sm"
                                     : "bg-gray-100"
                                 }`}
                               >
-                                <p className="font-body text-xs text-moorgen-muted mb-1">
+                                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mb-1">
                                   {msg.sender}
                                 </p>
-                                <p className="font-body text-sm text-charcoal">
+                                <p className="font-body text-xs sm:text-sm text-[#1A1A1A]">
                                   {msg.message}
                                 </p>
-                                <p className="font-body text-xs text-gray-400 mt-1 text-right">
+                                <p className="font-body text-[10px] sm:text-xs text-gray-400 mt-1 text-right">
                                   {msg.time}
                                 </p>
                               </div>
-                            </div>
+                            </motion.div>
                           ))}
                         </div>
                       </ScrollArea>
                     </TabsContent>
 
-                    <TabsContent value="engineer" className="mt-4">
-                      <ScrollArea className="h-64 pr-2">
-                        <div className="space-y-3">
+                    <TabsContent value="engineer" className="mt-3 sm:mt-4">
+                      <ScrollArea className="h-48 sm:h-64 pr-2">
+                        <div className="space-y-2 sm:space-y-3">
                           {engineerMessages.map((msg) => (
-                            <div
+                            <motion.div
                               key={msg.id}
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
                               className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
                             >
                               <div
-                                className={`max-w-[85%] rounded-2xl p-3 ${
+                                className={`max-w-[85%] rounded-xl sm:rounded-2xl p-2.5 sm:p-3 ${
                                   msg.isEngineer
-                                    ? "bg-charcoal text-white"
-                                    : "bg-white border-2 border-champagne-gold"
+                                    ? "bg-[#1A1A1A] text-white shadow-lg"
+                                    : "bg-white border-2 border-[#D4AF37]/50 shadow-sm"
                                 }`}
                               >
-                                <p className={`font-body text-xs mb-1 ${
-                                  msg.isEngineer ? "text-gray-400" : "text-moorgen-muted"
+                                <p className={`font-body text-[10px] sm:text-xs mb-1 ${
+                                  msg.isEngineer ? "text-[#D4AF37]" : "text-muted-foreground"
                                 }`}>
                                   {msg.sender} {msg.isEngineer && "• Live on Site"}
                                 </p>
-                                <p className={`font-body text-sm ${
-                                  msg.isEngineer ? "text-white" : "text-charcoal"
+                                <p className={`font-body text-xs sm:text-sm ${
+                                  msg.isEngineer ? "text-white" : "text-[#1A1A1A]"
                                 }`}>
                                   {msg.message}
                                 </p>
-                                <p className={`font-body text-xs mt-1 text-right ${
+                                <p className={`font-body text-[10px] sm:text-xs mt-1 text-right ${
                                   msg.isEngineer ? "text-gray-500" : "text-gray-400"
                                 }`}>
                                   {msg.time}
                                 </p>
                               </div>
-                            </div>
+                            </motion.div>
                           ))}
                         </div>
                       </ScrollArea>
@@ -583,20 +630,22 @@ const ArchitectProjectPage = () => {
                   </Tabs>
 
                   {/* Chat Input */}
-                  <div className="mt-4 flex gap-2">
+                  <div className="mt-3 sm:mt-4 flex gap-2">
                     <input
                       type="text"
                       placeholder="Type a message..."
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
-                      className="flex-1 font-body text-sm px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-champagne-gold"
+                      className="flex-1 font-body text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-[#D4AF37] bg-white"
                     />
-                    <Button
-                      size="icon"
-                      className="bg-champagne-gold hover:bg-champagne-gold/90 text-charcoal rounded-xl"
-                    >
-                      <Send className="w-4 h-4" />
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        size="icon"
+                        className="bg-gradient-to-r from-[#D4AF37] to-[#C4A030] hover:from-[#C4A030] hover:to-[#B8942A] text-[#1A1A1A] rounded-xl shadow-lg shadow-[#D4AF37]/25 h-9 w-9 sm:h-10 sm:w-10"
+                      >
+                        <Send className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </Button>
+                    </motion.div>
                   </div>
                 </CardContent>
               </Card>
