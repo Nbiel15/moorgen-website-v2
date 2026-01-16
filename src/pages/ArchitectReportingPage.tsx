@@ -186,80 +186,54 @@ const ArchitectReportingPage = () => {
 
   return (
     <ArchitectLayout>
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
-        <div className="p-4 sm:p-6 lg:p-8 font-playfair max-w-[1600px] mx-auto">
-          {/* Luxurious Header */}
-          <motion.div 
-            className="mb-8 lg:mb-12"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <div className="flex flex-col gap-6">
-              {/* Title Section */}
-              <div className="relative">
-                <motion.div 
-                  className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-champagne via-champagne to-transparent rounded-full"
-                  initial={{ height: 0 }}
-                  animate={{ height: "100%" }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                />
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-playfair tracking-tight">
-                  Live Project Reporting
-                </h1>
-                <p className="text-muted-foreground mt-2 text-base sm:text-lg font-playfair max-w-xl">
-                  Craft and publish elegant progress reports to the Owner Dashboard
-                </p>
-              </div>
-
-              {/* Action Buttons - Responsive */}
-              <div className="flex flex-wrap items-center gap-3">
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant="outline"
-                    onClick={() => setPreviewMode(!previewMode)}
-                    className="font-playfair border-border hover:border-champagne hover:bg-champagne/5 transition-all duration-300 group"
-                  >
-                    {previewMode ? (
-                      <EyeOff className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                    ) : (
-                      <Eye className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                    )}
-                    {previewMode ? "Edit Mode" : "Preview"}
-                  </Button>
-                </motion.div>
-
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    variant="outline"
-                    onClick={saveDraft}
-                    className="font-playfair border-border hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-300 group"
-                  >
-                    <Save className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                    Save Draft
-                  </Button>
-                </motion.div>
-
-                <motion.div 
-                  whileHover={{ scale: 1.03 }} 
-                  whileTap={{ scale: 0.97 }}
-                  className="relative"
-                >
-                  <div className="absolute inset-0 bg-champagne/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Button
-                    onClick={publishToOwner}
-                    className="font-playfair bg-gradient-to-r from-champagne to-champagne-light hover:from-champagne-dark hover:to-champagne text-foreground font-semibold shadow-lg shadow-champagne/25 transition-all duration-300 relative overflow-hidden group"
-                    disabled={milestones.length === 0}
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                    <Send className="w-4 h-4 mr-2" />
-                    Push to Owner
-                    <Sparkles className="w-4 h-4 ml-2 opacity-60" />
-                  </Button>
-                </motion.div>
-              </div>
+      <div className="min-h-screen bg-[#FAFAFA] p-6 lg:p-8">
+        {/* Header Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div>
+              <h1 className="font-heading text-3xl lg:text-4xl text-[#1A1A1A] mb-2">
+                Live Project Reporting
+              </h1>
+              <p className="font-body text-muted-foreground">
+                Create and publish progress reports to the Owner Dashboard
+              </p>
             </div>
-          </motion.div>
+            
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                variant="outline"
+                onClick={() => setPreviewMode(!previewMode)}
+                className="font-playfair border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white rounded-2xl transition-all duration-300"
+              >
+                {previewMode ? <EyeOff className="w-4 h-4 mr-2" /> : <Eye className="w-4 h-4 mr-2" />}
+                {previewMode ? "Edit Mode" : "Preview"}
+              </Button>
+              
+              <Button
+                variant="outline"
+                onClick={saveDraft}
+                className="font-playfair border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white rounded-2xl transition-all duration-300"
+              >
+                <Save className="w-4 h-4 mr-2" />
+                Save Draft
+              </Button>
+              
+              <Button
+                onClick={publishToOwner}
+                className="font-playfair bg-[#D4AF37] hover:bg-[#B8972F] text-[#1A1A1A] font-semibold rounded-2xl shadow-lg transition-all duration-300"
+                disabled={milestones.length === 0}
+              >
+                <Send className="w-4 h-4 mr-2" />
+                Push to Owner
+              </Button>
+            </div>
+          </div>
+        </motion.div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-8">
             {/* Left Side - Progress Input Area */}
@@ -841,7 +815,6 @@ const ArchitectReportingPage = () => {
             </motion.div>
           </div>
         </div>
-      </div>
     </ArchitectLayout>
   );
 };
