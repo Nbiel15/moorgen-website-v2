@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import ArchitectLayout from "@/components/layout/ArchitectLayout";
 import FloatingReportButton from "@/components/FloatingReportButton";
 
-type PhaseStatus = "completed" | "in-progress" | "pending";
+type PhaseStatus = "approved" | "pending-approval" | "rejected" | "pending";
 
 interface Phase {
   id: string;
@@ -34,6 +34,7 @@ interface Phase {
   date: string;
   description: string;
   isActive?: boolean;
+  submittedBy?: string;
 }
 
 interface ChatMessage {
@@ -52,28 +53,31 @@ interface Document {
   lastUpdated: string;
 }
 
-const phases: Phase[] = [
+const initialPhases: Phase[] = [
   {
     id: "site-analysis",
     title: "Site Analysis & Planning",
-    status: "completed",
+    status: "approved",
     date: "15 Oct 2024",
-    description: "Initial site survey completed. Electrical load calculations verified."
+    description: "Initial site survey completed. Electrical load calculations verified.",
+    submittedBy: "Engineer Wayan"
   },
   {
     id: "wiring",
     title: "Wiring Infrastructure",
-    status: "completed",
+    status: "approved",
     date: "28 Oct 2024",
-    description: "CAT6 and power wiring installed to all smart panel locations."
+    description: "CAT6 and power wiring installed to all smart panel locations.",
+    submittedBy: "Engineer Wayan"
   },
   {
     id: "installation",
     title: "Device Installation",
-    status: "in-progress",
-    date: "In Progress",
+    status: "pending-approval",
+    date: "Awaiting Review",
     description: "Installing Milan Series smart panels across 12 zones.",
-    isActive: true
+    isActive: true,
+    submittedBy: "Engineer Wayan"
   },
   {
     id: "integration",
@@ -112,6 +116,7 @@ const documents: Document[] = [
 
 const ArchitectProjectPage = () => {
   const { toast } = useToast();
+  const [phases, setPhases] = useState<Phase[]>(initialPhases);
   const [expandedPhases, setExpandedPhases] = useState<string[]>(["installation"]);
   const [validationStates, setValidationStates] = useState<Record<string, boolean>>({});
   const [remarks, setRemarks] = useState<Record<string, string>>({});
@@ -141,12 +146,48 @@ const ArchitectProjectPage = () => {
 
   const getStatusIcon = (status: PhaseStatus) => {
     switch (status) {
-      case "completed":
-        return <CheckCircle2 className="w-5 h-5 text-champagne-gold" />;
-      case "in-progress":
+      case "approved":
+        return <CheckCircle2 className="w-5 h-5 text-emerald-500" />;
+      case "pending-approval":
         return <Clock className="w-5 h-5 text-champagne-gold animate-pulse" />;
+      case "rejected":
+        return <Circle className="w-5 h-5 text-rose-500" />;
       case "pending":
         return <Circle className="w-5 h-5 text-gray-400" />;
+    }
+  };
+
+  const handleApprove = (phaseId: string) => {
+    setPhases(prev => prev.map(p => 
+      p.id === phaseId ? { ...p, status: "approved" as PhaseStatus, date: new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }) } : p
+    ));
+    toast({
+      title: "Phase Approved",
+      description: "The phase has been approved and the owner has been notified.",
+    });
+  };
+
+  const handleReject = (phaseId: string) => {
+    setPhases(prev => prev.map(p => 
+      p.id === phaseId ? { ...p, status: "rejected" as PhaseStatus } : p
+    ));
+    toast({
+      title: "Phase Rejected",
+      description: "The phase has been rejected. Please provide feedback.",
+      variant: "destructive"
+    });
+  };
+
+  const getStatusBadge = (status: PhaseStatus) => {
+    switch (status) {
+      case "approved":
+        return <span className="px-2 py-1 text-xs font-medium rounded-full bg-emerald-100 text-emerald-700">Approved</span>;
+      case "pending-approval":
+        return <span className="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-700">Pending Approval</span>;
+      case "rejected":
+        return <span className="px-2 py-1 text-xs font-medium rounded-full bg-rose-100 text-rose-700">Rejected</span>;
+      case "pending":
+        return <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-600">Not Submitted</span>;
     }
   };
 
@@ -300,11 +341,14 @@ const ArchitectProjectPage = () => {
                           <div className="flex items-center gap-4">
                             {getStatusIcon(phase.status)}
                             <div className="text-left">
-                              <h3 className="font-heading text-base text-charcoal">
-                                {phase.title}
-                              </h3>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <h3 className="font-heading text-base text-charcoal">
+                                  {phase.title}
+                                </h3>
+                                {getStatusBadge(phase.status)}
+                              </div>
                               <p className="font-body text-sm text-moorgen-muted">
-                                {phase.date}
+                                {phase.submittedBy ? `Submitted by ${phase.submittedBy}` : phase.date}
                               </p>
                             </div>
                           </div>
@@ -370,14 +414,37 @@ const ArchitectProjectPage = () => {
                                     />
                                   </div>
 
-                                  {/* Publish Button */}
-                                  <Button
-                                    onClick={() => handlePublishUpdate(phase.title)}
-                                    className="w-full font-body bg-champagne-gold hover:bg-champagne-gold/90 text-charcoal rounded-xl"
-                                  >
-                                    <Zap className="w-4 h-4 mr-2" />
-                                    Publish Live Update to Owner
-                                  </Button>
+                                  {/* Approval Buttons */}
+                                  {phase.status === "pending-approval" && (
+                                    <div className="flex gap-3 pt-2">
+                                      <Button
+                                        onClick={() => handleApprove(phase.id)}
+                                        className="flex-1 font-body bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl"
+                                      >
+                                        <CheckCircle2 className="w-4 h-4 mr-2" />
+                                        Approve
+                                      </Button>
+                                      <Button
+                                        onClick={() => handleReject(phase.id)}
+                                        variant="outline"
+                                        className="flex-1 font-body border-rose-300 text-rose-600 hover:bg-rose-50 rounded-xl"
+                                      >
+                                        <Circle className="w-4 h-4 mr-2" />
+                                        Reject
+                                      </Button>
+                                    </div>
+                                  )}
+
+                                  {/* Publish Button - only for approved phases */}
+                                  {phase.status === "approved" && (
+                                    <Button
+                                      onClick={() => handlePublishUpdate(phase.title)}
+                                      className="w-full font-body bg-champagne-gold hover:bg-champagne-gold/90 text-charcoal rounded-xl"
+                                    >
+                                      <Zap className="w-4 h-4 mr-2" />
+                                      Publish Live Update to Owner
+                                    </Button>
+                                  )}
                                 </div>
                               </div>
                             </motion.div>
