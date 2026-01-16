@@ -197,35 +197,28 @@ const Support = () => {
               duration: 0.5,
               delay: 0.1
             }} className="max-w-2xl">
-                <motion.div 
-                  className="relative group"
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div className="relative group" whileHover={{
+                scale: 1.01
+              }} transition={{
+                duration: 0.2
+              }}>
                   {/* Glow Effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-champagne-gold/20 via-champagne-gold/10 to-champagne-gold/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-500" />
                   
                   {/* Search Container */}
                   <div className="relative flex items-center bg-foreground/95 backdrop-blur-xl rounded-2xl border border-champagne-gold/20 group-hover:border-champagne-gold/40 group-focus-within:border-champagne-gold/50 transition-all duration-300 shadow-lg shadow-black/10">
                     {/* Animated Search Icon */}
-                    <motion.div 
-                      className="absolute left-5 flex items-center justify-center"
-                      animate={{ 
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
+                    <motion.div className="absolute left-5 flex items-center justify-center" animate={{
+                    scale: [1, 1.1, 1]
+                  }} transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}>
                       <Search className="w-5 h-5 text-champagne-gold" />
                     </motion.div>
                     
-                    <Input 
-                      placeholder="Search FAQs, guides, and troubleshooting..." 
-                      className="pl-14 pr-6 py-7 bg-transparent border-0 font-body text-sm text-background placeholder:text-background/40 focus-visible:ring-0 focus-visible:ring-offset-0" 
-                    />
+                    <Input placeholder="Search FAQs, guides, and troubleshooting..." className="pl-14 pr-6 py-7 bg-transparent border-0 font-body text-sm text-background placeholder:text-background/40 focus-visible:ring-0 focus-visible:ring-offset-0" />
                     
                     {/* Keyboard Shortcut Hint */}
                     <div className="absolute right-4 hidden sm:flex items-center gap-1.5">
@@ -237,25 +230,14 @@ const Support = () => {
                 </motion.div>
                 
                 {/* Quick Search Tags */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex flex-wrap gap-2 mt-4"
-                >
-                  {["Reset Panel", "Dim Lights", "Schedule Scene", "Connect Device"].map((tag, index) => (
-                    <motion.button
-                      key={tag}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1.5 text-xs font-body text-muted-foreground bg-muted/50 hover:bg-champagne-gold/10 hover:text-champagne-gold rounded-full border border-border/50 hover:border-champagne-gold/30 transition-all duration-300"
-                    >
-                      {tag}
-                    </motion.button>
-                  ))}
+                <motion.div initial={{
+                opacity: 0
+              }} animate={{
+                opacity: 1
+              }} transition={{
+                delay: 0.3
+              }} className="flex flex-wrap gap-2 mt-4">
+                  {["Reset Panel", "Dim Lights", "Schedule Scene", "Connect Device"].map((tag, index) => {})}
                 </motion.div>
               </motion.div>
             </div>
