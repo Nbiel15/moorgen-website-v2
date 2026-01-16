@@ -158,16 +158,16 @@ const EngineerChat = () => {
         }} whileHover={{
           y: -1
         }} className={`flex items-end gap-1.5 sm:gap-2 ${message.sender === "owner" ? "justify-end" : "justify-start"}`}>
-              {message.sender === "engineer" && <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-foreground flex items-center justify-center text-background text-[10px] sm:text-xs font-medium flex-shrink-0">
+              {message.sender === "engineer" && <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-champagne-gold flex items-center justify-center text-white text-[10px] sm:text-xs font-medium flex-shrink-0">
                   W
                 </div>}
 
-              <div className={`max-w-[80%] sm:max-w-[75%] px-3 sm:px-4 py-2 sm:py-3 shadow-sm ${message.sender === "engineer" ? "bg-foreground text-background rounded-2xl rounded-bl-md" : "bg-background border-2 border-champagne-gold/40 text-foreground rounded-2xl rounded-br-md"}`}>
+              <div className={`max-w-[80%] sm:max-w-[75%] px-3 sm:px-4 py-2 sm:py-3 shadow-sm ${message.sender === "engineer" ? "bg-champagne-gold/15 border border-champagne-gold/30 text-foreground rounded-2xl rounded-bl-md" : "bg-background border-2 border-champagne-gold/40 text-foreground rounded-2xl rounded-br-md"}`}>
                 <p className="text-[13px] sm:text-sm font-body leading-relaxed">
                   {message.text}
                 </p>
                 <div className={`flex items-center gap-1 mt-1 sm:mt-1.5 ${message.sender === "owner" ? "justify-end" : ""}`}>
-                  <span className={`text-[9px] sm:text-[10px] ${message.sender === "engineer" ? "text-background/65" : "text-muted-foreground"}`}>
+                  <span className={`text-[9px] sm:text-[10px] ${message.sender === "engineer" ? "text-champagne-gold" : "text-muted-foreground"}`}>
                     {message.timestamp}
                   </span>
                   {message.sender === "owner" && message.status && <span className="text-champagne-gold">
