@@ -14,14 +14,12 @@ import {
   Filter,
   Clock,
   Star,
-  StarOff,
   MoreVertical,
   Eye,
   Share2,
   Trash2,
   FolderPlus,
   Upload,
-  ChevronRight,
   BookOpen,
   Wrench,
   Palette,
@@ -153,102 +151,97 @@ const ArchitectResources = () => {
             backgroundSize: '32px 32px'
           }} />
 
-          <div className="relative px-4 md:px-6 lg:px-8 py-6 md:py-8">
+          <div className="relative px-4 md:px-6 lg:px-8 py-4 md:py-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {/* Top Bar */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-3 md:gap-4">
+              {/* Top Bar - Compact */}
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-3">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       variant="ghost"
                       size="icon"
                       onClick={() => navigate("/architect-dashboard")}
-                      className="rounded-2xl hover:bg-champagne-gold/10 hover:text-champagne-gold transition-all duration-300 w-10 h-10 md:w-11 md:h-11"
+                      className="rounded-xl hover:bg-champagne-gold/10 hover:text-champagne-gold transition-all duration-300 w-9 h-9"
                     >
-                      <ArrowLeft className="w-5 h-5" />
+                      <ArrowLeft className="w-4 h-4" />
                     </Button>
                   </motion.div>
                   <div>
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold tracking-tight bg-gradient-to-r from-foreground via-foreground to-foreground/70 bg-clip-text">
+                    <h1 className="text-xl md:text-2xl font-heading font-bold tracking-tight">
                       Resources
                     </h1>
-                    <p className="text-muted-foreground font-body text-sm mt-0.5">
-                      Project files, documents & assets
+                    <p className="text-muted-foreground font-body text-xs hidden sm:block">
+                      Project files & assets
                     </p>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-2 md:gap-3">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button
-                      variant="outline"
-                      className="rounded-2xl border-border/60 hover:border-champagne-gold/40 hover:bg-champagne-gold/5 transition-all duration-300"
-                    >
-                      <FolderPlus className="w-4 h-4 mr-2" />
-                      <span className="hidden sm:inline">New Folder</span>
-                    </Button>
-                  </motion.div>
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="rounded-2xl bg-gradient-to-r from-champagne-gold to-champagne-gold/90 hover:from-champagne-gold/90 hover:to-champagne-gold text-champagne-gold-foreground shadow-lg shadow-champagne-gold/20">
-                      <Upload className="w-4 h-4 mr-2" />
-                      Upload
-                    </Button>
-                  </motion.div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-xl border-border/60 hover:border-champagne-gold/40 hover:bg-champagne-gold/5 h-9"
+                  >
+                    <FolderPlus className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">New Folder</span>
+                  </Button>
+                  <Button 
+                    size="sm"
+                    className="rounded-xl bg-champagne-gold hover:bg-champagne-gold/90 text-champagne-gold-foreground h-9"
+                  >
+                    <Upload className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Upload</span>
+                  </Button>
                 </div>
               </div>
 
-              {/* Search & View Controls */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                {/* Search Input */}
-                <div className="relative flex-1 max-w-md">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              {/* Search & Controls - Single Row */}
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search files and folders..."
-                    className="pl-11 pr-4 py-5 rounded-2xl bg-card/60 backdrop-blur-sm border-border/50 focus:border-champagne-gold/40 transition-all duration-300"
+                    placeholder="Search files..."
+                    className="pl-9 pr-4 h-9 rounded-xl bg-card/60 backdrop-blur-sm border-border/50 focus:border-champagne-gold/40 text-sm"
                   />
                 </div>
-
-                {/* View Toggle & Filter */}
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center p-1 rounded-xl bg-card/60 backdrop-blur-sm border border-border/50">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setViewMode("grid")}
-                      className={cn(
-                        "rounded-lg h-9 w-9 transition-all",
-                        viewMode === "grid" ? "bg-champagne-gold/20 text-champagne-gold" : "hover:bg-muted"
-                      )}
-                    >
-                      <Grid3X3 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setViewMode("list")}
-                      className={cn(
-                        "rounded-lg h-9 w-9 transition-all",
-                        viewMode === "list" ? "bg-champagne-gold/20 text-champagne-gold" : "hover:bg-muted"
-                      )}
-                    >
-                      <List className="w-4 h-4" />
-                    </Button>
-                  </div>
+                <div className="flex items-center p-0.5 rounded-lg bg-card/60 backdrop-blur-sm border border-border/50">
                   <Button
-                    variant="outline"
-                    className="rounded-xl border-border/50 hover:border-champagne-gold/40"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setViewMode("grid")}
+                    className={cn(
+                      "rounded-md h-8 w-8 transition-all",
+                      viewMode === "grid" ? "bg-champagne-gold/20 text-champagne-gold" : "hover:bg-muted"
+                    )}
                   >
-                    <Filter className="w-4 h-4 mr-2" />
-                    Filter
+                    <Grid3X3 className="w-3.5 h-3.5" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setViewMode("list")}
+                    className={cn(
+                      "rounded-md h-8 w-8 transition-all",
+                      viewMode === "list" ? "bg-champagne-gold/20 text-champagne-gold" : "hover:bg-muted"
+                    )}
+                  >
+                    <List className="w-3.5 h-3.5" />
                   </Button>
                 </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-xl border-border/50 hover:border-champagne-gold/40 h-9 px-3"
+                >
+                  <Filter className="w-3.5 h-3.5" />
+                </Button>
               </div>
             </motion.div>
           </div>
@@ -256,143 +249,59 @@ const ArchitectResources = () => {
 
         {/* Main Content */}
         <div className="px-4 md:px-6 lg:px-8 pb-24 lg:pb-8">
-          {/* Categories */}
+          {/* Categories - Horizontal Scrollable Pills */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 md:mb-8"
+            className="mb-4"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <h2 className="text-sm font-heading font-semibold text-muted-foreground uppercase tracking-wider">
-                Categories
-              </h2>
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {categories.map((category, index) => (
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {categories.map((category) => (
                 <motion.button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
-                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={cn(
-                    "relative p-4 rounded-2xl border transition-all duration-300 text-left overflow-hidden group",
+                    "flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-300 whitespace-nowrap shrink-0",
                     activeCategory === category.id
-                      ? "border-champagne-gold/50 bg-gradient-to-br from-champagne-gold/10 to-champagne-gold/5 shadow-lg shadow-champagne-gold/10"
-                      : "border-border/50 bg-card/60 backdrop-blur-sm hover:border-champagne-gold/30 hover:shadow-md"
+                      ? "border-champagne-gold/50 bg-champagne-gold/10 text-champagne-gold"
+                      : "border-border/50 bg-card/60 text-muted-foreground hover:border-champagne-gold/30"
                   )}
                 >
-                  {/* Background Gradient */}
-                  <div className={cn(
-                    "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-                    category.color
-                  )} />
-                  
-                  <div className="relative z-10">
-                    <div className={cn(
-                      "w-10 h-10 rounded-xl flex items-center justify-center mb-3 transition-all duration-300",
-                      activeCategory === category.id
-                        ? "bg-champagne-gold/20 text-champagne-gold"
-                        : "bg-muted/50 text-muted-foreground group-hover:bg-champagne-gold/10 group-hover:text-champagne-gold"
-                    )}>
-                      <category.icon className="w-5 h-5" />
-                    </div>
-                    <p className={cn(
-                      "font-heading font-medium text-sm truncate transition-colors",
-                      activeCategory === category.id ? "text-foreground" : "text-foreground/80"
-                    )}>
-                      {category.name}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      {category.count} files
-                    </p>
-                  </div>
+                  <category.icon className="w-4 h-4" />
+                  <span className="text-sm font-medium">{category.name}</span>
+                  <span className={cn(
+                    "text-xs px-1.5 py-0.5 rounded-md",
+                    activeCategory === category.id ? "bg-champagne-gold/20" : "bg-muted/50"
+                  )}>
+                    {category.count}
+                  </span>
                 </motion.button>
               ))}
             </div>
           </motion.div>
 
-          {/* Starred Section */}
-          {filteredResources.some((r) => r.starred) && activeCategory === "all" && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mb-6 md:mb-8"
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <Star className="w-4 h-4 text-champagne-gold fill-champagne-gold" />
-                <h2 className="text-sm font-heading font-semibold text-muted-foreground uppercase tracking-wider">
-                  Starred
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                {filteredResources
-                  .filter((r) => r.starred)
-                  .slice(0, 4)
-                  .map((resource, index) => {
-                    const fileStyle = getFileIcon(resource.type);
-                    return (
-                      <motion.div
-                        key={resource.id}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.05 }}
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        className="relative p-4 rounded-2xl border border-champagne-gold/30 bg-gradient-to-br from-champagne-gold/5 to-transparent backdrop-blur-sm hover:shadow-lg hover:shadow-champagne-gold/10 transition-all duration-300 cursor-pointer group"
-                        onClick={() => handlePreview(resource.name)}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", fileStyle.bg)}>
-                            <fileStyle.icon className={cn("w-5 h-5", fileStyle.color)} />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="font-heading font-medium text-sm truncate">{resource.name}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5">{resource.size}</p>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              toggleStar(resource.id);
-                            }}
-                            className="rounded-lg h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <Star className="w-4 h-4 text-champagne-gold fill-champagne-gold" />
-                          </Button>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-              </div>
-            </motion.div>
-          )}
-
-          {/* All Files */}
+          {/* All Files - Combined with Starred indicators */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.3 }}
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <FolderOpen className="w-4 h-4 text-muted-foreground" />
-                <h2 className="text-sm font-heading font-semibold text-muted-foreground uppercase tracking-wider">
+                <h2 className="text-sm font-heading font-semibold text-muted-foreground">
                   {activeCategory === "all" ? "All Files" : categories.find((c) => c.id === activeCategory)?.name}
                 </h2>
-                <Badge variant="secondary" className="rounded-full text-xs">
+                <Badge variant="secondary" className="rounded-full text-xs h-5 px-2">
                   {filteredResources.length}
                 </Badge>
               </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Clock className="w-3.5 h-3.5" />
-                <span>Last modified</span>
-              </div>
+              <span className="text-xs text-muted-foreground flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                Modified
+              </span>
             </div>
 
             <AnimatePresence mode="wait">
@@ -403,7 +312,7 @@ const ArchitectResources = () => {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-h-[60vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-champagne-gold/20 scrollbar-track-transparent"
+                  className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-h-[calc(100vh-280px)] overflow-y-auto pr-1"
                 >
                   {filteredResources.map((resource) => {
                     const fileStyle = getFileIcon(resource.type);
@@ -413,54 +322,35 @@ const ArchitectResources = () => {
                         key={resource.id}
                         variants={itemVariants}
                         layout
-                        whileHover={{ scale: 1.02, y: -3 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
                         onClick={() => setSelectedResource(isSelected ? null : resource.id)}
                         className={cn(
-                          "relative p-5 rounded-2xl border transition-all duration-300 cursor-pointer group overflow-hidden",
+                          "relative p-3 rounded-xl border transition-all duration-200 cursor-pointer group",
                           isSelected
-                            ? "border-champagne-gold/50 bg-gradient-to-br from-champagne-gold/10 to-champagne-gold/5 shadow-lg shadow-champagne-gold/10 ring-2 ring-champagne-gold/20"
-                            : "border-border/50 bg-card/60 backdrop-blur-sm hover:border-champagne-gold/30 hover:shadow-lg"
+                            ? "border-champagne-gold/50 bg-champagne-gold/5 ring-1 ring-champagne-gold/20"
+                            : "border-border/50 bg-card/60 hover:border-champagne-gold/30"
                         )}
                       >
-                        {/* Hover Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-champagne-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
-                        <div className="relative z-10">
-                          {/* Header */}
-                          <div className="flex items-start justify-between mb-4">
-                            <motion.div 
-                              className={cn("w-12 h-12 rounded-xl flex items-center justify-center", fileStyle.bg)}
-                              whileHover={{ rotate: [0, -5, 5, 0] }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <fileStyle.icon className={cn("w-6 h-6", fileStyle.color)} />
-                            </motion.div>
-                            <div className="flex items-center gap-1">
-                              <motion.button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleStar(resource.id);
-                                }}
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="p-1.5 rounded-lg hover:bg-muted/50 transition-colors"
-                              >
-                                {resource.starred ? (
-                                  <Star className="w-4 h-4 text-champagne-gold fill-champagne-gold" />
-                                ) : (
-                                  <StarOff className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                                )}
-                              </motion.button>
+                        <div className="flex flex-col gap-2">
+                          {/* Icon & Star Row */}
+                          <div className="flex items-center justify-between">
+                            <div className={cn("w-9 h-9 rounded-lg flex items-center justify-center", fileStyle.bg)}>
+                              <fileStyle.icon className={cn("w-4 h-4", fileStyle.color)} />
+                            </div>
+                            <div className="flex items-center gap-0.5">
+                              {resource.starred && (
+                                <Star className="w-3 h-3 text-champagne-gold fill-champagne-gold" />
+                              )}
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-8 w-8 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="h-6 w-6 rounded-md opacity-0 group-hover:opacity-100"
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    <MoreVertical className="w-4 h-4" />
+                                    <MoreVertical className="w-3 h-3" />
                                   </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end" className="rounded-xl">
@@ -471,6 +361,10 @@ const ArchitectResources = () => {
                                   <DropdownMenuItem onClick={() => handleDownload(resource.name)}>
                                     <Download className="w-4 h-4 mr-2" />
                                     Download
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem onClick={() => toggleStar(resource.id)}>
+                                    <Star className="w-4 h-4 mr-2" />
+                                    {resource.starred ? "Unstar" : "Star"}
                                   </DropdownMenuItem>
                                   <DropdownMenuItem>
                                     <Share2 className="w-4 h-4 mr-2" />
@@ -485,40 +379,38 @@ const ArchitectResources = () => {
                             </div>
                           </div>
 
-                          {/* Info */}
+                          {/* Name & Meta */}
                           <div>
-                            <p className="font-heading font-semibold text-sm truncate mb-1">{resource.name}</p>
-                            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                              <span>{resource.size}</span>
-                              <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-                              <span>{resource.modified}</span>
-                            </div>
+                            <p className="font-medium text-xs truncate leading-tight">{resource.name}</p>
+                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                              {resource.size} · {resource.modified}
+                            </p>
                           </div>
 
-                          {/* Quick Actions */}
-                          <div className="mt-4 pt-3 border-t border-border/50 flex items-center gap-2">
+                          {/* Compact Actions */}
+                          <div className="flex items-center gap-1.5 pt-1">
                             <Button
                               size="sm"
-                              variant="outline"
-                              className="flex-1 rounded-xl text-xs h-8 hover:bg-champagne-gold/10 hover:border-champagne-gold/40"
+                              variant="ghost"
+                              className="flex-1 rounded-lg text-[10px] h-7 hover:bg-champagne-gold/10 px-2"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handlePreview(resource.name);
                               }}
                             >
-                              <Eye className="w-3 h-3 mr-1.5" />
+                              <Eye className="w-3 h-3 mr-1" />
                               View
                             </Button>
                             <Button
                               size="sm"
-                              className="flex-1 rounded-xl text-xs h-8 bg-champagne-gold hover:bg-champagne-gold/90 text-champagne-gold-foreground"
+                              className="flex-1 rounded-lg text-[10px] h-7 bg-champagne-gold/90 hover:bg-champagne-gold text-champagne-gold-foreground px-2"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleDownload(resource.name);
                               }}
                             >
-                              <Download className="w-3 h-3 mr-1.5" />
-                              Download
+                              <Download className="w-3 h-3 mr-1" />
+                              Get
                             </Button>
                           </div>
                         </div>
@@ -611,17 +503,8 @@ const ArchitectResources = () => {
                                 Preview
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => toggleStar(resource.id)}>
-                                {resource.starred ? (
-                                  <>
-                                    <StarOff className="w-4 h-4 mr-2" />
-                                    Remove Star
-                                  </>
-                                ) : (
-                                  <>
-                                    <Star className="w-4 h-4 mr-2" />
-                                    Add Star
-                                  </>
-                                )}
+                                <Star className="w-4 h-4 mr-2" />
+                                {resource.starred ? "Remove Star" : "Add Star"}
                               </DropdownMenuItem>
                               <DropdownMenuItem>
                                 <Share2 className="w-4 h-4 mr-2" />
