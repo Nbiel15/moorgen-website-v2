@@ -319,9 +319,9 @@ const ArchitectProjectPage = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6">
           {/* Approval Project */}
-          <div className="xl:col-span-2">
+          <div className="w-full">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -515,142 +515,6 @@ const ArchitectProjectPage = () => {
             </motion.div>
           </div>
 
-          {/* Sidebar - Collaboration Hub */}
-          <div className="xl:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-              className="sticky top-6"
-            >
-              <Card className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden">
-                <div className="bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] p-3 sm:p-4">
-                  <h3 className="font-heading text-base sm:text-lg text-white flex items-center gap-2">
-                    <div className="p-1.5 sm:p-2 bg-[#D4AF37]/20 rounded-lg sm:rounded-xl">
-                      <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#D4AF37]" />
-                    </div>
-                    Collaboration Hub
-                  </h3>
-                </div>
-                <CardContent className="p-3 sm:p-4">
-                  <div className="flex items-center justify-end mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 px-2 py-1 bg-emerald-50 rounded-full">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                      <span className="font-body text-xs text-emerald-700">Wayan Live</span>
-                    </div>
-                  </div>
-
-                  <Tabs defaultValue="engineer" className="w-full">
-                    <TabsList className="w-full bg-gray-100 rounded-xl p-1 h-auto">
-                      <TabsTrigger 
-                        value="owner" 
-                        className="flex-1 font-body text-xs sm:text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-[#1A1A1A] py-2"
-                      >
-                        Client
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="engineer" 
-                        className="flex-1 font-body text-xs sm:text-sm rounded-lg data-[state=active]:bg-white data-[state=active]:text-[#1A1A1A] py-2"
-                      >
-                        Engineer
-                      </TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="owner" className="mt-3 sm:mt-4">
-                      <ScrollArea className="h-48 sm:h-64 pr-2">
-                        <div className="space-y-2 sm:space-y-3">
-                          {ownerMessages.map((msg) => (
-                            <motion.div
-                              key={msg.id}
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
-                            >
-                              <div
-                                className={`max-w-[85%] rounded-xl sm:rounded-2xl p-2.5 sm:p-3 ${
-                                  msg.sender === "You"
-                                    ? "bg-white border-2 border-[#D4AF37]/50 shadow-sm"
-                                    : "bg-gray-100"
-                                }`}
-                              >
-                                <p className="font-body text-[10px] sm:text-xs text-muted-foreground mb-1">
-                                  {msg.sender}
-                                </p>
-                                <p className="font-body text-xs sm:text-sm text-[#1A1A1A]">
-                                  {msg.message}
-                                </p>
-                                <p className="font-body text-[10px] sm:text-xs text-gray-400 mt-1 text-right">
-                                  {msg.time}
-                                </p>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </ScrollArea>
-                    </TabsContent>
-
-                    <TabsContent value="engineer" className="mt-3 sm:mt-4">
-                      <ScrollArea className="h-48 sm:h-64 pr-2">
-                        <div className="space-y-2 sm:space-y-3">
-                          {engineerMessages.map((msg) => (
-                            <motion.div
-                              key={msg.id}
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}
-                            >
-                              <div
-                                className={`max-w-[85%] rounded-xl sm:rounded-2xl p-2.5 sm:p-3 ${
-                                  msg.isEngineer
-                                    ? "bg-[#1A1A1A] text-white shadow-lg"
-                                    : "bg-white border-2 border-[#D4AF37]/50 shadow-sm"
-                                }`}
-                              >
-                                <p className={`font-body text-[10px] sm:text-xs mb-1 ${
-                                  msg.isEngineer ? "text-[#D4AF37]" : "text-muted-foreground"
-                                }`}>
-                                  {msg.sender} {msg.isEngineer && "• Live on Site"}
-                                </p>
-                                <p className={`font-body text-xs sm:text-sm ${
-                                  msg.isEngineer ? "text-white" : "text-[#1A1A1A]"
-                                }`}>
-                                  {msg.message}
-                                </p>
-                                <p className={`font-body text-[10px] sm:text-xs mt-1 text-right ${
-                                  msg.isEngineer ? "text-gray-500" : "text-gray-400"
-                                }`}>
-                                  {msg.time}
-                                </p>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </ScrollArea>
-                    </TabsContent>
-                  </Tabs>
-
-                  {/* Chat Input */}
-                  <div className="mt-3 sm:mt-4 flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="Type a message..."
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      className="flex-1 font-body text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-[#D4AF37] bg-white"
-                    />
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button
-                        size="icon"
-                        className="bg-gradient-to-r from-[#D4AF37] to-[#C4A030] hover:from-[#C4A030] hover:to-[#B8942A] text-[#1A1A1A] rounded-xl shadow-lg shadow-[#D4AF37]/25 h-9 w-9 sm:h-10 sm:w-10"
-                      >
-                        <Send className="w-3 h-3 sm:w-4 sm:h-4" />
-                      </Button>
-                    </motion.div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
         </div>
 
         {/* Footer - Technical Vault */}
