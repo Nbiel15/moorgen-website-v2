@@ -547,13 +547,13 @@ const ArchitectDashboard = () => {
                             whileHover={{ scale: 1.01 }}
                             className={`p-3 sm:p-4 ${
                               message.sender === "architect"
-                                ? "bg-gradient-to-br from-moorgen-black to-charcoal text-white rounded-2xl rounded-tr-md"
+                                ? "bg-champagne-gold/20 text-moorgen-black rounded-2xl rounded-tr-md border border-champagne-gold/20"
                                 : "bg-charcoal/[0.04] text-moorgen-black rounded-2xl rounded-tl-md border border-charcoal/5"
                             }`}
                           >
                             <p className="text-xs sm:text-sm font-heading leading-relaxed">{message.text}</p>
                             <p className={`text-[10px] sm:text-xs mt-1.5 sm:mt-2 font-heading ${
-                              message.sender === "architect" ? "text-white/40" : "text-charcoal/30"
+                              message.sender === "architect" ? "text-charcoal/40" : "text-charcoal/30"
                             }`}>
                               {message.timestamp}
                             </p>
