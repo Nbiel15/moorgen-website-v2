@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import DashboardLayout from "@/components/layout/DashboardLayout";
+import ArchitectLayout from "@/components/layout/ArchitectLayout";
 import { 
   Briefcase, 
   ClipboardCheck, 
@@ -169,7 +169,7 @@ const ArchitectDashboard = () => {
   const currentMessages = chatTab === "owner" ? ownerMessages : engineerMessages;
 
   return (
-    <DashboardLayout>
+    <ArchitectLayout>
       <div className="p-6 lg:p-8 space-y-8 font-heading">
         {/* Header */}
         <motion.div
@@ -462,7 +462,7 @@ const ArchitectDashboard = () => {
           </div>
         </motion.div>
       </div>
-    </DashboardLayout>
+    </ArchitectLayout>
   );
 };
 
