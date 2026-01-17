@@ -5,12 +5,17 @@ import { motion, AnimatePresence, useSpring } from "framer-motion";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { cn } from "@/lib/utils";
 
+// Room images
+import livingRoomImg from "@/assets/living-room.jpg";
+import kitchenImg from "@/assets/kitchen.jpg";
+import bathroomImg from "@/assets/bathroom.jpg";
+
 const rooms = [
-  { id: "living", label: "Living Room" },
-  { id: "kitchen", label: "Kitchen" },
-  { id: "master", label: "Master Suite" },
-  { id: "garden", label: "Garden" },
-  { id: "pool", label: "Pool" },
+  { id: "living", label: "Living Room", image: livingRoomImg },
+  { id: "kitchen", label: "Kitchen", image: kitchenImg },
+  { id: "master", label: "Master Suite", image: bathroomImg },
+  { id: "garden", label: "Garden", image: livingRoomImg },
+  { id: "pool", label: "Pool", image: kitchenImg },
 ];
 
 const scenes = [
@@ -134,6 +139,127 @@ const AdvancedLightingControl = () => {
       </motion.header>
 
       <main className="relative mx-auto w-full max-w-7xl px-4 py-6 md:px-8 pb-24 lg:pb-8">
+        {/* Live Room Preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="relative mb-6 rounded-3xl overflow-hidden"
+        >
+          <div className="relative w-full aspect-[21/9] md:aspect-[3/1] lg:aspect-[4/1]">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeRoom}
+                src={rooms.find(r => r.id === activeRoom)?.image}
+                alt={rooms.find(r => r.id === activeRoom)?.label}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
+            
+            {/* Brightness Overlay */}
+            <motion.div
+              animate={{
+                backgroundColor: isPowered 
+                  ? `rgba(0, 0, 0, ${(100 - brightness) / 100 * 0.7})` 
+                  : "rgba(0, 0, 0, 0.85)"
+              }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0"
+            />
+            
+            {/* Color Temperature Overlay */}
+            <motion.div
+              animate={{
+                background: isPowered
+                  ? colorTemp === "Warm" 
+                    ? "linear-gradient(180deg, rgba(255,180,100,0.15) 0%, transparent 100%)"
+                    : colorTemp === "Cool"
+                    ? "linear-gradient(180deg, rgba(150,200,255,0.15) 0%, transparent 100%)"
+                    : "transparent"
+                  : "transparent"
+              }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0"
+            />
+            
+            {/* Room Info Overlay */}
+            <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
+              <div className="flex items-start justify-between">
+                <div>
+                  <motion.p
+                    key={`label-${activeRoom}`}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-white/60 text-xs md:text-sm font-body tracking-[0.15em] uppercase"
+                  >
+                    Live Preview
+                  </motion.p>
+                  <motion.h2
+                    key={`title-${activeRoom}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="font-heading text-xl md:text-2xl lg:text-3xl text-white mt-1"
+                  >
+                    {rooms.find(r => r.id === activeRoom)?.label}
+                  </motion.h2>
+                </div>
+                
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className={cn(
+                    "px-3 py-1.5 rounded-full backdrop-blur-sm text-xs font-body tracking-wide",
+                    isPowered ? "bg-accent/20 text-accent" : "bg-white/10 text-white/60"
+                  )}>
+                    {isPowered ? `${brightness}%` : "Off"}
+                  </div>
+                  <div className={cn(
+                    "px-3 py-1.5 rounded-full backdrop-blur-sm text-xs font-body tracking-wide capitalize",
+                    "bg-white/10 text-white/80"
+                  )}>
+                    {activeScene}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-end justify-between">
+                <div className="flex gap-2">
+                  {rooms.map((room) => (
+                    <button
+                      key={room.id}
+                      onClick={() => setActiveRoom(room.id)}
+                      className={cn(
+                        "w-12 h-8 md:w-16 md:h-10 rounded-lg overflow-hidden border-2 transition-all duration-300",
+                        activeRoom === room.id
+                          ? "border-accent shadow-lg shadow-accent/30 scale-110"
+                          : "border-white/20 opacity-60 hover:opacity-100 hover:border-white/40"
+                      )}
+                    >
+                      <img
+                        src={room.image}
+                        alt={room.label}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+                
+                <motion.div
+                  animate={{ scale: isPowered ? [1, 1.2, 1] : 1 }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className={cn(
+                    "w-3 h-3 rounded-full",
+                    isPowered ? "bg-green-400 shadow-lg shadow-green-400/50" : "bg-red-400"
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Room Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
