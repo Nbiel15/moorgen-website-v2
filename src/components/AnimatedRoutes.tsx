@@ -4,6 +4,7 @@ import Index from "@/pages/Index";
 import LifestyleDashboard from "@/pages/LifestyleDashboard";
 import Controls from "@/pages/Controls";
 import AdvancedDeviceControl from "@/pages/AdvancedDeviceControl";
+import AdvancedLightingControl from "@/pages/AdvancedLightingControl";
 import ProjectJourney from "@/pages/ProjectJourney";
 import EngineerChat from "@/pages/EngineerChat";
 import ArchitectDashboard from "@/pages/ArchitectDashboard";
@@ -25,6 +26,7 @@ const AnimatedRoutes = () => {
         <Route path="/lifestyle-dashboard" element={<PageTransition><LifestyleDashboard /></PageTransition>} />
         <Route path="/controls" element={<PageTransition><Controls /></PageTransition>} />
         <Route path="/advanced-control" element={<PageTransition><AdvancedDeviceControl /></PageTransition>} />
+        <Route path="/lighting-control" element={<PageTransition><AdvancedLightingControl /></PageTransition>} />
         <Route path="/progress" element={<PageTransition><ProjectJourney /></PageTransition>} />
         <Route path="/engineer-chat" element={<PageTransition><EngineerChat /></PageTransition>} />
         <Route path="/architect-dashboard" element={<PageTransition><ArchitectDashboard /></PageTransition>} />
