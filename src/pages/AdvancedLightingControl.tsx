@@ -334,96 +334,87 @@ const AdvancedLightingControl = () => {
               </AnimatePresence>
             </motion.button>
 
-            {/* Brightness Dial */}
+            {/* Live Room Preview Circle */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
               className={cn(
-                "relative w-64 h-64 md:w-80 md:h-80 transition-all duration-500 rounded-full",
+                "relative w-64 h-64 md:w-80 md:h-80 transition-all duration-500 rounded-full overflow-hidden",
                 !isPowered && "opacity-50"
               )}
             >
-              {/* Dynamic Background Gradient */}
-              <div
-                className={cn(
-                  "absolute -inset-8 rounded-full bg-gradient-to-br transition-all duration-1000 blur-2xl opacity-50",
-                  getBrightnessGradient()
-                )}
+              {/* Room Image */}
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeRoom}
+                  src={rooms.find(r => r.id === activeRoom)?.image}
+                  alt={rooms.find(r => r.id === activeRoom)?.label}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </AnimatePresence>
+
+              {/* Brightness Overlay */}
+              <motion.div
+                animate={{
+                  backgroundColor: isPowered 
+                    ? `rgba(0, 0, 0, ${(100 - brightness) / 100 * 0.8})` 
+                    : "rgba(0, 0, 0, 0.9)"
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0"
               />
 
-              {/* Background Track - 270 degree arc */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="44"
-                  fill="none"
-                  stroke="hsl(0, 0%, 90%)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeDasharray="207.35 276.46"
-                  transform="rotate(-225, 50, 50)"
-                />
-              </svg>
-
-              {/* Active Arc */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="44"
-                  fill="none"
-                  stroke={isPowered ? "url(#goldGradient)" : "hsl(0, 0%, 70%)"}
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  initial={{ strokeDasharray: "0 276.46" }}
-                  animate={{ strokeDasharray: `${brightnessPercentage / 100 * 207.35} 276.46` }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  transform="rotate(-225, 50, 50)"
-                />
-                <defs>
-                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="hsl(43, 76%, 42%)" />
-                    <stop offset="50%" stopColor="hsl(43, 76%, 52%)" />
-                    <stop offset="100%" stopColor="hsl(43, 76%, 62%)" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              {/* Dial Handle */}
+              {/* Color Temperature Overlay */}
               <motion.div
-                className="absolute inset-4 rounded-full bg-card border border-border flex items-center justify-center"
-                style={{ rotate: dialRotationSpring }}
-              >
+                animate={{
+                  background: isPowered
+                    ? colorTemp === "Warm" 
+                      ? "radial-gradient(circle, rgba(255,180,100,0.2) 0%, transparent 70%)"
+                      : colorTemp === "Cool"
+                      ? "radial-gradient(circle, rgba(150,200,255,0.2) 0%, transparent 70%)"
+                      : "transparent"
+                    : "transparent"
+                }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              />
+
+              {/* Circular Border Ring */}
+              <div className="absolute inset-0 rounded-full border-4 border-accent/30" />
+              
+              {/* Animated Glow Ring */}
+              {isPowered && (
                 <motion.div
                   animate={{
-                    scale: isPowered ? [1, 1.2, 1] : 1,
-                    boxShadow: isPowered
-                      ? ["0 0 10px rgba(212,175,55,0.5)", "0 0 20px rgba(212,175,55,0.8)", "0 0 10px rgba(212,175,55,0.5)"]
-                      : "none",
+                    boxShadow: [
+                      "inset 0 0 30px rgba(212,175,55,0.2)",
+                      "inset 0 0 50px rgba(212,175,55,0.4)",
+                      "inset 0 0 30px rgba(212,175,55,0.2)"
+                    ]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className={cn(
-                    "absolute top-4 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full transition-all duration-300",
-                    isPowered ? "bg-accent" : "bg-muted-foreground/50"
-                  )}
+                  className="absolute inset-0 rounded-full"
                 />
-              </motion.div>
+              )}
 
-              {/* Center Content */}
-              <div className="absolute inset-8 rounded-full bg-card flex flex-col items-center justify-center shadow-inner">
+              {/* Center Content Overlay */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <motion.button
-                  whileHover={{ scale: 1.2, backgroundColor: "hsla(43, 76%, 52%, 0.1)" }}
+                  whileHover={{ scale: 1.2, backgroundColor: "rgba(255,255,255,0.1)" }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setBrightness(prev => Math.min(maxBrightness, prev + 5))}
                   className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center transition-all mb-1",
-                    isPowered ? "text-muted-foreground hover:text-accent cursor-pointer" : "text-muted-foreground/30 cursor-not-allowed"
+                    "w-10 h-10 rounded-full flex items-center justify-center transition-all mb-2",
+                    isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed"
                   )}
                   disabled={!isPowered || brightness >= maxBrightness}
                 >
-                  <ChevronUp className="w-6 h-6" strokeWidth={1.5} />
+                  <ChevronUp className="w-6 h-6" strokeWidth={2} />
                 </motion.button>
 
                 <div className="flex items-baseline gap-1">
@@ -431,60 +422,45 @@ const AdvancedLightingControl = () => {
                     key={displayBrightness}
                     initial={{ y: brightnessAnimating ? -10 : 0, opacity: brightnessAnimating ? 0 : 1 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className={cn(
-                      "font-heading text-5xl md:text-6xl transition-colors duration-300",
-                      isPowered ? "text-foreground" : "text-muted-foreground"
-                    )}
+                    className="font-heading text-5xl md:text-6xl text-white drop-shadow-lg"
                   >
                     {displayBrightness}
                   </motion.span>
-                  <span className={cn(
-                    "text-xl font-heading",
-                    isPowered ? "text-muted-foreground" : "text-muted-foreground/50"
-                  )}>%</span>
+                  <span className="text-xl font-heading text-white/70">%</span>
                 </div>
 
                 <motion.span
                   animate={{ opacity: isPowered ? 1 : 0.5 }}
-                  className={cn(
-                    "text-[10px] font-body tracking-[0.2em] uppercase mt-1 transition-colors duration-300",
-                    isPowered ? "text-accent" : "text-muted-foreground/50"
-                  )}
+                  className="text-[10px] font-body tracking-[0.2em] uppercase mt-1 text-accent drop-shadow-lg"
                 >
                   {isPowered ? (brightness < 30 ? "Dim" : brightness > 70 ? "Bright" : "Ambient") : "Off"}
                 </motion.span>
 
                 <motion.button
-                  whileHover={{ scale: 1.2, backgroundColor: "hsla(43, 76%, 52%, 0.1)" }}
+                  whileHover={{ scale: 1.2, backgroundColor: "rgba(255,255,255,0.1)" }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setBrightness(prev => Math.max(minBrightness, prev - 5))}
                   className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center transition-all mt-1",
-                    isPowered ? "text-muted-foreground hover:text-accent cursor-pointer" : "text-muted-foreground/30 cursor-not-allowed"
+                    "w-10 h-10 rounded-full flex items-center justify-center transition-all mt-2",
+                    isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed"
                   )}
                   disabled={!isPowered || brightness <= minBrightness}
                 >
-                  <ChevronDown className="w-6 h-6" strokeWidth={1.5} />
+                  <ChevronDown className="w-6 h-6" strokeWidth={2} />
                 </motion.button>
               </div>
 
-              {/* Labels */}
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute bottom-2 left-2 text-xs text-muted-foreground font-body"
-              >
-                {minBrightness}%
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute bottom-2 right-2 text-xs text-muted-foreground font-body"
-              >
-                {maxBrightness}%
-              </motion.span>
+              {/* Room Label */}
+              <div className="absolute bottom-4 left-0 right-0 text-center">
+                <motion.p
+                  key={activeRoom}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-xs font-body tracking-[0.15em] uppercase text-white/60"
+                >
+                  {rooms.find(r => r.id === activeRoom)?.label}
+                </motion.p>
+              </div>
             </motion.div>
 
             {/* Brightness Slider */}
