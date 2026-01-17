@@ -49,6 +49,8 @@ const AdvancedLightingControl = () => {
   const [colorTemp, setColorTemp] = useState("Warm");
   const [isLoaded, setIsLoaded] = useState(false);
   const [brightnessAnimating, setBrightnessAnimating] = useState(false);
+  const [showBrightnessText, setShowBrightnessText] = useState(false);
+  const hideTextTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const minBrightness = 0;
   const maxBrightness = 100;
   const brightnessRange = maxBrightness - minBrightness;
@@ -313,24 +315,36 @@ const AdvancedLightingControl = () => {
 
               {/* Center Content Overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="flex items-baseline gap-1">
-                  <motion.span key={displayBrightness} initial={{
-                  y: brightnessAnimating ? -10 : 0,
-                  opacity: brightnessAnimating ? 0 : 1
-                }} animate={{
-                  y: 0,
-                  opacity: 1
-                }} className="font-heading text-5xl md:text-6xl text-white drop-shadow-lg">
-                    {displayBrightness}
-                  </motion.span>
-                  <span className="text-xl font-heading text-white/70">%</span>
-                </div>
+                <AnimatePresence>
+                  {showBrightnessText && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex flex-col items-center"
+                    >
+                      <div className="flex items-baseline gap-1">
+                        <motion.span key={displayBrightness} initial={{
+                          y: brightnessAnimating ? -10 : 0,
+                          opacity: brightnessAnimating ? 0 : 1
+                        }} animate={{
+                          y: 0,
+                          opacity: 1
+                        }} className="font-heading text-5xl md:text-6xl text-white drop-shadow-lg">
+                          {displayBrightness}
+                        </motion.span>
+                        <span className="text-xl font-heading text-white/70">%</span>
+                      </div>
 
-                <motion.span animate={{
-                opacity: isPowered ? 1 : 0.5
-              }} className="text-[10px] font-body tracking-[0.2em] uppercase mt-1 text-accent drop-shadow-lg">
-                  {isPowered ? brightness < 30 ? "Dim" : brightness > 70 ? "Bright" : "Ambient" : "Off"}
-                </motion.span>
+                      <motion.span animate={{
+                        opacity: isPowered ? 1 : 0.5
+                      }} className="text-[10px] font-body tracking-[0.2em] uppercase mt-1 text-accent drop-shadow-lg">
+                        {isPowered ? brightness < 30 ? "Dim" : brightness > 70 ? "Bright" : "Ambient" : "Off"}
+                      </motion.span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Status Badge - Bottom Right */}
@@ -355,7 +369,16 @@ const AdvancedLightingControl = () => {
                 <span>{minBrightness}%</span>
                 <span>{maxBrightness}%</span>
               </div>
-              <input type="range" min={minBrightness} max={maxBrightness} step={1} value={brightness} onChange={e => setBrightness(Number(e.target.value))} disabled={!isPowered} className={cn("w-full h-1 bg-border appearance-none", "[&::-webkit-slider-runnable-track]:bg-border", "[&::-webkit-slider-thumb]:appearance-none", "[&::-webkit-slider-thumb]:w-5", "[&::-webkit-slider-thumb]:h-5", "[&::-webkit-slider-thumb]:transition-all", "[&::-webkit-slider-thumb]:duration-200", "[&::-webkit-slider-thumb]:hover:scale-125", isPowered ? "[&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-[0_0_15px_rgba(212,175,55,0.6)] [&::-webkit-slider-thumb]:cursor-pointer cursor-pointer" : "[&::-webkit-slider-thumb]:bg-muted-foreground/50 cursor-not-allowed")} />
+              <input type="range" min={minBrightness} max={maxBrightness} step={1} value={brightness} onChange={e => {
+                setBrightness(Number(e.target.value));
+                setShowBrightnessText(true);
+                if (hideTextTimeoutRef.current) {
+                  clearTimeout(hideTextTimeoutRef.current);
+                }
+                hideTextTimeoutRef.current = setTimeout(() => {
+                  setShowBrightnessText(false);
+                }, 1500);
+              }} disabled={!isPowered} className={cn("w-full h-1 bg-border appearance-none", "[&::-webkit-slider-runnable-track]:bg-border", "[&::-webkit-slider-thumb]:appearance-none", "[&::-webkit-slider-thumb]:w-5", "[&::-webkit-slider-thumb]:h-5", "[&::-webkit-slider-thumb]:transition-all", "[&::-webkit-slider-thumb]:duration-200", "[&::-webkit-slider-thumb]:hover:scale-125", isPowered ? "[&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-[0_0_15px_rgba(212,175,55,0.6)] [&::-webkit-slider-thumb]:cursor-pointer cursor-pointer" : "[&::-webkit-slider-thumb]:bg-muted-foreground/50 cursor-not-allowed")} />
             </motion.div>
 
             {/* Brand Badge */}
