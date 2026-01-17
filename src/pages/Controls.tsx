@@ -50,6 +50,7 @@ const Controls = () => {
     icon: SunDim,
     isOn: true,
     deviceCount: 3,
+    hasNavigation: true,
     location: "Living Room",
     intensity: 75
   }, {
@@ -102,7 +103,11 @@ const Controls = () => {
   };
   const handleDeviceClick = (device: Device) => {
     if (device.hasNavigation) {
-      navigate("/advanced-control");
+      if (device.id === "dimmer") {
+        navigate("/lighting-control");
+      } else {
+        navigate("/advanced-control");
+      }
     }
   };
   const activeDevices = devices.filter(d => d.isOn).length;
