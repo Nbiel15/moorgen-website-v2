@@ -245,9 +245,9 @@ const AdvancedLightingControl = () => {
               </AnimatePresence>
             </motion.button>
 
-            {/* Live Room Preview Circle */}
+            {/* Live Room Preview Card */}
             <motion.div initial={{
-            scale: 0.8,
+            scale: 0.95,
             opacity: 0
           }} animate={{
             scale: 1,
@@ -256,47 +256,60 @@ const AdvancedLightingControl = () => {
             delay: 0.6,
             type: "spring",
             stiffness: 100
-          }} className={cn("relative w-64 h-64 md:w-80 md:h-80 transition-all duration-500 rounded-full overflow-hidden", !isPowered && "opacity-50")}>
+          }} className={cn("relative w-full aspect-[4/3] max-w-md transition-all duration-500 overflow-hidden border border-border", !isPowered && "opacity-50")}>
               {/* Room Image */}
               <AnimatePresence mode="wait">
                 <motion.img key={activeRoom} src={rooms.find(r => r.id === activeRoom)?.image} alt={rooms.find(r => r.id === activeRoom)?.label} initial={{
                 opacity: 0,
-                scale: 1.1
+                scale: 1.05
               }} animate={{
                 opacity: 1,
                 scale: 1
               }} exit={{
                 opacity: 0,
-                scale: 0.9
+                scale: 0.95
               }} transition={{
-                duration: 0.5
+                duration: 0.4
               }} className="absolute inset-0 w-full h-full object-cover" />
               </AnimatePresence>
 
               {/* Brightness Overlay */}
               <motion.div animate={{
-              backgroundColor: isPowered ? `rgba(0, 0, 0, ${(100 - brightness) / 100 * 0.8})` : "rgba(0, 0, 0, 0.9)"
+              backgroundColor: isPowered ? `rgba(0, 0, 0, ${(100 - brightness) / 100 * 0.85})` : "rgba(0, 0, 0, 0.9)"
             }} transition={{
               duration: 0.3
             }} className="absolute inset-0" />
 
               {/* Color Temperature Overlay */}
               <motion.div animate={{
-              background: isPowered ? colorTemp === "Warm" ? "radial-gradient(circle, rgba(255,180,100,0.2) 0%, transparent 70%)" : colorTemp === "Cool" ? "radial-gradient(circle, rgba(150,200,255,0.2) 0%, transparent 70%)" : "transparent" : "transparent"
+              background: isPowered ? colorTemp === "Warm" ? "linear-gradient(135deg, rgba(255,180,100,0.25) 0%, transparent 60%)" : colorTemp === "Cool" ? "linear-gradient(135deg, rgba(150,200,255,0.25) 0%, transparent 60%)" : "transparent" : "transparent"
             }} transition={{
               duration: 0.5
             }} className="absolute inset-0" />
 
-              {/* Circular Border Ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-accent/30" />
+              {/* Edge Highlight */}
+              <div className="absolute inset-0 border-l-2 border-accent/40" />
               
-              {/* Animated Glow Ring */}
+              {/* Animated Accent Line */}
               {isPowered && <motion.div animate={{
-              boxShadow: ["inset 0 0 30px rgba(212,175,55,0.2)", "inset 0 0 50px rgba(212,175,55,0.4)", "inset 0 0 30px rgba(212,175,55,0.2)"]
+              opacity: [0.4, 0.8, 0.4]
             }} transition={{
               duration: 2,
               repeat: Infinity
-            }} className="absolute inset-0 rounded-full" />}
+            }} className="absolute left-0 top-0 bottom-0 w-1 bg-accent" />}
+
+              {/* Room Label - Top Left */}
+              <div className="absolute top-4 left-4">
+                <motion.p key={activeRoom} initial={{
+                opacity: 0,
+                x: -10
+              }} animate={{
+                opacity: 1,
+                x: 0
+              }} className="text-xs font-body tracking-[0.15em] uppercase text-white/70 bg-black/30 px-3 py-1.5 backdrop-blur-sm">
+                  {rooms.find(r => r.id === activeRoom)?.label}
+                </motion.p>
+              </div>
 
               {/* Center Content Overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -305,7 +318,7 @@ const AdvancedLightingControl = () => {
                 backgroundColor: "rgba(255,255,255,0.1)"
               }} whileTap={{
                 scale: 0.9
-              }} onClick={() => setBrightness(prev => Math.min(maxBrightness, prev + 5))} className={cn("w-10 h-10 rounded-full flex items-center justify-center transition-all mb-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness >= maxBrightness}>
+              }} onClick={() => setBrightness(prev => Math.min(maxBrightness, prev + 5))} className={cn("w-10 h-10 flex items-center justify-center transition-all mb-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness >= maxBrightness}>
                   <ChevronUp className="w-6 h-6" strokeWidth={2} />
                 </motion.button>
 
@@ -333,22 +346,16 @@ const AdvancedLightingControl = () => {
                 backgroundColor: "rgba(255,255,255,0.1)"
               }} whileTap={{
                 scale: 0.9
-              }} onClick={() => setBrightness(prev => Math.max(minBrightness, prev - 5))} className={cn("w-10 h-10 rounded-full flex items-center justify-center transition-all mt-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness <= minBrightness}>
+              }} onClick={() => setBrightness(prev => Math.max(minBrightness, prev - 5))} className={cn("w-10 h-10 flex items-center justify-center transition-all mt-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness <= minBrightness}>
                   <ChevronDown className="w-6 h-6" strokeWidth={2} />
                 </motion.button>
               </div>
 
-              {/* Room Label */}
-              <div className="absolute bottom-4 left-0 right-0 text-center">
-                <motion.p key={activeRoom} initial={{
-                opacity: 0,
-                y: 5
-              }} animate={{
-                opacity: 1,
-                y: 0
-              }} className="text-xs font-body tracking-[0.15em] uppercase text-white/60">
-                  {rooms.find(r => r.id === activeRoom)?.label}
-                </motion.p>
+              {/* Status Badge - Bottom Right */}
+              <div className="absolute bottom-4 right-4">
+                <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] font-body tracking-[0.1em] uppercase text-accent bg-black/40 px-3 py-1.5 backdrop-blur-sm border-l border-accent/50">
+                  {activeScene}
+                </motion.div>
               </div>
             </motion.div>
 
@@ -361,12 +368,12 @@ const AdvancedLightingControl = () => {
             y: 0
           }} transition={{
             delay: 0.7
-          }} className={cn("w-64 md:w-80 mt-10 transition-opacity duration-300", !isPowered && "opacity-50")}>
+          }} className={cn("w-full max-w-md mt-8 transition-opacity duration-300", !isPowered && "opacity-50")}>
               <div className="flex justify-between text-xs text-muted-foreground mb-2 font-body">
                 <span>{minBrightness}%</span>
                 <span>{maxBrightness}%</span>
               </div>
-              <input type="range" min={minBrightness} max={maxBrightness} step={1} value={brightness} onChange={e => setBrightness(Number(e.target.value))} disabled={!isPowered} className={cn("w-full h-1 bg-border rounded-full appearance-none", "[&::-webkit-slider-runnable-track]:bg-border", "[&::-webkit-slider-runnable-track]:rounded-full", "[&::-webkit-slider-thumb]:appearance-none", "[&::-webkit-slider-thumb]:w-5", "[&::-webkit-slider-thumb]:h-5", "[&::-webkit-slider-thumb]:rounded-full", "[&::-webkit-slider-thumb]:transition-all", "[&::-webkit-slider-thumb]:duration-200", "[&::-webkit-slider-thumb]:hover:scale-125", isPowered ? "[&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-[0_0_15px_rgba(212,175,55,0.6)] [&::-webkit-slider-thumb]:cursor-pointer cursor-pointer" : "[&::-webkit-slider-thumb]:bg-muted-foreground/50 cursor-not-allowed")} />
+              <input type="range" min={minBrightness} max={maxBrightness} step={1} value={brightness} onChange={e => setBrightness(Number(e.target.value))} disabled={!isPowered} className={cn("w-full h-1 bg-border appearance-none", "[&::-webkit-slider-runnable-track]:bg-border", "[&::-webkit-slider-thumb]:appearance-none", "[&::-webkit-slider-thumb]:w-5", "[&::-webkit-slider-thumb]:h-5", "[&::-webkit-slider-thumb]:transition-all", "[&::-webkit-slider-thumb]:duration-200", "[&::-webkit-slider-thumb]:hover:scale-125", isPowered ? "[&::-webkit-slider-thumb]:bg-accent [&::-webkit-slider-thumb]:shadow-[0_0_15px_rgba(212,175,55,0.6)] [&::-webkit-slider-thumb]:cursor-pointer cursor-pointer" : "[&::-webkit-slider-thumb]:bg-muted-foreground/50 cursor-not-allowed")} />
             </motion.div>
 
             {/* Brand Badge */}
@@ -376,7 +383,7 @@ const AdvancedLightingControl = () => {
             opacity: 1
           }} transition={{
             delay: 0.9
-          }} className="mt-10 text-center">
+          }} className="mt-8 text-center">
               <p className="text-[10px] text-accent tracking-[0.2em] uppercase font-body animate-shimmer">
                 Moorgen Lumière Technology
               </p>
