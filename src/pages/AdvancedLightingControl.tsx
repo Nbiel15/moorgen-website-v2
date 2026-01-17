@@ -313,15 +313,6 @@ const AdvancedLightingControl = () => {
 
               {/* Center Content Overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <motion.button whileHover={{
-                scale: 1.2,
-                backgroundColor: "rgba(255,255,255,0.1)"
-              }} whileTap={{
-                scale: 0.9
-              }} onClick={() => setBrightness(prev => Math.min(maxBrightness, prev + 5))} className={cn("w-10 h-10 flex items-center justify-center transition-all mb-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness >= maxBrightness}>
-                  <ChevronUp className="w-6 h-6" strokeWidth={2} />
-                </motion.button>
-
                 <div className="flex items-baseline gap-1">
                   <motion.span key={displayBrightness} initial={{
                   y: brightnessAnimating ? -10 : 0,
@@ -340,15 +331,6 @@ const AdvancedLightingControl = () => {
               }} className="text-[10px] font-body tracking-[0.2em] uppercase mt-1 text-accent drop-shadow-lg">
                   {isPowered ? brightness < 30 ? "Dim" : brightness > 70 ? "Bright" : "Ambient" : "Off"}
                 </motion.span>
-
-                <motion.button whileHover={{
-                scale: 1.2,
-                backgroundColor: "rgba(255,255,255,0.1)"
-              }} whileTap={{
-                scale: 0.9
-              }} onClick={() => setBrightness(prev => Math.max(minBrightness, prev - 5))} className={cn("w-10 h-10 flex items-center justify-center transition-all mt-2", isPowered ? "text-white/80 hover:text-accent cursor-pointer" : "text-white/30 cursor-not-allowed")} disabled={!isPowered || brightness <= minBrightness}>
-                  <ChevronDown className="w-6 h-6" strokeWidth={2} />
-                </motion.button>
               </div>
 
               {/* Status Badge - Bottom Right */}
