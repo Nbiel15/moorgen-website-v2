@@ -140,7 +140,7 @@ const AdvancedLightingControl = () => {
           scale: 0.95
         }} onClick={() => navigate("/controls")} className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group mb-4">
             <ArrowLeft className="w-5 h-5" />
-            <span className="font-body text-sm tracking-[0.1em]">Back to Controls</span>
+            
           </motion.button>
           <motion.p initial={{
           opacity: 0
@@ -176,39 +176,7 @@ const AdvancedLightingControl = () => {
       }} transition={{
         delay: 0.35
       }} className="relative mb-6 rounded-3xl overflow-hidden">
-          <div className="relative w-full aspect-[21/9] md:aspect-[3/1] lg:aspect-[4/1]">
-            <AnimatePresence mode="wait">
-              <motion.img key={activeRoom} src={rooms.find(r => r.id === activeRoom)?.image} alt={rooms.find(r => r.id === activeRoom)?.label} initial={{
-              opacity: 0,
-              scale: 1.05
-            }} animate={{
-              opacity: 1,
-              scale: 1
-            }} exit={{
-              opacity: 0,
-              scale: 0.95
-            }} transition={{
-              duration: 0.5
-            }} className="absolute inset-0 w-full h-full object-cover" />
-            </AnimatePresence>
-            
-            {/* Brightness Overlay */}
-            <motion.div animate={{
-            backgroundColor: isPowered ? `rgba(0, 0, 0, ${(100 - brightness) / 100 * 0.7})` : "rgba(0, 0, 0, 0.85)"
-          }} transition={{
-            duration: 0.3
-          }} className="absolute inset-0" />
-            
-            {/* Color Temperature Overlay */}
-            <motion.div animate={{
-            background: isPowered ? colorTemp === "Warm" ? "linear-gradient(180deg, rgba(255,180,100,0.15) 0%, transparent 100%)" : colorTemp === "Cool" ? "linear-gradient(180deg, rgba(150,200,255,0.15) 0%, transparent 100%)" : "transparent" : "transparent"
-          }} transition={{
-            duration: 0.5
-          }} className="absolute inset-0" />
-            
-            {/* Room Info Overlay */}
-            
-          </div>
+          
         </motion.div>
 
         {/* Room Tabs */}
