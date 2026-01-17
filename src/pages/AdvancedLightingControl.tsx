@@ -18,17 +18,9 @@ const rooms = [{
   label: "Kitchen",
   image: kitchenImg
 }, {
-  id: "master",
-  label: "Master Suite",
+  id: "bathroom",
+  label: "Bathroom",
   image: bathroomImg
-}, {
-  id: "garden",
-  label: "Garden",
-  image: livingRoomImg
-}, {
-  id: "pool",
-  label: "Pool",
-  image: kitchenImg
 }];
 const scenes = [{
   id: "dinner",
