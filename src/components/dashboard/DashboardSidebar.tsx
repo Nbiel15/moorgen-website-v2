@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/lifestyle-dashboard" },
-  { icon: Sliders, label: "Controls", path: "/controls" },
+  // { icon: Sliders, label: "Controls", path: "/controls" }, // HIDDEN: temporarily disabled
   { icon: TrendingUp, label: "Progress", path: "/progress" },
   { icon: Headphones, label: "Support", path: "/support" },
 ];
