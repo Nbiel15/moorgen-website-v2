@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/lifestyle-dashboard" },
-  { icon: Sliders, label: "Controls", path: "/controls" },
+  // { icon: Sliders, label: "Controls", path: "/controls" }, // HIDDEN: temporarily disabled
   { icon: TrendingUp, label: "Progress", path: "/progress" },
   { icon: User, label: "Support", path: "/support" },
 ];

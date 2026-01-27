@@ -1,8 +1,8 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Index from "@/pages/Index";
 import LifestyleDashboard from "@/pages/LifestyleDashboard";
-import Controls from "@/pages/Controls";
+// import Controls from "@/pages/Controls"; // HIDDEN: Controls page temporarily disabled
 import AdvancedDeviceControl from "@/pages/AdvancedDeviceControl";
 import AdvancedLightingControl from "@/pages/AdvancedLightingControl";
 import ProjectJourney from "@/pages/ProjectJourney";
@@ -24,7 +24,8 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/lifestyle-dashboard" element={<PageTransition><LifestyleDashboard /></PageTransition>} />
-        <Route path="/controls" element={<PageTransition><Controls /></PageTransition>} />
+        {/* HIDDEN: Controls route temporarily disabled - redirect to home */}
+        <Route path="/controls" element={<Navigate to="/lifestyle-dashboard" replace />} />
         <Route path="/advanced-control" element={<PageTransition><AdvancedDeviceControl /></PageTransition>} />
         <Route path="/lighting-control" element={<PageTransition><AdvancedLightingControl /></PageTransition>} />
         <Route path="/progress" element={<PageTransition><ProjectJourney /></PageTransition>} />
