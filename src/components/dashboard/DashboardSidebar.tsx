@@ -1,4 +1,4 @@
-import { Home, Sliders, TrendingUp, Headphones, Sparkles } from "lucide-react";
+import { Home, TrendingUp, MessageCircle, Headphones, Sparkles } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -6,6 +6,7 @@ const navItems = [
   { icon: Home, label: "Home", path: "/lifestyle-dashboard" },
   // { icon: Sliders, label: "Controls", path: "/controls" }, // HIDDEN: temporarily disabled
   { icon: TrendingUp, label: "Progress", path: "/progress" },
+  { icon: MessageCircle, label: "Chat", path: "/engineer-chat" },
   { icon: Headphones, label: "Support", path: "/support" },
 ];
 

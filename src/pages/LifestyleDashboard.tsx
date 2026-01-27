@@ -4,7 +4,7 @@ import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
 // import SmartPanelControls from "@/components/dashboard/SmartPanelControls"; // HIDDEN: temporarily disabled
 import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
-import ChatWithEngineerButton from "@/components/ChatWithEngineerButton";
+// import ChatWithEngineerButton from "@/components/ChatWithEngineerButton"; // HIDDEN: moved to navbar
 
 const LifestyleDashboard = () => {
   return (
@@ -28,8 +28,9 @@ const LifestyleDashboard = () => {
         </motion.div>
       </div>
 
-      {/* Floating Chat Button */}
+      {/* HIDDEN: Floating Chat Button - moved to navbar
       <ChatWithEngineerButton />
+      */}
     </DashboardLayout>
   );
 };
