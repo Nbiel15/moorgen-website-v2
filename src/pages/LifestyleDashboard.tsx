@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
-import SmartPanelControls from "@/components/dashboard/SmartPanelControls";
+// import SmartPanelControls from "@/components/dashboard/SmartPanelControls"; // HIDDEN: temporarily disabled
 import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
 import ChatWithEngineerButton from "@/components/ChatWithEngineerButton";
@@ -19,8 +19,9 @@ const LifestyleDashboard = () => {
           {/* BAR 1: Welcome Area */}
           <WelcomeBanner />
 
-          {/* BAR 2: Smart Panel Controls */}
+          {/* HIDDEN: Smart Panel Controls temporarily disabled
           <SmartPanelControls />
+          */}
 
           {/* BAR 3: Project Milestone Tracker */}
           <MilestoneTracker />
