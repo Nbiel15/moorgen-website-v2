@@ -249,7 +249,7 @@ const Support = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.2
-        }} className="grid grid-cols-2 gap-4 md:gap-6">
+        }} className="grid grid-cols-2 gap-2.5 sm:gap-4 md:gap-6">
           {supportCategories.map((category, index) => <motion.div key={category.title} initial={{
             opacity: 0,
             y: 20
@@ -264,16 +264,16 @@ const Support = () => {
             y: -6
           }} whileTap={{
             scale: 0.98
-          }} className={`relative overflow-hidden rounded-2xl border-2 ${category.borderColor} bg-gradient-to-br ${category.color} p-6 md:p-8 cursor-pointer group transition-all duration-500 hover:shadow-2xl hover:${category.glowColor} hover:border-champagne-gold/60`}>
+          }} className={`relative overflow-hidden rounded-xl sm:rounded-2xl border ${category.borderColor} bg-gradient-to-br ${category.color} p-3 sm:p-5 md:p-8 cursor-pointer group transition-all duration-500 hover:shadow-2xl hover:${category.glowColor} hover:border-champagne-gold/60`}>
                 {/* Luxury Background Pattern */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-champagne-gold/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
                 {/* Corner Accent */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-champagne-gold/10 to-transparent rounded-bl-[100px] opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-bl from-champagne-gold/10 to-transparent rounded-bl-[60px] sm:rounded-bl-[100px] opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Animated Border Glow */}
                 <motion.div 
-                  className="absolute inset-0 rounded-2xl border border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-500"
+                  className="absolute inset-0 rounded-xl sm:rounded-2xl border border-champagne-gold/0 group-hover:border-champagne-gold/30 transition-all duration-500"
                   animate={{
                     boxShadow: ["0 0 0 0 rgba(212, 175, 55, 0)", "0 0 20px 2px rgba(212, 175, 55, 0.1)", "0 0 0 0 rgba(212, 175, 55, 0)"]
                   }}
@@ -286,23 +286,23 @@ const Support = () => {
                 
                 <div className="relative z-10">
                   {/* Icon Container with Gold Ring */}
-                  <div className="relative mb-5">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center border border-champagne-gold/30 group-hover:border-champagne-gold/60 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-champagne-gold/10`}>
-                      <category.icon className={`w-8 h-8 ${category.iconColor} group-hover:scale-110 transition-transform duration-300`} />
+                  <div className="relative mb-2.5 sm:mb-4 md:mb-5">
+                    <div className={`w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center border border-champagne-gold/30 group-hover:border-champagne-gold/60 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-champagne-gold/10`}>
+                      <category.icon className={`w-5 h-5 sm:w-7 sm:h-7 md:w-8 md:h-8 ${category.iconColor} group-hover:scale-110 transition-transform duration-300`} />
                     </div>
                     {/* Subtle Glow Behind Icon */}
-                    <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-champagne-gold/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
+                    <div className="absolute inset-0 w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-champagne-gold/20 blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10" />
                   </div>
                   
-                  <h3 className="font-heading text-xl md:text-2xl text-white mb-2 group-hover:text-champagne-gold transition-colors duration-300">{category.title}</h3>
-                  <p className="text-sm text-white/60 font-body leading-relaxed">{category.description}</p>
+                  <h3 className="font-heading text-sm sm:text-lg md:text-2xl text-white mb-1 sm:mb-2 group-hover:text-champagne-gold transition-colors duration-300">{category.title}</h3>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-white/60 font-body leading-relaxed line-clamp-2">{category.description}</p>
                   
                   {/* Elegant CTA */}
-                  <div className="mt-5 flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="mt-2.5 sm:mt-4 md:mt-5 flex items-center gap-2 sm:gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
                     <div className="h-px flex-1 bg-gradient-to-r from-champagne-gold/60 to-transparent" />
-                    <span className="text-xs text-champagne-gold font-body tracking-wider uppercase">Explore</span>
+                    <span className="text-[9px] sm:text-xs text-champagne-gold font-body tracking-wider uppercase">Explore</span>
                     <motion.span 
-                      className="text-champagne-gold"
+                      className="text-champagne-gold text-xs sm:text-base"
                       animate={{
                         x: [0, 6, 0]
                       }} 
