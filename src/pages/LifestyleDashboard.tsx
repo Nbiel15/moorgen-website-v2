@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
+import ArchitectProfile from "@/components/dashboard/ArchitectProfile";
+import OnSiteWorker from "@/components/dashboard/OnSiteWorker";
+import TodayProgress from "@/components/dashboard/TodayProgress";
+import OverallProgressSummary from "@/components/dashboard/OverallProgressSummary";
 // import SmartPanelControls from "@/components/dashboard/SmartPanelControls"; // HIDDEN: temporarily disabled
 import MilestoneTracker from "@/components/dashboard/MilestoneTracker";
 import RightPanel from "@/components/dashboard/RightPanel";
@@ -14,10 +18,22 @@ const LifestyleDashboard = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="max-w-4xl mx-auto space-y-4 sm:space-y-5 md:space-y-6"
+          className="max-w-5xl mx-auto space-y-4 sm:space-y-5 md:space-y-6"
         >
           {/* BAR 1: Welcome Area */}
           <WelcomeBanner />
+
+          {/* NEW SECTION: Architect Profile & On-Site Workers */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+            <ArchitectProfile />
+            <OnSiteWorker />
+          </div>
+
+          {/* NEW SECTION: Today Progress */}
+          <TodayProgress />
+
+          {/* NEW SECTION: Overall Project Progress Summary */}
+          <OverallProgressSummary />
 
           {/* HIDDEN: Smart Panel Controls temporarily disabled
           <SmartPanelControls />
