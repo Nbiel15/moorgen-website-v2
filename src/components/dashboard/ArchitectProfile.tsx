@@ -8,6 +8,7 @@ const ArchitectProfile = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
+      style={{ height: "100%" }}
       className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
     >
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">

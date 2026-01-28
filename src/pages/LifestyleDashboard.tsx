@@ -20,26 +20,31 @@ const LifestyleDashboard = () => {
           transition={{ duration: 0.4 }}
           className="max-w-5xl mx-auto space-y-4 sm:space-y-5 md:space-y-6"
         >
-          {/* BAR 1: Welcome Area */}
+          {/* ROW 1: Welcome Banner - Full Width */}
           <WelcomeBanner />
 
-          {/* NEW SECTION: Architect Profile & On-Site Workers */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
-            <ArchitectProfile />
-            <OnSiteWorker />
+          {/* ROW 2: Grid Layout - Profile Arsitek (left, tall) | On Site Worker + Today Progress (right, stacked) */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
+            {/* Left: Profile Arsitek - spans full height (2 rows equivalent) */}
+            <div className="lg:col-span-2 lg:row-span-2">
+              <ArchitectProfile />
+            </div>
+            
+            {/* Right column: On Site Worker + Today Progress stacked */}
+            <div className="lg:col-span-3 space-y-4 sm:space-y-5 md:space-y-6">
+              <OnSiteWorker />
+              <TodayProgress />
+            </div>
           </div>
 
-          {/* NEW SECTION: Today Progress */}
-          <TodayProgress />
-
-          {/* NEW SECTION: Overall Project Progress Summary */}
+          {/* ROW 3: Overall Progress Summary (All Progressbar) - Full Width */}
           <OverallProgressSummary />
 
           {/* HIDDEN: Smart Panel Controls temporarily disabled
           <SmartPanelControls />
           */}
 
-          {/* BAR 3: Project Milestone Tracker */}
+          {/* ROW 4: Project Milestone Tracker (Progress) - Full Width */}
           <MilestoneTracker />
         </motion.div>
       </div>
