@@ -20,18 +20,11 @@ const LifestyleDashboard = () => {
           {/* ROW 1: Welcome Banner */}
           <WelcomeBanner />
 
-          {/* ROW 2: Two-column layout - Architect (dark) + Status Panel (light) */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {/* Left: Architect Profile - narrower */}
-            <div className="md:col-span-2">
-              <ArchitectProfile />
-            </div>
-            
-            {/* Right: Quick Status Panel - wider */}
-            <div className="md:col-span-3">
-              <QuickStatusPanel />
-            </div>
-          </div>
+          {/* ROW 2: Architect Profile */}
+          <ArchitectProfile />
+
+          {/* ROW 3: Quick Status Panel - Team & Activity */}
+          <QuickStatusPanel />
 
           {/* ROW 3: Overall Progress Summary */}
           <OverallProgressSummary />
