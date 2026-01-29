@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, Award } from "lucide-react";
+import { Phone, Mail, Award, Star } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ArchitectProfile = () => {
@@ -8,53 +8,61 @@ const ArchitectProfile = () => {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
-      className="group relative bg-gradient-to-br from-charcoal to-charcoal/95 rounded-2xl p-4 sm:p-5 overflow-hidden"
+      className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-border/40 shadow-sm"
     >
-      {/* Subtle gold accent */}
-      <div className="absolute top-0 right-0 w-24 h-24 bg-champagne-gold/5 rounded-full blur-2xl" />
-      
-      {/* Header badge */}
-      <div className="flex items-center gap-1.5 mb-3">
-        <Award className="w-3 h-3 text-champagne-gold" />
-        <span className="text-[8px] sm:text-[9px] text-champagne-gold uppercase tracking-[0.2em]">
-          Lead Architect
-        </span>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
+            <Award className="w-4 h-4 text-champagne-gold" />
+          </div>
+          <div>
+            <h3 className="text-sm font-medium text-charcoal">Lead Architect</h3>
+            <p className="text-[10px] text-charcoal/40">Project Manager</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-3 h-3 text-champagne-gold fill-champagne-gold" />
+          ))}
+        </div>
       </div>
 
-      {/* Profile */}
-      <div className="flex items-center gap-3">
+      {/* Profile Card */}
+      <div className="flex items-center gap-4 p-4 bg-gradient-to-br from-charcoal to-charcoal/95 rounded-xl">
         <div className="relative">
-          <Avatar className="w-11 h-11 sm:w-12 sm:h-12 ring-2 ring-champagne-gold/30 ring-offset-2 ring-offset-charcoal">
+          <Avatar className="w-14 h-14 ring-2 ring-champagne-gold/30 ring-offset-2 ring-offset-charcoal">
             <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Architect" />
             <AvatarFallback className="bg-champagne-gold text-charcoal text-sm font-medium">IW</AvatarFallback>
           </Avatar>
-          <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full border-2 border-charcoal flex items-center justify-center">
-            <span className="w-1.5 h-1.5 bg-white rounded-full" />
+          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-charcoal flex items-center justify-center">
+            <span className="w-2 h-2 bg-white rounded-full" />
           </div>
         </div>
         
         <div className="flex-1 min-w-0">
-          <h3 className="font-heading text-sm sm:text-base text-white truncate">
+          <h3 className="font-heading text-base text-white truncate">
             Ir. Wayan Sudarma
           </h3>
-          <p className="text-[10px] text-white/40">15+ years • IAI Certified</p>
+          <p className="text-[11px] text-white/50 mt-0.5">15+ years experience</p>
+          <p className="text-[10px] text-champagne-gold mt-1">IAI Certified Professional</p>
         </div>
       </div>
 
       {/* Contact buttons */}
-      <div className="flex gap-2 mt-4">
+      <div className="flex gap-3 mt-4">
         <a 
           href="tel:+6281234567890" 
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-white/5 hover:bg-champagne-gold/20 border border-white/10 hover:border-champagne-gold/30 rounded-lg text-[10px] text-white/70 hover:text-champagne-gold transition-all"
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-charcoal hover:bg-charcoal/90 rounded-xl text-xs text-white transition-all"
         >
-          <Phone className="w-3 h-3" />
-          <span>Call</span>
+          <Phone className="w-3.5 h-3.5" />
+          <span>Call Now</span>
         </a>
         <a 
           href="mailto:wayan@moorgenarch.com" 
-          className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-white/5 hover:bg-champagne-gold/20 border border-white/10 hover:border-champagne-gold/30 rounded-lg text-[10px] text-white/70 hover:text-champagne-gold transition-all"
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 border border-charcoal/20 hover:border-champagne-gold/50 hover:bg-champagne-gold/5 rounded-xl text-xs text-charcoal transition-all"
         >
-          <Mail className="w-3 h-3" />
+          <Mail className="w-3.5 h-3.5" />
           <span>Email</span>
         </a>
       </div>
