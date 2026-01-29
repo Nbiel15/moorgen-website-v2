@@ -1,20 +1,17 @@
 import { motion } from "framer-motion";
-import { Zap, Camera, CheckCircle2, Clock, ArrowUpRight } from "lucide-react";
+import { CheckCircle2, Clock } from "lucide-react";
 
 interface ProgressItem {
   id: string;
   title: string;
-  description: string;
   time: string;
   status: "completed" | "in-progress";
-  hasPhoto?: boolean;
-  photoUrl?: string;
 }
 
 const todayItems: ProgressItem[] = [
-  { id: "1", title: "Switch Install - Master", description: "6 panels done", time: "09:45", status: "completed", hasPhoto: true },
-  { id: "2", title: "Cable Routing - 2F", description: "CAT6 complete", time: "11:30", status: "completed", hasPhoto: true },
-  { id: "3", title: "Panel Mount - Living", description: "In progress", time: "14:00", status: "in-progress", hasPhoto: false },
+  { id: "1", title: "Switch Install", time: "09:45", status: "completed" },
+  { id: "2", title: "Cable Routing", time: "11:30", status: "completed" },
+  { id: "3", title: "Panel Mount", time: "14:00", status: "in-progress" },
 ];
 
 const TodayProgress = () => {
@@ -22,60 +19,48 @@ const TodayProgress = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+      transition={{ duration: 0.4, delay: 0.1 }}
+      className="h-full bg-white/80 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-border/50 shadow-sm"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <Zap className="w-4 h-4 text-champagne-gold" />
-          <h3 className="font-serif text-sm sm:text-base text-charcoal">Today</h3>
-          <span className="text-[9px] sm:text-[10px] text-charcoal/50">({completedCount}/{todayItems.length})</span>
-        </div>
+        <p className="text-[8px] sm:text-[9px] text-charcoal/50 uppercase tracking-wider font-medium">
+          Today's Tasks
+        </p>
         <span className="text-[9px] text-charcoal/40">
-          {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+          {completedCount}/{todayItems.length}
         </span>
       </div>
 
-      {/* Compact Timeline */}
+      {/* Progress Bar */}
+      <div className="h-1.5 bg-charcoal/10 rounded-full mb-3 overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${(completedCount / todayItems.length) * 100}%` }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="h-full bg-gradient-to-r from-champagne-gold to-amber-500 rounded-full"
+        />
+      </div>
+
+      {/* Task List - Minimal */}
       <div className="space-y-1.5">
-        {todayItems.map((item, index) => (
-          <motion.div
+        {todayItems.map((item) => (
+          <div
             key={item.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 + index * 0.05 }}
-            className={`flex items-center gap-2 p-2 rounded-lg border ${
-              item.status === "in-progress"
-                ? "bg-champagne-gold/5 border-champagne-gold/30"
-                : "bg-white/50 border-border/30"
+            className={`flex items-center gap-2 text-[10px] ${
+              item.status === "in-progress" ? "text-champagne-gold font-medium" : "text-charcoal/60"
             }`}
           >
-            {/* Status Icon */}
             {item.status === "completed" ? (
-              <CheckCircle2 className="w-4 h-4 text-charcoal flex-shrink-0" />
+              <CheckCircle2 className="w-3 h-3 text-charcoal/40" />
             ) : (
-              <Clock className="w-4 h-4 text-champagne-gold flex-shrink-0" />
+              <Clock className="w-3 h-3 text-champagne-gold" />
             )}
-
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-1.5">
-                <p className="text-xs font-medium text-charcoal truncate">{item.title}</p>
-                {item.status === "in-progress" && (
-                  <span className="text-[8px] font-semibold text-champagne-gold">LIVE</span>
-                )}
-              </div>
-              <p className="text-[9px] text-charcoal/50">{item.description} • {item.time}</p>
-            </div>
-
-            {/* Photo indicator */}
-            {item.hasPhoto && (
-              <Camera className="w-3.5 h-3.5 text-charcoal/30 flex-shrink-0" />
-            )}
-          </motion.div>
+            <span className="truncate flex-1">{item.title}</span>
+            <span className="text-[9px] text-charcoal/40">{item.time}</span>
+          </div>
         ))}
       </div>
     </motion.div>
