@@ -12,27 +12,9 @@ interface Worker {
 }
 
 const workers: Worker[] = [
-  {
-    id: "1",
-    name: "Made Wirawan",
-    role: "Electrical Lead",
-    status: "active",
-    checkInTime: "07:30",
-  },
-  {
-    id: "2",
-    name: "Kadek Surya",
-    role: "Smart Panel Tech",
-    status: "active",
-    checkInTime: "08:00",
-  },
-  {
-    id: "3",
-    name: "Nyoman Arta",
-    role: "Network Installer",
-    status: "break",
-    checkInTime: "07:45",
-  },
+  { id: "1", name: "Made W.", role: "Electrical", status: "active", checkInTime: "07:30" },
+  { id: "2", name: "Kadek S.", role: "Panel Tech", status: "active", checkInTime: "08:00" },
+  { id: "3", name: "Nyoman A.", role: "Network", status: "break", checkInTime: "07:45" },
 ];
 
 const OnSiteWorker = () => {
@@ -72,50 +54,40 @@ const OnSiteWorker = () => {
       className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-charcoal/10 to-charcoal/5 flex items-center justify-center">
-            <HardHat className="w-4 h-4 text-charcoal/70" />
-          </div>
-          <div>
-            <h3 className="font-serif text-base sm:text-lg text-charcoal">On-Site Workers</h3>
-            <p className="text-[10px] sm:text-xs text-charcoal/50">
-              {activeCount} of {workers.length} currently active
-            </p>
-          </div>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <HardHat className="w-4 h-4 text-charcoal/70" />
+          <h3 className="font-serif text-sm sm:text-base text-charcoal">Workers</h3>
+          <span className="text-[9px] sm:text-[10px] text-charcoal/50">({activeCount}/{workers.length})</span>
         </div>
-        <div className="flex items-center gap-1 text-[10px] sm:text-xs text-charcoal/40">
-          <Clock className="w-3 h-3" />
-          <span>Live</span>
-        </div>
+        <span className="text-[9px] text-emerald-600 flex items-center gap-1">
+          <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+          Live
+        </span>
       </div>
 
-      {/* Worker List */}
-      <div className="space-y-2 sm:space-y-3">
+      {/* Worker List - Compact */}
+      <div className="space-y-1.5">
         {workers.map((worker, index) => (
           <motion.div
             key={worker.id}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 + index * 0.1 }}
-            className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-white/50 border border-border/30 hover:border-champagne-gold/30 transition-colors"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 + index * 0.05 }}
+            className="flex items-center justify-between p-2 rounded-lg bg-white/50 border border-border/30"
           >
-            <Avatar className="w-9 h-9 sm:w-10 sm:h-10 border border-border">
-              <AvatarImage src={worker.avatar} alt={worker.name} />
-              <AvatarFallback className="bg-gradient-to-br from-charcoal/10 to-charcoal/5 text-charcoal/70 text-xs font-medium">
-                {worker.name.split(" ").map((n) => n[0]).join("")}
-              </AvatarFallback>
-            </Avatar>
-
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h4 className="text-sm font-medium text-charcoal truncate">{worker.name}</h4>
-                {getStatusBadge(worker.status)}
+            <div className="flex items-center gap-2">
+              <Avatar className="w-7 h-7 border border-border">
+                <AvatarFallback className="bg-charcoal/5 text-charcoal/70 text-[10px] font-medium">
+                  {worker.name.split(" ").map((n) => n[0]).join("")}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="text-xs font-medium text-charcoal">{worker.name}</p>
+                <p className="text-[9px] text-charcoal/50">{worker.role}</p>
               </div>
-              <p className="text-[10px] sm:text-xs text-charcoal/50 mt-0.5">
-                {worker.role} • Check-in {worker.checkInTime}
-              </p>
             </div>
+            {getStatusBadge(worker.status)}
           </motion.div>
         ))}
       </div>
