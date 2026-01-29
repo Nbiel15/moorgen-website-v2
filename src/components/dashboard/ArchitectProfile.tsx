@@ -5,40 +5,38 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const ArchitectProfile = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }}
-      style={{ height: "100%" }}
-      className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
+      transition={{ duration: 0.4 }}
+      className="h-full bg-white/80 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-border/50 shadow-sm"
     >
-      <div className="flex items-center gap-3 sm:gap-4">
-        {/* Avatar */}
-        <Avatar className="w-12 h-12 sm:w-14 sm:h-14 border-2 border-champagne-gold/30 shadow-lg flex-shrink-0">
-          <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Architect" />
-          <AvatarFallback className="bg-gradient-to-br from-charcoal to-charcoal/80 text-white font-serif">
-            IW
-          </AvatarFallback>
-        </Avatar>
+      {/* Header */}
+      <p className="text-[8px] sm:text-[9px] text-champagne-gold uppercase tracking-wider font-medium mb-2">
+        Lead Architect
+      </p>
 
-        {/* Info */}
-        <div className="flex-1 min-w-0">
-          <p className="text-[9px] sm:text-[10px] text-champagne-gold uppercase tracking-wider font-medium">
-            Lead Architect
-          </p>
-          <h3 className="font-serif text-base sm:text-lg text-charcoal truncate">
-            Ir. Wayan Sudarma
-          </h3>
-          <div className="flex items-center gap-2 mt-1">
-            <a href="tel:+6281234567890" className="text-[10px] sm:text-xs text-charcoal/60 hover:text-champagne-gold transition-colors flex items-center gap-1">
-              <Phone className="w-3 h-3" />
-              <span className="hidden sm:inline">Contact</span>
-            </a>
-            <a href="mailto:wayan@moorgenarch.com" className="text-[10px] sm:text-xs text-charcoal/60 hover:text-champagne-gold transition-colors flex items-center gap-1">
-              <Mail className="w-3 h-3" />
-              <span className="hidden sm:inline">Email</span>
-            </a>
-          </div>
+      {/* Profile */}
+      <div className="flex items-center gap-2.5">
+        <Avatar className="w-10 h-10 border border-champagne-gold/20">
+          <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Architect" />
+          <AvatarFallback className="bg-charcoal text-white text-xs">IW</AvatarFallback>
+        </Avatar>
+        <div className="min-w-0">
+          <h3 className="font-serif text-sm text-charcoal truncate">Ir. Wayan S.</h3>
+          <p className="text-[9px] text-charcoal/50">15+ yrs experience</p>
         </div>
+      </div>
+
+      {/* Quick Contact */}
+      <div className="flex gap-2 mt-3">
+        <a href="tel:+6281234567890" className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-charcoal/5 hover:bg-champagne-gold/10 rounded-lg text-[9px] text-charcoal/60 hover:text-champagne-gold transition-colors">
+          <Phone className="w-3 h-3" />
+          <span>Call</span>
+        </a>
+        <a href="mailto:wayan@moorgenarch.com" className="flex-1 flex items-center justify-center gap-1 py-1.5 bg-charcoal/5 hover:bg-champagne-gold/10 rounded-lg text-[9px] text-charcoal/60 hover:text-champagne-gold transition-colors">
+          <Mail className="w-3 h-3" />
+          <span>Email</span>
+        </a>
       </div>
     </motion.div>
   );
