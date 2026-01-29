@@ -130,24 +130,18 @@ const MilestoneTracker = () => {
   }} transition={{
     duration: 0.6,
     delay: 0.2
-  }} className="bg-white/80 backdrop-blur-md rounded-2xl md:rounded-3xl p-5 sm:p-6 border border-border/50 shadow-[0_8px_40px_rgba(0,0,0,0.06)]">
+  }} className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-border/40 shadow-sm">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 md:mb-6">
-        <div className="flex items-center gap-3">
-          <motion.div animate={{
-          rotate: [0, 10, -10, 0]
-        }} transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }} className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
             <Calendar className="w-4 h-4 text-champagne-gold" />
-          </motion.div>
-          <h3 className="font-serif text-lg md:text-xl text-charcoal">Project Journey</h3>
+          </div>
+          <div>
+            <h3 className="text-sm font-medium text-charcoal">Project Journey</h3>
+            <p className="text-[10px] text-charcoal/40">Installation Timeline</p>
+          </div>
         </div>
-        
-        {/* Progress indicator */}
-        
       </div>
 
       {/* Milestones */}

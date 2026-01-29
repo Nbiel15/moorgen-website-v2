@@ -14,17 +14,19 @@ const OverallProgressSummary = () => {
       {/* Header with main progress */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-champagne-gold/20 to-champagne-gold/5 flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-champagne-gold" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-medium text-charcoal">Project Overview</h3>
-            <p className="text-[9px] text-charcoal/40">Smart Home Installation</p>
+            <h3 className="text-sm font-medium text-charcoal">Project Overview</h3>
+            <p className="text-[10px] text-charcoal/40">Smart Home Installation</p>
           </div>
         </div>
-        <div className="text-right">
-          <p className="text-xl sm:text-2xl font-heading text-charcoal">{progressValue}%</p>
-          <p className="text-[9px] text-emerald-600">On Track</p>
+        <div className="flex items-center gap-3">
+          <div className="text-right">
+            <p className="text-2xl font-heading text-charcoal">{progressValue}%</p>
+            <p className="text-[10px] text-emerald-600 font-medium">On Track</p>
+          </div>
         </div>
       </div>
 
@@ -46,28 +48,28 @@ const OverallProgressSummary = () => {
 
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="text-center p-2 rounded-xl bg-charcoal/[0.02]">
-          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1">
-            <Calendar className="w-3 h-3" />
+        <div className="text-center p-3 rounded-xl bg-charcoal/[0.03] border border-charcoal/5">
+          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1.5">
+            <Calendar className="w-3.5 h-3.5" />
           </div>
-          <p className="text-base sm:text-lg font-heading text-charcoal">42</p>
-          <p className="text-[8px] sm:text-[9px] text-charcoal/40">Days Left</p>
+          <p className="text-lg font-heading text-charcoal">42</p>
+          <p className="text-[10px] text-charcoal/40">Days Left</p>
         </div>
         
-        <div className="text-center p-2 rounded-xl bg-charcoal/[0.02]">
-          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1">
-            <Target className="w-3 h-3" />
+        <div className="text-center p-3 rounded-xl bg-charcoal/[0.03] border border-charcoal/5">
+          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1.5">
+            <Target className="w-3.5 h-3.5" />
           </div>
-          <p className="text-base sm:text-lg font-heading text-charcoal">3/5</p>
-          <p className="text-[8px] sm:text-[9px] text-charcoal/40">Milestones</p>
+          <p className="text-lg font-heading text-charcoal">3/5</p>
+          <p className="text-[10px] text-charcoal/40">Milestones</p>
         </div>
         
-        <div className="text-center p-2 rounded-xl bg-charcoal/[0.02]">
-          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1">
-            <Clock className="w-3 h-3" />
+        <div className="text-center p-3 rounded-xl bg-charcoal/[0.03] border border-charcoal/5">
+          <div className="flex items-center justify-center gap-1 text-charcoal/40 mb-1.5">
+            <Clock className="w-3.5 h-3.5" />
           </div>
-          <p className="text-base sm:text-lg font-heading text-charcoal">240</p>
-          <p className="text-[8px] sm:text-[9px] text-charcoal/40">Hours</p>
+          <p className="text-lg font-heading text-charcoal">240</p>
+          <p className="text-[10px] text-charcoal/40">Hours</p>
         </div>
       </div>
     </motion.div>
